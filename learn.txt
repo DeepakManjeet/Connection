@@ -1,8 +1,20 @@
-$ git push
-fatal: The current branch PrabhuWS has no upstream branch.
-To push the current branch and set the remote as upstream, use
-
-    git push --set-upstream origin PrabhuWS
-
-To have this happen automatically for branches without a tracking
-upstream, see 'push.autoSetupRemote' in 'git help config'.
+remote: You cannot push the following commits as the authors do not have write access to this repository:
+remote:
+remote: f286f125200: Chaudhary <ADM-e5721153@prod.local>
+remote: 4ed9be0481c: Chaudhary <ADM-e5721153@prod.local>
+remote:
+remote: Check all gitconfigs have the correct email address, give repository permissions, or contact an administrator.
+remote: =====================================================================
+remote:
+remote:
+remote:
+remote: =====================================================================
+remote: One or more JIRA issues from your commits not found by query (project = ACBSGATS AND resolution is empty and assignee = currentUser()):
+remote:
+remote:         4ed9be0481c: Commit not associated with a valid ticket
+remote: =====================================================================
+remote:
+remote:
+To https://bitbucket.fis.dev/scm/acbsgats/acbs_acc_automation.git
+ ! [remote rejected] PrabhuWS -> PrabhuWS (pre-receive hook declined)
+error: failed to push some refs to 'https://bitbucket.fis.dev/scm/acbsgats/acbs_acc_automation.git'
