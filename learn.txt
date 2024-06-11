@@ -1,4 +1,8 @@
-From https://bitbucket.fis.dev/scm/acbsgats/acbs_acc_automation
- * branch            master     -> FETCH_HEAD
- * [new branch]      master     -> origin/master
-fatal: refusing to merge unrelated histories
+$ git push
+fatal: The current branch PrabhuWS has no upstream branch.
+To push the current branch and set the remote as upstream, use
+
+    git push --set-upstream origin PrabhuWS
+
+To have this happen automatically for branches without a tracking
+upstream, see 'push.autoSetupRemote' in 'git help config'.
