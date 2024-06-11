@@ -1,1 +1,4 @@
-https://fisglobal.sabacloud.com/Saba/Web_spf/NA10P1PRD002/app/catalog/search?searchText=mizuho&selectedTab=LEARNINGEVENT
+$ git push -u origin master
+fatal: unable to update url base from redirection:
+  asked for: https://bitbucket.fis.dev/projects/ACBSGATS/repos/acbs_acc_automation/browse/info/refs?service=git-receive-pack
+   redirect: https://bitbucket.fis.dev/login?next=%2Fprojects%2FACBSGATS%2Frepos%2Facbs_acc_automation%2Fbrowse%2Finfo%2Frefs%3Fservice%3Dgit-receive-pack
