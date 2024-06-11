@@ -1,4 +1,9 @@
-$ git push -u origin master
-fatal: unable to update url base from redirection:
-  asked for: https://bitbucket.fis.dev/projects/ACBSGATS/repos/acbs_acc_automation/browse/info/refs?service=git-receive-pack
-   redirect: https://bitbucket.fis.dev/login?next=%2Fprojects%2FACBSGATS%2Frepos%2Facbs_acc_automation%2Fbrowse%2Finfo%2Frefs%3Fservice%3Dgit-receive-pack
+$ git push origin master
+To https://bitbucket.fis.dev/scm/acbsgats/acbs_acc_automation.git
+ ! [rejected]        master -> master (fetch first)
+error: failed to push some refs to 'https://bitbucket.fis.dev/scm/acbsgats/acbs_acc_automation.git'
+hint: Updates were rejected because the remote contains work that you do not
+hint: have locally. This is usually caused by another repository pushing to
+hint: the same ref. If you want to integrate the remote changes, use
+hint: 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
