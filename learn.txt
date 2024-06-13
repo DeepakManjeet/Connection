@@ -1,20 +1,15 @@
-remote: You cannot push the following commits as the authors do not have write access to this repository:
-remote:
-remote: f286f125200: Chaudhary <ADM-e5721153@prod.local>
-remote: 4ed9be0481c: Chaudhary <ADM-e5721153@prod.local>
-remote:
-remote: Check all gitconfigs have the correct email address, give repository permissions, or contact an administrator.
-remote: =====================================================================
-remote:
-remote:
-remote:
-remote: =====================================================================
-remote: One or more JIRA issues from your commits not found by query (project = ACBSGATS AND resolution is empty and assignee = currentUser()):
-remote:
-remote:         4ed9be0481c: Commit not associated with a valid ticket
-remote: =====================================================================
-remote:
-remote:
-To https://bitbucket.fis.dev/scm/acbsgats/acbs_acc_automation.git
- ! [remote rejected] PrabhuWS -> PrabhuWS (pre-receive hook declined)
-error: failed to push some refs to 'https://bitbucket.fis.dev/scm/acbsgats/acbs_acc_automation.git'
+2. fetch all refs in git on server:
+
+git fetch --all 
+
+3. switch to branch created in 1.
+
+git checkout branch_name
+
+4. Add your files/folder to your local directory
+
+5. git add .
+6. git commit -m" "
+
+
+7. git push
