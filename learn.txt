@@ -2,7 +2,7 @@
   "UserSettings": {
     "UserName": "Deepak",
     "EnvironmentName": "VWCAPQAWAA",
-    "SystemtName": "WAA on I9DEVP20",
+    "SystemName": "WAA on I9DEVP20",
     "WindowsLogin": false,
     "ProjectName": "JPMC ACBS Automation",
     "DBConnection": "I9DEVP20",
@@ -27,9 +27,9 @@
     "GLOBAL_PROCESSING_GROUP_CODE": "WB",
     "GLOBAL_PORTFOLIO": "WAB PORTFOLIO",
     "GLOBAL_PORTFOLIO_DESCRIPTION": "WAB PORTFOLIO",
-    "GLOABL_APPROVER_MUST_BE_DIFFERENT_FROM_OWNER": "NO",
-    "GLOABL_RELEASER_MUST_BE_DIFFERENT_FROM_OWNER": "NO",
-    "GLOABL_RELEASER_MUST_BE_DIFFERENT_FROM_APPROVER": "NO",
+    "GLOBAL_APPROVER_MUST_BE_DIFFERENT_FROM_OWNER": "NO",
+    "GLOBAL_RELEASER_MUST_BE_DIFFERENT_FROM_OWNER": "NO",
+    "GLOBAL_RELEASER_MUST_BE_DIFFERENT_FROM_APPROVER": "NO",
     "DetailReportWithSnaps": false,
     "GLOBAL_CREATOR_NAME": "PRAGADEESH MANICKAVASAGAM"
   },
@@ -38,8 +38,7 @@
     "WordDocPath": "C:\\AutomationWorkspace\\DeepakACBS\\Workspace\\OUTPUT\\Results\\",
     "LogsPath": "C:\\AutomationWorkspace\\DeepakACBS\\Workspace\\OUTPUT\\Logs\\",
     "ReportsPath": "C:\\AutomationWorkspace\\DeepakACBS\\Workspace\\OUTPUT\\Reports\\",
-    "CreateWordDocumentWithQAInstruction":true
-
+    "CreateWordDocumentWithQAInstruction": true
   },
   "EnvironmentSettings": [
     {
@@ -52,7 +51,6 @@
         "ProjectPath": "C:\\AutomationWorkspace\\DeepakACBS\\Workspace\\ACBS\\",
         "JavaPath": "C:\\Program Files (x86)\\Java\\jre1.8.0_251",
         "GLOBAL_APPLICATION_LOCATION": "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\ACBS\\ACBS Unified Logon.lnk"
-        
       }
     },
     {
@@ -76,20 +74,19 @@
       "TestRailURL": "https://testrail.fis.dev",
       "TestRailAPIKEY": "kJzs/T18RmETV3LeOfyn-tBN4ftRgtp9hujxsMcZ7",
       "TestRailRunID": "126207",
-	  "SkipPassedTestRun": true,
+      "SkipPassedTestRun": true,
       "TestResultsInComment": true,
-	   "AttachReportInResult":true
-  }
-
+      "AttachReportInResult": true
+    }
   },
   "Zephyr": {
-	   "ZephyrUserId":"e5721153", 
-	  "ZephyrPassword": "",
-	  "ZephyrURL": "https://jira.fis.dev/secure/Tests.jspa#/v2/testCases?projectId=40326",
-	  "ZephyrProjectID":"TASFISCM",  
-	  "ZephyrCycleID": "C264", 
-	  "Comments":true 
-  } , 
+    "ZephyrUserId": "e5721153",
+    "ZephyrPassword": "",
+    "ZephyrURL": "https://jira.fis.dev/secure/Tests.jspa#/v2/testCases?projectId=40326",
+    "ZephyrProjectID": "TASFISCM",
+    "ZephyrCycleID": "C264",
+    "Comments": true
+  },
   "EmailSettings": {
     "IsEnable": "false"
   },
