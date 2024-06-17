@@ -1,5 +1,5 @@
 { 
- "UserSettings": {
+  "UserSettings": {
     "UserName": "Deepak",
     "EnvironmentName": "VWCAPQAWAA",
     "SystemName": "WAA on I9DEVP20",
@@ -66,7 +66,7 @@
     }
   ],
   "ParallelExecutionSettings": {},
-  "TMSSettings": [
+  "TMSSettings": {
     "TMSStatusUpdate": true,
     "TestRail": {
       "Comments": true,
@@ -78,16 +78,15 @@
       "TestResultsInComment": true,
       "AttachReportInResult": true
     },
-	 "Zephyr": {
-    "ZephyrUserId": "e5721153",
-    "ZephyrPassword": "",
-    "ZephyrURL": "https://jira.fis.dev//secure/Tests.jspa#/v2/testCases?projectId=40326",
-    "ZephyrProjectID": "TASFISCM",
-    "ZephyrCycleID": "C264",
-    "Comments": true
-  }
-    ],
- ,
+    "Zephyr": {
+      "ZephyrUserId": "e5721153",
+      "ZephyrPassword": "",
+      "ZephyrURL": "https://jira.fis.dev/secure/Tests.jspa#/v2/testCases?projectId=40326",
+      "ZephyrProjectID": "TASFISCM",
+      "ZephyrCycleID": "C264",
+      "Comments": true
+    }
+  },
   "EmailSettings": {
     "IsEnable": "false"
   },
