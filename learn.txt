@@ -1,15 +1,13 @@
-2. fetch all refs in git on server:
-
-git fetch --all 
-
-3. switch to branch created in 1.
-
-git checkout branch_name
-
-4. Add your files/folder to your local directory
-
-5. git add .
-6. git commit -m" "
-
-
-7. git push
+  "TMSSettings": {
+    "TMSStatusUpdate": false,
+    "TestRail": [
+      "Comments": true,
+      "TestRailUserId": "Deepak.Chaudhary2@fisglobal.com",
+      "TestRailURL": "https://testrail.fis.dev",
+      "TestRailAPIKEY": "kJzs/T18RmETV3LeOfyn-tBN4ftRgtp9hujxsMcZ7",
+      "TestRailRunID": "126207",
+	  "SkipPassedTestRun": true,
+      "TestResultsInComment": true,
+	   "AttachReportInResult":true
+    ]
+  },
