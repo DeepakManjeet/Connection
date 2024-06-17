@@ -1,6 +1,7 @@
+  "ParallelExecutionSettings": {},
   "TMSSettings": {
     "TMSStatusUpdate": false,
-    "TestRail": [
+    "TestRail": {
       "Comments": true,
       "TestRailUserId": "Deepak.Chaudhary2@fisglobal.com",
       "TestRailURL": "https://testrail.fis.dev",
@@ -9,5 +10,5 @@
 	  "SkipPassedTestRun": true,
       "TestResultsInComment": true,
 	   "AttachReportInResult":true
-    ]
+  }  
   },
