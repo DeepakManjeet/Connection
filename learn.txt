@@ -1,14 +1,13 @@
-
 {
   "UserSettings": {
     "UserName": "Deepak",
     "EnvironmentName": "VWCAPTA8QA",
-    "SystemtName": "TA8 on I9DEVP20",
+    "SystemName": "TA8 on I9DEVP20",
     "WindowsLogin": false,
     "ProjectName": "TA8 ACBS Automation",
     "DBConnection": "I9DEVP20",
     "DBSchemaName": "DOBSDTATA8",
-    "RateIndexID" : "601",
+    "RateIndexID": "601",
     "RateIndexName": "601",
     "HolidayCalendar": "GEN",
     "DBPortfolioName": "",
@@ -17,23 +16,23 @@
     "XMLExecutionFlag": true,
     "GLOBAL_USERID": "DCHAUDHO",
     "GLOBAL_PASSWORD": "Welcome@3",
-	  "GLOBAL_USERNAME": "DCHAUDHO",
+    "GLOBAL_USERNAME": "DCHAUDHO",
     "GLOBAL_CREATOR_NAME": "DCHAUDHO",
     "GLOBAL_APPROVER_USERID": "DCHAUDHO",
     "GLOBAL_APPROVER_PASSWORD": "Welcome@3",
     "GLOBAL_APPROVER_USERNAME": "DCHAUDHO",
     "GLOBAL_RELEASER_USERNAME": "E5721153",
     "GLOBAL_RELEASER_PASSWORD": "Msqnp/1xD5hgsNVuI+wVatxxpRiWB74RMLJjM09BsbRhQog13sgZKPhK4jecdD0p1zeVc7AolvkfBFczg5UnaPFcjuHziQhBiWtz5e7xZMpoGr3CuGR6zK2azwP/cYSLgTRPYNHHVj8Mjvo1VdYzZXt07vCbPddUkcoYXyimFLc=",
-    "WINTITLESTRING":"x_run;Loan Servicing Workshop",
+    "WINTITLESTRING": "x_run;Loan Servicing Workshop",
     "ProcessInTwoTouchMode": true,
     "ServicingQueueName": "SERV TEST",
     "ProcessingGroupName": "PROC GRP",
     "ProcessingGroupID": "PG",
     "PortFolioID": "PO",
     "PortFolioName": "Port Test",
-    "GLOABL_APPROVER_MUST_BE_DIFFERENT_FROM_OWNER": "NO",
-    "GLOABL_RELEASER_MUST_BE_DIFFERENT_FROM_OWNER": "NO",
-    "GLOABL_RELEASER_MUST_BE_DIFFERENT_FROM_APPROVER": "NO",
+    "GLOBAL_APPROVER_MUST_BE_DIFFERENT_FROM_OWNER": "NO",
+    "GLOBAL_RELEASER_MUST_BE_DIFFERENT_FROM_OWNER": "NO",
+    "GLOBAL_RELEASER_MUST_BE_DIFFERENT_FROM_APPROVER": "NO",
     "DetailReportWithSnaps": true
   },
   "AdditionalSettings": {},
@@ -41,8 +40,7 @@
     "WordDocPath": "C:\\Users\\e5721153\\Deepak Workarea\\Outputs\\Results\\",
     "LogsPath": "C:\\Users\\e5721153\\Deepak Workarea\\Outputs\\Logs\\",
     "ReportsPath": "C:\\Users\\e5721153\\Deepak Workarea\\Outputs\\Reports\\",
-    "CreateWordDocumentWithQAInstruction": "true"
-
+    "CreateWordDocumentWithQAInstruction": true
   },
   "EnvironmentSettings": [
     {
@@ -55,7 +53,6 @@
         "ProjectPath": "C:\\Users\\e5721153\\Deepak_Workspace\\Workspace\\ACBS\\",
         "JavaPath": "C:\\Program Files (x86)\\Java\\jre1.8.0_251",
         "GLOBAL_APPLICATION_LOCATION": "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\ACBS\\ACBS Unified Logon.lnk"
-        
       }
     },
     {
@@ -71,7 +68,7 @@
     }
   ],
   "ParallelExecutionSettings": {},
- "TMSSettings": {
+  "TMSSettings": {
     "TMSStatusUpdate": true,
     "TestRail": {
       "Comments": true,
@@ -93,7 +90,7 @@
     }
   },
   "EmailSettings": {
-    "IsEnable": "false"
+    "IsEnable": false
   },
   "DebugSettings": {
     "ShouldShowInnerException": false,
