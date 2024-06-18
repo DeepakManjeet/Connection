@@ -1,62 +1,67 @@
-{ 
+
+{
   "UserSettings": {
     "UserName": "Deepak",
-    "EnvironmentName": "VWCAPQAWAA",
-    "SystemName": "WAA on I9DEVP20",
+    "EnvironmentName": "VWCAPTA8QA",
+    "SystemtName": "TA8 on I9DEVP20",
     "WindowsLogin": false,
-    "ProjectName": "JPMC ACBS Automation",
+    "ProjectName": "TA8 ACBS Automation",
     "DBConnection": "I9DEVP20",
-    "DBSchemaName": "DOBSDTAWAA",
+    "DBSchemaName": "DOBSDTATA8",
+    "RateIndexID" : "601",
+    "RateIndexName": "601",
+    "HolidayCalendar": "GEN",
     "DBPortfolioName": "",
-    "IndexName": "601",
-    "HolidayCalendar": "SOF",
     "EnableLogging": true,
-    "XMLExecutionFlag": false,
+    "LogLevel": "Trace",
+    "XMLExecutionFlag": true,
     "GLOBAL_USERID": "DCHAUDHO",
     "GLOBAL_PASSWORD": "Welcome@3",
-    "GLOBAL_USERNAME": "PRAGADEESH MANICKAVASAGAM",
-    "GLOBAL_APPROVER_USERID": "HBABUO",
-    "GLOBAL_APPROVER_PASSWORD": "yIYRgPWArtPCcezQHU8vAQSJw6CA6x3jNAMY3cTJNfV1MfRKEMHzgPmGj26utuow+n1hJo0J4i/zw30oPH5oQ5RHBPsv6PsLyx/HEeR7/EiHqTXaahnCE0JVXxPSKa8cxGgKPPeTgZaPugYR0bwik1/TTLKgCIEnLItjU4hEqmQ=",
-    "GLOBAL_APPROVER_USERNAME": "Harish Babu",
-    "GLOBAL_RELEASER_USERNAME": "E5611004",
+	  "GLOBAL_USERNAME": "DCHAUDHO",
+    "GLOBAL_CREATOR_NAME": "DCHAUDHO",
+    "GLOBAL_APPROVER_USERID": "DCHAUDHO",
+    "GLOBAL_APPROVER_PASSWORD": "Welcome@3",
+    "GLOBAL_APPROVER_USERNAME": "DCHAUDHO",
+    "GLOBAL_RELEASER_USERNAME": "E5721153",
     "GLOBAL_RELEASER_PASSWORD": "Msqnp/1xD5hgsNVuI+wVatxxpRiWB74RMLJjM09BsbRhQog13sgZKPhK4jecdD0p1zeVc7AolvkfBFczg5UnaPFcjuHziQhBiWtz5e7xZMpoGr3CuGR6zK2azwP/cYSLgTRPYNHHVj8Mjvo1VdYzZXt07vCbPddUkcoYXyimFLc=",
-    "WINTITLESTRING": "x_run;Loan Servicing Workshop",
+    "WINTITLESTRING":"x_run;Loan Servicing Workshop",
     "ProcessInTwoTouchMode": true,
-    "GLOBAL_SERVICINGQUEUE": "SFS SERVICING QUEUE",
-    "GLOBAL_PROCESSING_GROUP": "WAB PROCESSING GROUP",
-    "GLOBAL_PROCESSING_GROUP_CODE": "WB",
-    "GLOBAL_PORTFOLIO": "WAB PORTFOLIO",
-    "GLOBAL_PORTFOLIO_DESCRIPTION": "WAB PORTFOLIO",
-    "GLOBAL_APPROVER_MUST_BE_DIFFERENT_FROM_OWNER": "NO",
-    "GLOBAL_RELEASER_MUST_BE_DIFFERENT_FROM_OWNER": "NO",
-    "GLOBAL_RELEASER_MUST_BE_DIFFERENT_FROM_APPROVER": "NO",
-    "DetailReportWithSnaps": false,
-    "GLOBAL_CREATOR_NAME": "PRAGADEESH MANICKAVASAGAM"
+    "ServicingQueueName": "SERV TEST",
+    "ProcessingGroupName": "PROC GRP",
+    "ProcessingGroupID": "PG",
+    "PortFolioID": "PO",
+    "PortFolioName": "Port Test",
+    "GLOABL_APPROVER_MUST_BE_DIFFERENT_FROM_OWNER": "NO",
+    "GLOABL_RELEASER_MUST_BE_DIFFERENT_FROM_OWNER": "NO",
+    "GLOABL_RELEASER_MUST_BE_DIFFERENT_FROM_APPROVER": "NO",
+    "DetailReportWithSnaps": true
   },
   "AdditionalSettings": {},
   "ReportingSettings": {
-    "WordDocPath": "C:\\AutomationWorkspace\\DeepakACBS\\Workspace\\OUTPUT\\Results\\",
-    "LogsPath": "C:\\AutomationWorkspace\\DeepakACBS\\Workspace\\OUTPUT\\Logs\\",
-    "ReportsPath": "C:\\AutomationWorkspace\\DeepakACBS\\Workspace\\OUTPUT\\Reports\\",
-    "CreateWordDocumentWithQAInstruction": true
+    "WordDocPath": "C:\\Users\\e5721153\\Deepak Workarea\\Outputs\\Results\\",
+    "LogsPath": "C:\\Users\\e5721153\\Deepak Workarea\\Outputs\\Logs\\",
+    "ReportsPath": "C:\\Users\\e5721153\\Deepak Workarea\\Outputs\\Reports\\",
+    "CreateWordDocumentWithQAInstruction": "true"
+
   },
   "EnvironmentSettings": [
     {
-      "EnvironmentName": "VWCAPQAWAA",
+      "EnvironmentName": "VWCAPTA8QA",
       "EnvironmentDetails": {
-        "BrowserType": "Chrome",
+        "BrowserType": "CHROME",
         "ApplicationDirectory": "",
         "ApplicationServerName": "",
-        "Client": "WAB",
-        "ProjectPath": "C:\\AutomationWorkspace\\DeepakACBS\\Workspace\\ACBS\\",
+        "Client": "TA8",
+        "ProjectPath": "C:\\Users\\e5721153\\Deepak_Workspace\\Workspace\\ACBS\\",
         "JavaPath": "C:\\Program Files (x86)\\Java\\jre1.8.0_251",
         "GLOBAL_APPLICATION_LOCATION": "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\ACBS\\ACBS Unified Logon.lnk"
+        
       }
     },
     {
-      "EnvironmentName": "BCD",
+      "EnvironmentName": "VWCAPTA8QA",
       "EnvironmentDetails": {
-        "BrowserType": "Chrome",
+        "BrowserType": "IE",
         "ApplicationDirectory": "",
         "ApplicationServerName": "",
         "Client": "",
@@ -66,7 +71,7 @@
     }
   ],
   "ParallelExecutionSettings": {},
-  "TMSSettings": {
+ "TMSSettings": {
     "TMSStatusUpdate": true,
     "TestRail": {
       "Comments": true,
@@ -80,7 +85,7 @@
     },
     "Zephyr": {
       "ZephyrUserId": "e5721153",
-      "ZephyrPassword": "",
+      "ZephyrPassword": "P@ssw0rd@9992284742",
       "ZephyrURL": "https://jira.fis.dev/secure/Tests.jspa#/v2/testCases?projectId=40326",
       "ZephyrProjectID": "TASFISCM",
       "ZephyrCycleID": "C264",
