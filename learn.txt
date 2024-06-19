@@ -1,120 +1,44 @@
-public virtual string InsertBusinessDaysInCalendar(string[] ColumnName, string[] ColumnValues)
-        {
-            string CalendarCode = "";
-            try
-            {
-                WindowsApplication appHandle = ApplicationHandlerFactory.GetApplication(ApplicationType.Windows);
-                DBApplication dbApplication = ApplicationHandlerFactory.GetApplication(ApplicationType.DATABASE);
-                string TableName = "";
-                if (WindowsLogin != true)
-                    TableName = "J$SYCDR";
-                else
-                    TableName = "J_SYCDR";
+public virtual int CountBusinessDaysInMonth(string sdate)
+{
+    try
+    {
+        appHandle = ApplicationHandlerFactory.GetApplication(ApplicationType.Windows);
+        string HolidayCalendar = GetCurrentCalendarID();
+        if (sdate == "" || sdate == null)
+            return 0; // Return 0 for invalid input
 
-                Application.ACBSDBLibrary.InsertRecordIntoTable(TableName, ColumnName, ColumnValues);
-                return CalendarCode;
-            }
-            catch (Exception e)
-            {
-                Report.Fail("Please check the database connection details in configuration file or check SQL query : ", "True", appHandle, true);
-            }
-            return CalendarCode;
+        string FormatedDate = ConvertDateInGivenFormat(sdate, "MM/dd/yy");
+        string FormatedDate1 = ConvertDateInGivenFormat(sdate, "yyyyMMdd");
+        DateTime date1 = Convert.ToDateTime(FormatedDate);
+
+        if (PublicHoloidays == "")
+        {
+            PublicHoloidays = Application.ACBSDBLibrary.GetHolidaysInSpecifiedCalendar(HolidayCalendar);
+            PublicHoloidays = PublicHoloidays.Replace(',', '-');
         }
 
+        int month = date1.Month;
+        int year = date1.Year;
+        int businessDayCount = 0;
 
- public virtual string GetBusinessDate(string sdate, string BusinessDateOption = "NEXT")
+        while (date1.Month == month)
         {
-            try
+            string Newdate1 = ConvertDateInGivenFormat(date1.ToString(), "yyyyMMdd");
+
+            if (!PublicHoloidays.Contains(Newdate1))
             {
-                appHandle = ApplicationHandlerFactory.GetApplication(ApplicationType.Windows);
-                string HolidayCalendar = GetCurrentCalendarID();
-                if (sdate == "" || sdate == null)
-                    return "0/00/00";
-                string FormatedDate = ConvertDateInGivenFormat(sdate, "MM/dd/yy");
-                string FormatedDate1 = ConvertDateInGivenFormat(sdate, "yyyyMMdd");
-                DateTime date1 = Convert.ToDateTime(FormatedDate);
-                string BusinessDateOption1 = BusinessDateOption.ToUpper();
-                bool ExistPublicHoliday = false;
-                if (PublicHoloidays == "")
-                {
-                    PublicHoloidays = Application.ACBSDBLibrary.GetHolidaysInSpecifiedCalendar(HolidayCalendar);
-                    PublicHoloidays = PublicHoloidays.Replace(',', '-');
-                }
-
-
-                string Newdate1 = "";
-                switch (BusinessDateOption1)
-                {
-                    case "NEXT":
-                        if (PublicHoloidays.Contains(FormatedDate1))
-                            ExistPublicHoliday = true;
-                        while (ExistPublicHoliday)
-                        {
-                            date1 = date1.AddDays(1);
-                            Newdate1 = ConvertDateInGivenFormat(date1.ToString(), "yyyyMMdd");
-                            if (PublicHoloidays.Contains(Newdate1))
-                                ExistPublicHoliday = true;
-                            else
-                                ExistPublicHoliday = false;
-                        }
-                        break;
-                    case "PREVIOUS":
-                        if (PublicHoloidays.Contains(FormatedDate1))
-                            ExistPublicHoliday = true;
-                        while (ExistPublicHoliday)
-                        {
-                            date1 = date1.AddDays(-1);
-                            Newdate1 = ConvertDateInGivenFormat(date1.ToString(), "yyyyMMdd");
-                            if (PublicHoloidays.Contains(Newdate1))
-                                ExistPublicHoliday = true;
-                            else
-                                ExistPublicHoliday = false;
-                        }
-                        break;
-
-                    case "MODIFIED FOLLOWING":
-
-                        if (PublicHoloidays.Contains(FormatedDate1))
-                            ExistPublicHoliday = true;
-                        while (ExistPublicHoliday)
-                        {
-                            date1 = date1.AddDays(1);
-                            Newdate1 = ConvertDateInGivenFormat(date1.ToString(), "yyyyMMdd");
-                            if (PublicHoloidays.Contains(Newdate1))
-                                ExistPublicHoliday = true;
-                            else
-                                ExistPublicHoliday = false;
-                        }
-
-                        string[] SplittingDate = date1.ToString().Split('/');
-                        string[] SplittingFormatedDate = FormatedDate.ToString().Split('/');
-                        if (int.Parse(SplittingDate[0]) != int.Parse(SplittingFormatedDate[0]))
-                        {
-                            date1 = Convert.ToDateTime(FormatedDate);
-                            if (PublicHoloidays.Contains(FormatedDate1))
-                                ExistPublicHoliday = true;
-                            while (ExistPublicHoliday)
-                            {
-                                date1 = date1.AddDays(-1);
-                                Newdate1 = ConvertDateInGivenFormat(date1.ToString(), "yyyyMMdd");
-                                if (PublicHoloidays.Contains(Newdate1))
-                                    ExistPublicHoliday = true;
-                                else
-                                    ExistPublicHoliday = false;
-                            }
-                        }
-
-                        break;
-                    default:
-                        break;
-                }
-                string outdate = ConvertDateInGivenFormat(date1.ToString(), "M/dd/yy");
-                return outdate;
+                businessDayCount++;
             }
-            catch (Exception e)
-            {
-                string ExceptionMessage = e.Message;
-                HandleUtilityException(ExceptionMessage);
-            }
-            return null;
+
+            date1 = date1.AddDays(1);
         }
+
+        return businessDayCount;
+    }
+    catch (Exception e)
+    {
+        string ExceptionMessage = e.Message;
+        HandleUtilityException(ExceptionMessage);
+        return 0; // Return 0 in case of an error
+    }
+}
