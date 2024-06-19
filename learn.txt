@@ -1,99 +1,120 @@
-{
-  "UserSettings": {
-    "UserName": "Deepak",
-    "EnvironmentName": "VWCAPTA8QA",
-    "SystemName": "TA8 on I9DEVP20",
-    "WindowsLogin": false,
-    "ProjectName": "TA8 ACBS Automation",
-    "DBConnection": "I9DEVP20",
-    "DBSchemaName": "DOBSDTATA8",
-    "RateIndexID": "601",
-    "RateIndexName": "601",
-    "HolidayCalendar": "GEN",
-    "DBPortfolioName": "",
-    "EnableLogging": true,
-    "LogLevel": "Trace",
-    "XMLExecutionFlag": true,
-    "GLOBAL_USERID": "DCHAUDHO",
-    "GLOBAL_PASSWORD": "Welcome@3",
-    "GLOBAL_USERNAME": "DCHAUDHO",
-    "GLOBAL_CREATOR_NAME": "DCHAUDHO",
-    "GLOBAL_APPROVER_USERID": "DCHAUDHO",
-    "GLOBAL_APPROVER_PASSWORD": "Welcome@3",
-    "GLOBAL_APPROVER_USERNAME": "DCHAUDHO",
-    "GLOBAL_RELEASER_USERNAME": "E5721153",
-    "GLOBAL_RELEASER_PASSWORD": "Msqnp/1xD5hgsNVuI+wVatxxpRiWB74RMLJjM09BsbRhQog13sgZKPhK4jecdD0p1zeVc7AolvkfBFczg5UnaPFcjuHziQhBiWtz5e7xZMpoGr3CuGR6zK2azwP/cYSLgTRPYNHHVj8Mjvo1VdYzZXt07vCbPddUkcoYXyimFLc=",
-    "WINTITLESTRING": "x_run;Loan Servicing Workshop",
-    "ProcessInTwoTouchMode": true,
-    "ServicingQueueName": "SERV TEST",
-    "ProcessingGroupName": "PROC GRP",
-    "ProcessingGroupID": "PG",
-    "PortFolioID": "PO",
-    "PortFolioName": "Port Test",
-    "GLOBAL_APPROVER_MUST_BE_DIFFERENT_FROM_OWNER": "NO",
-    "GLOBAL_RELEASER_MUST_BE_DIFFERENT_FROM_OWNER": "NO",
-    "GLOBAL_RELEASER_MUST_BE_DIFFERENT_FROM_APPROVER": "NO",
-    "DetailReportWithSnaps": true
-  },
-  "AdditionalSettings": {},
-  "ReportingSettings": {
-    "WordDocPath": "C:\\Users\\e5721153\\Deepak Workarea\\Outputs\\Results\\",
-    "LogsPath": "C:\\Users\\e5721153\\Deepak Workarea\\Outputs\\Logs\\",
-    "ReportsPath": "C:\\Users\\e5721153\\Deepak Workarea\\Outputs\\Reports\\",
-    "CreateWordDocumentWithQAInstruction": true
-  },
-  "EnvironmentSettings": [
-    {
-      "EnvironmentName": "VWCAPTA8QA",
-      "EnvironmentDetails": {
-        "BrowserType": "CHROME",
-        "ApplicationDirectory": "",
-        "ApplicationServerName": "",
-        "Client": "TA8",
-        "ProjectPath": "C:\\Users\\e5721153\\Deepak_Workspace\\Workspace\\ACBS\\",
-        "JavaPath": "C:\\Program Files (x86)\\Java\\jre1.8.0_251",
-        "GLOBAL_APPLICATION_LOCATION": "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\ACBS\\ACBS Unified Logon.lnk"
-      }
-    },
-    {
-      "EnvironmentName": "VWCAPTA8QA",
-      "EnvironmentDetails": {
-        "BrowserType": "IE",
-        "ApplicationDirectory": "",
-        "ApplicationServerName": "",
-        "Client": "",
-        "ProjectPath": "",
-        "JavaPath": "C:\\Program Files (x86)\\Java\\jre1.8.0_251"
-      }
-    }
-  ],
-  "ParallelExecutionSettings": {},
-  "TMSSettings": {
-    "TMSStatusUpdate": true,
-    "TestRail": {
-      "Comments": true,
-      "TestRailUserId": "Deepak.Chaudhary2@fisglobal.com",
-      "TestRailURL": "https://testrail.fis.dev",
-      "TestRailAPIKEY": "kJzs/T18RmETV3LeOfyn-tBN4ftRgtp9hujxsMcZ7",
-      "TestRailRunID": "126207",
-      "SkipPassedTestRun": true,
-      "TestResultsInComment": true,
-      "AttachReportInResult": true
-    },
-    "Zephyr": {
-      "ZephyrUserId": "e5721153",
-      "ZephyrPassword": "P@ssw0rd@9992284742",
-      "ZephyrURL": "https://jira.fis.dev/secure/Tests.jspa#/v2/testCases?projectId=40326",
-      "ZephyrProjectID": "TASFISCM",
-      "ZephyrCycleID": "C264",
-      "Comments": true
-    }
-  },
-  "EmailSettings": {
-    "IsEnable": false
-  },
-  "DebugSettings": {
-    "ShouldShowInnerException": false,
-    "ShouldShowStackTraceInException": false
-  }
-}
+public virtual string InsertBusinessDaysInCalendar(string[] ColumnName, string[] ColumnValues)
+        {
+            string CalendarCode = "";
+            try
+            {
+                WindowsApplication appHandle = ApplicationHandlerFactory.GetApplication(ApplicationType.Windows);
+                DBApplication dbApplication = ApplicationHandlerFactory.GetApplication(ApplicationType.DATABASE);
+                string TableName = "";
+                if (WindowsLogin != true)
+                    TableName = "J$SYCDR";
+                else
+                    TableName = "J_SYCDR";
+
+                Application.ACBSDBLibrary.InsertRecordIntoTable(TableName, ColumnName, ColumnValues);
+                return CalendarCode;
+            }
+            catch (Exception e)
+            {
+                Report.Fail("Please check the database connection details in configuration file or check SQL query : ", "True", appHandle, true);
+            }
+            return CalendarCode;
+        }
+
+
+ public virtual string GetBusinessDate(string sdate, string BusinessDateOption = "NEXT")
+        {
+            try
+            {
+                appHandle = ApplicationHandlerFactory.GetApplication(ApplicationType.Windows);
+                string HolidayCalendar = GetCurrentCalendarID();
+                if (sdate == "" || sdate == null)
+                    return "0/00/00";
+                string FormatedDate = ConvertDateInGivenFormat(sdate, "MM/dd/yy");
+                string FormatedDate1 = ConvertDateInGivenFormat(sdate, "yyyyMMdd");
+                DateTime date1 = Convert.ToDateTime(FormatedDate);
+                string BusinessDateOption1 = BusinessDateOption.ToUpper();
+                bool ExistPublicHoliday = false;
+                if (PublicHoloidays == "")
+                {
+                    PublicHoloidays = Application.ACBSDBLibrary.GetHolidaysInSpecifiedCalendar(HolidayCalendar);
+                    PublicHoloidays = PublicHoloidays.Replace(',', '-');
+                }
+
+
+                string Newdate1 = "";
+                switch (BusinessDateOption1)
+                {
+                    case "NEXT":
+                        if (PublicHoloidays.Contains(FormatedDate1))
+                            ExistPublicHoliday = true;
+                        while (ExistPublicHoliday)
+                        {
+                            date1 = date1.AddDays(1);
+                            Newdate1 = ConvertDateInGivenFormat(date1.ToString(), "yyyyMMdd");
+                            if (PublicHoloidays.Contains(Newdate1))
+                                ExistPublicHoliday = true;
+                            else
+                                ExistPublicHoliday = false;
+                        }
+                        break;
+                    case "PREVIOUS":
+                        if (PublicHoloidays.Contains(FormatedDate1))
+                            ExistPublicHoliday = true;
+                        while (ExistPublicHoliday)
+                        {
+                            date1 = date1.AddDays(-1);
+                            Newdate1 = ConvertDateInGivenFormat(date1.ToString(), "yyyyMMdd");
+                            if (PublicHoloidays.Contains(Newdate1))
+                                ExistPublicHoliday = true;
+                            else
+                                ExistPublicHoliday = false;
+                        }
+                        break;
+
+                    case "MODIFIED FOLLOWING":
+
+                        if (PublicHoloidays.Contains(FormatedDate1))
+                            ExistPublicHoliday = true;
+                        while (ExistPublicHoliday)
+                        {
+                            date1 = date1.AddDays(1);
+                            Newdate1 = ConvertDateInGivenFormat(date1.ToString(), "yyyyMMdd");
+                            if (PublicHoloidays.Contains(Newdate1))
+                                ExistPublicHoliday = true;
+                            else
+                                ExistPublicHoliday = false;
+                        }
+
+                        string[] SplittingDate = date1.ToString().Split('/');
+                        string[] SplittingFormatedDate = FormatedDate.ToString().Split('/');
+                        if (int.Parse(SplittingDate[0]) != int.Parse(SplittingFormatedDate[0]))
+                        {
+                            date1 = Convert.ToDateTime(FormatedDate);
+                            if (PublicHoloidays.Contains(FormatedDate1))
+                                ExistPublicHoliday = true;
+                            while (ExistPublicHoliday)
+                            {
+                                date1 = date1.AddDays(-1);
+                                Newdate1 = ConvertDateInGivenFormat(date1.ToString(), "yyyyMMdd");
+                                if (PublicHoloidays.Contains(Newdate1))
+                                    ExistPublicHoliday = true;
+                                else
+                                    ExistPublicHoliday = false;
+                            }
+                        }
+
+                        break;
+                    default:
+                        break;
+                }
+                string outdate = ConvertDateInGivenFormat(date1.ToString(), "M/dd/yy");
+                return outdate;
+            }
+            catch (Exception e)
+            {
+                string ExceptionMessage = e.Message;
+                HandleUtilityException(ExceptionMessage);
+            }
+            return null;
+        }
