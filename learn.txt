@@ -1,1 +1,2 @@
-Scripts not permitted to use method java.net.HttpURLConnection setRequestMethod java.lang.String. Administrators can decide whether to approve or reject this signature.
+lso:   hudson.remoting.ProxyException: org.jenkinsci.plugins.workflow.actions.ErrorAction$ErrorId: aa9ab7c8-3ad7-4c54-9084-fb16e6cae2bf
+hudson.remoting.ProxyException: java.net.ConnectException: Connection timed out: connect
