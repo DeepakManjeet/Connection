@@ -1,44 +1,27 @@
-public virtual int CountBusinessDaysInMonth(string sdate)
-{
-    try
-    {
-        appHandle = ApplicationHandlerFactory.GetApplication(ApplicationType.Windows);
-        string HolidayCalendar = GetCurrentCalendarID();
-        if (sdate == "" || sdate == null)
-            return 0; // Return 0 for invalid input
+pipeline {
+    agent any
 
-        string FormatedDate = ConvertDateInGivenFormat(sdate, "MM/dd/yy");
-        string FormatedDate1 = ConvertDateInGivenFormat(sdate, "yyyyMMdd");
-        DateTime date1 = Convert.ToDateTime(FormatedDate);
+  stages {
+  stage('Call API') { 
+      steps { 
+          script {
+              @NonCPS
+              def CALLaPI(){
+          def url = new URL("https://jira.fis.dev/rest/tests/1.0/testcase/search?fields=id,key,name,&query=testCase.projectId+IN+(40326)")  
+          def connection = url.openConnection() 
+          connection.setRequestMethod("GET")    
+          def responseCode = connection.getResponseCode()
+          def responseText = connection.getInputStream().getText()
+          return [responseCode, responseCode]
+              }
+              def response =CALLaPI()
+    echo "API response status: ${response[0]}"  
 
-        if (PublicHoloidays == "")
-        {
-            PublicHoloidays = Application.ACBSDBLibrary.GetHolidaysInSpecifiedCalendar(HolidayCalendar);
-            PublicHoloidays = PublicHoloidays.Replace(',', '-');
-        }
-
-        int month = date1.Month;
-        int year = date1.Year;
-        int businessDayCount = 0;
-
-        while (date1.Month == month)
-        {
-            string Newdate1 = ConvertDateInGivenFormat(date1.ToString(), "yyyyMMdd");
-
-            if (!PublicHoloidays.Contains(Newdate1))
-            {
-                businessDayCount++;
+    echo "API response: ${resp[1]onse[1]}"  
+   
+    }
+          }
             }
-
-            date1 = date1.AddDays(1);
         }
+    }
 
-        return businessDayCount;
-    }
-    catch (Exception e)
-    {
-        string ExceptionMessage = e.Message;
-        HandleUtilityException(ExceptionMessage);
-        return 0; // Return 0 in case of an error
-    }
-}
