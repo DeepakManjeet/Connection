@@ -1,27 +1,25 @@
 pipeline {
     agent any
 
-  stages {
-  stage('Call API') { 
-      steps { 
-          script {
-              @NonCPS
-              def CALLaPI(){
-          def url = new URL("https://jira.fis.dev/rest/tests/1.0/testcase/search?fields=id,key,name,&query=testCase.projectId+IN+(40326)")  
-          def connection = url.openConnection() 
-          connection.setRequestMethod("GET")    
-          def responseCode = connection.getResponseCode()
-          def responseText = connection.getInputStream().getText()
-          return [responseCode, responseCode]
-              }
-              def response =CALLaPI()
-    echo "API response status: ${response[0]}"  
-
-    echo "API response: ${resp[1]onse[1]}"  
-   
-    }
-          }
+    stages {
+        stage('Call API') { 
+            steps { 
+                script {
+                    @NonCPS
+                    def callApi() {
+                        def url = new URL("https://jira.fis.dev/rest/tests/1.0/testcase/search?fields=id,key,name,&query=testCase.projectId+IN+(40326)")  
+                        def connection = url.openConnection() 
+                        connection.setRequestMethod("GET")    
+                        def responseCode = connection.getResponseCode()
+                        def responseText = connection.getInputStream().getText()
+                        return [responseCode, responseText]
+                    }
+                    
+                    def response = callApi()
+                    echo "API response status: ${response[0]}"  
+                    echo "API response body: ${response[1]}"  
+                }
             }
         }
     }
-
+}
