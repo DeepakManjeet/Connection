@@ -1,25 +1,6 @@
-pipeline {
-    agent any
+org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+WorkflowScript: 8: Method definition not expected here. Please define the method at an appropriate place or perhaps try using a block/Closure instead. at line: 8 column: 21. File: WorkflowScript @ line 8, column 21.
+                       @NonCPS
+                       ^
 
-    stages {
-        stage('Call API') { 
-            steps { 
-                script {
-                    @NonCPS
-                    def callApi() {
-                        def url = new URL("https://jira.fis.dev/rest/tests/1.0/testcase/search?fields=id,key,name,&query=testCase.projectId+IN+(40326)")  
-                        def connection = url.openConnection() 
-                        connection.setRequestMethod("GET")    
-                        def responseCode = connection.getResponseCode()
-                        def responseText = connection.getInputStream().getText()
-                        return [responseCode, responseText]
-                    }
-                    
-                    def response = callApi()
-                    echo "API response status: ${response[0]}"  
-                    echo "API response body: ${response[1]}"  
-                }
-            }
-        }
-    }
-}
+1 error
