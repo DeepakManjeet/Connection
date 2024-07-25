@@ -1,12 +1,11 @@
 pipeline {
     agent any
-
+ 
     stages {
         stage('Call API') { 
             steps { 
                 script {
-                    def token = 'your_api_token_here' // Replace with your actual API token
-                    def response = callApi(token)
+                    def response = callApi()
                     echo "API response status: ${response[0]}"  
                     echo "API response body: ${response[1]}"  
                 }
@@ -14,14 +13,13 @@ pipeline {
         }
     }
 }
-
+ 
 @NonCPS
-def callApi(String token) {
-    def url = new URL("https://jira.fis.dev/rest/tests/1.0/testcase/search?fields=id,key,name,&query=testCase.projectId+IN+(40326)")
+def callApi() {
+    def url = new URL("https://reqres.in/api/users?page=2")
     def connection = url.openConnection() 
     connection.setRequestMethod("GET")
-    connection.setRequestProperty("Authorization", "Bearer ${token}") // Add token to the request header
-    
+ 
     def responseCode = connection.getResponseCode()
     def responseText = connection.getInputStream().getText()
     return [responseCode, responseText]
