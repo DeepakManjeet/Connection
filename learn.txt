@@ -1,26 +1,5 @@
-pipeline {
-    agent any
- 
-    stages {
-        stage('Call API') { 
-            steps { 
-                script {
-                    def response = callApi()
-                    echo "API response status: ${response[0]}"  
-                    echo "API response body: ${response[1]}"  
-                }
-            }
-        }
-    }
-}
- 
-@NonCPS
-def callApi() {
-    def url = new URL("https://reqres.in/api/users?page=2")
-    def connection = url.openConnection() 
-    connection.setRequestMethod("GET")
- 
-    def responseCode = connection.getResponseCode()
-    def responseText = connection.getInputStream().getText()
-    return [responseCode, responseText]
-}
+method java.net.HttpURLConnection getResponseCode
+method java.net.HttpURLConnection setRequestMethod java.lang.String
+method java.net.URL openConnection
+method java.net.URLConnection getInputStream
+staticMethod org.codehaus.groovy.runtime.DefaultGroovyMethods getText java.io.InputStream
