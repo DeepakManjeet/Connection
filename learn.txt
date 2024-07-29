@@ -1,26 +1,15 @@
 pipeline {
     agent any
- 
+
     stages {
-        stage('Call API') { 
-            steps { 
+        stage('Call API') {
+            steps {
                 script {
-                    def response = callApi()
-                    echo "API response status: ${response[0]}"  
-                    echo "API response body: ${response[1]}"  
+                    def response = httpRequest('https://reqres.in/api/users?page=2')
+                    echo "API response status: ${response.status}"
+                    echo "API response body: ${response.content}"
                 }
             }
         }
     }
-}
- 
-@NonCPS
-def callApi() {
-    def url = new URL("https://reqres.in/api/users?page=2")
-    def connection = url.openConnection() 
-    connection.setRequestMethod("GET")
- 
-    def responseCode = connection.getResponseCode()
-    def responseText = connection.getInputStream().getText()
-    return [responseCode, responseText]
 }
