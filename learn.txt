@@ -6,7 +6,7 @@ pipeline {
             steps {
                 script {
                     def response = httpRequest(
-                        url: 'https://reqres.in/api/users?page=2',
+                        url: 'https://jira.fis.dev/rest/tests/1.0/testcase/search?fields=id,key,name,&query=testCase.projectId+IN+(40326)',
                         validResponseCodes: '200'
                     )
                     echo "API response status: ${response.status}"
@@ -16,3 +16,6 @@ pipeline {
         }
     }
 }
+
+
+ODEzODA0MjUwNjI1OtmQms4hv2BBzO+qCBvAuc3HeZ2w
