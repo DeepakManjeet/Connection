@@ -1,7 +1,11 @@
-Invoke-RestMethod : The underlying connection was closed: An unexpected error occurred on a receive.
-At line:5 char:13
-+ $response = Invoke-RestMethod -Uri $url -Method Get
-+             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    + CategoryInfo          : InvalidOperation: (System.Net.HttpWebRequest:HttpWebRequest) [Invoke-RestMethod], Web
-   eption
-    + FullyQualifiedErrorId : WebCmdletWebResponseException,Microsoft.PowerShell.Commands.InvokeRestMethodCommand
+# Enforce TLS 1.2 (or TLS 1.1 if needed)
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+
+# Define the URL of the API endpoint
+$url = 'https://reqres.in/api/users?page=2'
+
+# Make the API request
+$response = Invoke-RestMethod -Uri $url -Method Get
+
+# Output the response content
+Write-Output "API response body: $($response | ConvertTo-Json)"
