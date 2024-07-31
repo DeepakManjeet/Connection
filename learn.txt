@@ -1,18 +1,12 @@
-pipeline {
-    agent any
+# Define the URL of the API endpoint
+$url = 'https://reqres.in/api/users?page=2'
 
-    stages {
-        stage('Call API') {
-            steps {
-                script {
-                    def response = httpRequest(
-                        url: 'https://reqres.in/api/users?page=2',
-                        validResponseCodes: '200',
-                                            )
-                    echo "API response status: ${response.status}"
-                    echo "API response body: ${response.content}"
-                }
-            }
-        }
-    }
-}
+# Make the API request
+$response = Invoke-RestMethod -Uri $url -Method Get
+
+# Check the status code
+$statusCode = $response.StatusCode
+
+# Output the status code and response content
+Write-Output "API response status: $statusCode"
+Write-Output "API response body: $($response | ConvertTo-Json)"
