@@ -1,12 +1,24 @@
-# Enforce TLS 1.2 (or TLS 1.1 if needed)
-[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+pipeline {
+    agent any
 
-# Define the URL of the API endpoint
-$url = 'https://reqres.in/api/users?page=2'
+    stages {
+        stage('Call API') {
+            steps {
+                powershell '''
+                    # Enforce TLS 1.2 (or TLS 1.1 if needed)
+                    [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
-# Make the API request
-$response = Invoke-WebRequest -Uri $url -Method Get
+                    # Define the URL of the API endpoint
+                    $url = 'https://reqres.in/api/users?page=2'
 
-# Output the status code and response content
-Write-Output "API response status: $($response.StatusCode)"
-Write-Output "API response body: $($response.Content)"
+                    # Make the API request
+                    $response = Invoke-WebRequest -Uri $url -Method Get
+
+                    # Output the status code and response content
+                    Write-Output "API response status: $($response.StatusCode)"
+                    Write-Output "API response body: $($response.Content)"
+                '''
+            }
+        }
+    }
+}
