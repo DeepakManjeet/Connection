@@ -19,3 +19,6 @@ pipeline {
 }
 
 Treating class org.apache.http.conn.HttpHostConnectException(Connect to jira.fis.dev:443 [jira.fis.dev/23.56.99.48, jira.fis.dev/23.56.99.90] failed: Connection timed out: connect) as 408 Request Timeout
+
+https://jira.fis.dev/rest/tests/1.0/testcase/search?fields=id,key,name,&query=testCase.projectId+IN+(40326)&access_token=ODEzODA0MjUwNjI1OtmQms4hv2BBzO+qCBvAuc3HeZ2w
+
