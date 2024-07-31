@@ -5,7 +5,8 @@
 $url = 'https://reqres.in/api/users?page=2'
 
 # Make the API request
-$response = Invoke-RestMethod -Uri $url -Method Get
+$response = Invoke-WebRequest -Uri $url -Method Get
 
-# Output the response content
-Write-Output "API response body: $($response | ConvertTo-Json)"
+# Output the status code and response content
+Write-Output "API response status: $($response.StatusCode)"
+Write-Output "API response body: $($response.Content)"
