@@ -1,24 +1,265 @@
-pipeline {
-    agent any
+using ACBS.ObjectFactory.Servicing.Windows;
+using GTS_OSAF.Config;
+namespace ACBS.ObjectFactory.Servicing.Windows
+{
+    public static class ACBSServicingObjectFactory
+    {
+        public static LoginWindow LoginWindow { get => (LoginWindow)ClassRegister.Get(typeof(LoginWindow)); }
+    
+        public static ServicingCommonWindow ServicingCommonWindow { get => (ServicingCommonWindow)ClassRegister.Get(typeof(ServicingCommonWindow)); }
+        public static AllTwoTouchRequestsWindow AllTwoTouchRequestsWindow { get => (AllTwoTouchRequestsWindow)ClassRegister.Get(typeof(AllTwoTouchRequestsWindow)); }
+        public static BillNowWindow BillNowWindow { get => (BillNowWindow)ClassRegister.Get(typeof(BillNowWindow)); }
+        public static BundleOptionsManagerWindow BundleOptionsManagerWindow { get => (BundleOptionsManagerWindow)ClassRegister.Get(typeof(BundleOptionsManagerWindow)); }
+        public static BundleViewerAllBundlesWindow BundleViewerAllBundlesWindow { get => (BundleViewerAllBundlesWindow)ClassRegister.Get(typeof(BundleViewerAllBundlesWindow)); }
+        public static CopyExistingTemplatesandSchedulesWindow CopyExistingTemplatesandSchedulesWindow { get => (CopyExistingTemplatesandSchedulesWindow)ClassRegister.Get(typeof(CopyExistingTemplatesandSchedulesWindow)); }
+        public static CustomerSearchWindow CustomerSearchWindow { get => (CustomerSearchWindow)ClassRegister.Get(typeof(CustomerSearchWindow)); }
+        public static ExistingBorrowingRestrictionsWindow ExistingBorrowingRestrictionsWindow { get => (ExistingBorrowingRestrictionsWindow)ClassRegister.Get(typeof(ExistingBorrowingRestrictionsWindow)); }
+        public static ExistingInvestorsWindow ExistingInvestorsWindow { get => (ExistingInvestorsWindow)ClassRegister.Get(typeof(ExistingInvestorsWindow)); }
+        public static FacilityHistoryWindow FacilityHistoryWindow { get => (FacilityHistoryWindow)ClassRegister.Get(typeof(FacilityHistoryWindow)); }
+        public static FacilityInvoicesWindow FacilityInvoicesWindow { get => (FacilityInvoicesWindow)ClassRegister.Get(typeof(FacilityInvoicesWindow)); }
+        public static FeeAccruingWindow FeeAccruingWindow { get => (FeeAccruingWindow)ClassRegister.Get(typeof(FeeAccruingWindow)); }
+        public static InvalidBusinessDateWindow InvalidBusinessDateWindow { get => (InvalidBusinessDateWindow)ClassRegister.Get(typeof(InvalidBusinessDateWindow)); }
+        public static InvestorWindow InvestorWindow { get => (InvestorWindow)ClassRegister.Get(typeof(InvestorWindow)); }
+        public static LoanServicingQueueWindow LoanServicingQueueWindow { get => (LoanServicingQueueWindow)ClassRegister.Get(typeof(LoanServicingQueueWindow)); }
+        public static BorrowingRestrictionsWindow BorrowingRestrictionsWindow { get => (BorrowingRestrictionsWindow)ClassRegister.Get(typeof(BorrowingRestrictionsWindow)); }
+        public static GlobalPricingOptionWindow GlobalPricingOptionWindow { get => (GlobalPricingOptionWindow)ClassRegister.Get(typeof(GlobalPricingOptionWindow)); }
+        public static LoanWindow LoanWindow { get => (LoanWindow)ClassRegister.Get(typeof(LoanWindow)); }
+        public static TransactionWindow TransactionWindow { get => (TransactionWindow)ClassRegister.Get(typeof(TransactionWindow)); }
+        public static TransactionAccountSelectorWindow TransactionAccountSelectorWindow { get => (TransactionAccountSelectorWindow)ClassRegister.Get(typeof(TransactionAccountSelectorWindow)); }
+        public static TwoTouchApprovalWindow TwoTouchApprovalWindow { get => (TwoTouchApprovalWindow)ClassRegister.Get(typeof(TwoTouchApprovalWindow)); }
+        public static TwoTouchRequestWindow TwoTouchRequestWindow { get => (TwoTouchRequestWindow)ClassRegister.Get(typeof(TwoTouchRequestWindow)); }
+        public static ViewExceptionsWindow ViewExceptionsWindow { get => (ViewExceptionsWindow)ClassRegister.Get(typeof(ViewExceptionsWindow)); }
+        public static BundleViewingOptionsWindow BundleViewingOptionsWindow { get => (BundleViewingOptionsWindow)ClassRegister.Get(typeof(BundleViewingOptionsWindow)); }
+        public static BundleManagerWindow BundleManagerWindow { get => (BundleManagerWindow)ClassRegister.Get(typeof(BundleManagerWindow)); }
+        public static NewInvestorCustomerSearchWindow NewInvestorCustomerSearchWindow { get => (NewInvestorCustomerSearchWindow)ClassRegister.Get(typeof(NewInvestorCustomerSearchWindow)); }
+        public static ExceptionsManagerWindow ExceptionsManagerWindow { get => (ExceptionsManagerWindow)ClassRegister.Get(typeof(ExceptionsManagerWindow)); }
+        public static CreateBundleWindow CreateBundleWindow { get => (CreateBundleWindow)ClassRegister.Get(typeof(CreateBundleWindow)); }
+        public static ExistingTemplatesWindow ExistingTemplatesWindow { get => (ExistingTemplatesWindow)ClassRegister.Get(typeof(ExistingTemplatesWindow)); }
+        public static CustomerWindow CustomerWindow { get => (CustomerWindow)ClassRegister.Get(typeof(CustomerWindow)); }
+        public static IndustryClassificationsListWindow IndustryClassificationsListWindow { get => (IndustryClassificationsListWindow)ClassRegister.Get(typeof(IndustryClassificationsListWindow)); }
+        public static OfficerSearchWindow OfficerSearchWindow { get => (OfficerSearchWindow)ClassRegister.Get(typeof(OfficerSearchWindow)); }
+        public static PossibleDuplicateCustomersWindow PossibleDuplicateCustomersWindow { get => (PossibleDuplicateCustomersWindow)ClassRegister.Get(typeof(PossibleDuplicateCustomersWindow)); }
+        public static CustomerFavoritesWindow CustomerFavoritesWindow { get => (CustomerFavoritesWindow)ClassRegister.Get(typeof(CustomerFavoritesWindow)); }
+        public static FacilityWindow FacilityWindow { get => (FacilityWindow)ClassRegister.Get(typeof(FacilityWindow)); }
+        public static CovenantWindow CovenantWindow { get => (CovenantWindow)ClassRegister.Get(typeof(CovenantWindow)); }
+        public static SectionSublimitWindow SectionSublimitWindow { get => (SectionSublimitWindow)ClassRegister.Get(typeof(SectionSublimitWindow)); }
+        public static PaymentInstructionsWindow PaymentInstructionsWindow { get => (PaymentInstructionsWindow)ClassRegister.Get(typeof(PaymentInstructionsWindow)); }
+        public static CollateralWindow CollateralWindow { get => (CollateralWindow)ClassRegister.Get(typeof(CollateralWindow)); }
+        public static FutureLimitChangeWindow FutureLimitChangeWindow { get => (FutureLimitChangeWindow)ClassRegister.Get(typeof(FutureLimitChangeWindow)); }
+        public static ServicingParameterWindow ServicingParameterWindow { get => (ServicingParameterWindow)ClassRegister.Get(typeof(ServicingParameterWindow)); }
+        public static PayoffEventWindow PayoffEventWindow { get => (PayoffEventWindow)ClassRegister.Get(typeof(PayoffEventWindow)); }
+        public static ThirdPartyDirectorySearchWindow ThirdPartyDirectorySearchWindow { get => (ThirdPartyDirectorySearchWindow)ClassRegister.Get(typeof(ThirdPartyDirectorySearchWindow)); }
+        public static ThirdPartyDirectoryWindow ThirdPartyDirectoryWindow { get => (ThirdPartyDirectoryWindow)ClassRegister.Get(typeof(ThirdPartyDirectoryWindow)); }
+        public static ExistingThirdPartyDirectoryWindow ExistingThirdPartyDirectoryWindow { get => (ExistingThirdPartyDirectoryWindow)ClassRegister.Get(typeof(ExistingThirdPartyDirectoryWindow)); }
+        public static CorrespondenceWindow CorrespondenceWindow { get => (CorrespondenceWindow)ClassRegister.Get(typeof(CorrespondenceWindow)); }
+        public static AccountCrossReferenceWindow AccountCrossReferenceWindow { get => (AccountCrossReferenceWindow)ClassRegister.Get(typeof(AccountCrossReferenceWindow)); }
+        public static AffiliationWindow AffiliationWindow { get => (AffiliationWindow)ClassRegister.Get(typeof(AffiliationWindow)); }
+        public static CustomerLiabilitySummaryWindow CustomerLiabilitySummaryWindow { get => (CustomerLiabilitySummaryWindow)ClassRegister.Get(typeof(CustomerLiabilitySummaryWindow)); }
+        public static GuaranteeWindow GuaranteeWindow { get => (GuaranteeWindow)ClassRegister.Get(typeof(GuaranteeWindow)); }
+        public static ContactProfileWindow ContactProfileWindow { get => (ContactProfileWindow)ClassRegister.Get(typeof(ContactProfileWindow)); }
+        public static PredefinedTransferWindow PredefinedTransferWindow { get => (PredefinedTransferWindow)ClassRegister.Get(typeof(PredefinedTransferWindow)); }
+        public static ECCGroupLimitWindow ECCGroupLimitWindow { get => (ECCGroupLimitWindow)ClassRegister.Get(typeof(ECCGroupLimitWindow)); }
+        public static AccountingMethodChangeWindow AccountingMethodChangeWindow { get => (AccountingMethodChangeWindow)ClassRegister.Get(typeof(AccountingMethodChangeWindow)); }
+        public static ExistingCollateralWindow ExistingCollateralWindow { get => (ExistingCollateralWindow)ClassRegister.Get(typeof(ExistingCollateralWindow)); }
+        public static RolloverRenewalWindow RolloverRenewalWindow { get => (RolloverRenewalWindow)ClassRegister.Get(typeof(RolloverRenewalWindow)); }
+        public static EscrowDetailsWindow EscrowDetailsWindow { get => (EscrowDetailsWindow)ClassRegister.Get(typeof(EscrowDetailsWindow)); }
+        public static AddressWindow AddressWindow { get => (AddressWindow)ClassRegister.Get(typeof(AddressWindow)); }
+        public static ExistingPaymentInstructionWindow ExistingPaymentInstructionWindow { get => (ExistingPaymentInstructionWindow)ClassRegister.Get(typeof(ExistingPaymentInstructionWindow)); }
+        public static FacilityUsageTransactionWindow FacilityUsageTransactionWindow { get => (FacilityUsageTransactionWindow)ClassRegister.Get(typeof(FacilityUsageTransactionWindow)); }
+        public static ECCAdvanceScheduleWindow ECCAdvanceScheduleWindow { get => (ECCAdvanceScheduleWindow)ClassRegister.Get(typeof(ECCAdvanceScheduleWindow)); }
+        public static FXRateSettingWindow FXRateSettingWindow { get => (FXRateSettingWindow)ClassRegister.Get(typeof(FXRateSettingWindow)); }
+        public static FeeFixedWindow FeeFixedWindow { get => (FeeFixedWindow)ClassRegister.Get(typeof(FeeFixedWindow)); }
+        public static ExistingSectionsSublimitsWindow ExistingSectionsSublimitsWindow { get => (ExistingSectionsSublimitsWindow)ClassRegister.Get(typeof(ExistingSectionsSublimitsWindow)); }
+        public static TradePaymentInstructionWindow TradePaymentInstructionWindow { get => (TradePaymentInstructionWindow)ClassRegister.Get(typeof(TradePaymentInstructionWindow)); }
+        public static RepaymentScheduleWindow RepaymentScheduleWindow { get => (RepaymentScheduleWindow)ClassRegister.Get(typeof(RepaymentScheduleWindow)); }
+        public static LoanRepaymentPrimaryWindow LoanRepaymentPrimaryWindow { get => (LoanRepaymentPrimaryWindow)ClassRegister.Get(typeof(LoanRepaymentPrimaryWindow)); }
+        public static ExistingReferenceRepaymentScheduleWindow ExistingReferenceRepaymentScheduleWindow { get => (ExistingReferenceRepaymentScheduleWindow)ClassRegister.Get(typeof(ExistingReferenceRepaymentScheduleWindow)); }
+        public static LoanRepaymentSecondaryWindow LoanRepaymentSecondaryWindow { get => (LoanRepaymentSecondaryWindow)ClassRegister.Get(typeof(LoanRepaymentSecondaryWindow)); }
+        public static LoanHistoryWindow LoanHistoryWindow { get => (LoanHistoryWindow)ClassRegister.Get(typeof(LoanHistoryWindow)); }
+        public static AccrualScheduleWindow AccrualScheduleWindow { get => (AccrualScheduleWindow)ClassRegister.Get(typeof(AccrualScheduleWindow)); }
+        public static ReferenceRepaymentScheduleWindow ReferenceRepaymentScheduleWindow { get => (ReferenceRepaymentScheduleWindow)ClassRegister.Get(typeof(ReferenceRepaymentScheduleWindow)); }
+        public static CopyExistingReferenceRepaymentSchedulesWindow copyExistingReferenceRepaymentSchedulesWindow { get => (CopyExistingReferenceRepaymentSchedulesWindow)ClassRegister.Get(typeof(CopyExistingReferenceRepaymentSchedulesWindow)); }
+        public static PricingGridWindow PricingGridWindow { get => (PricingGridWindow)ClassRegister.Get(typeof(PricingGridWindow)); }
+        public static CopyLoanTemplateAccrualscheduleWindow CopyLoanTemplateAccrualscheduleWindow { get => (CopyLoanTemplateAccrualscheduleWindow)ClassRegister.Get(typeof(CopyLoanTemplateAccrualscheduleWindow)); }
+        public static AssignmentManagerWindow AssignmentManagerWindow { get => (AssignmentManagerWindow)ClassRegister.Get(typeof(AssignmentManagerWindow)); }
+        public static ExistingCorrespondenceWindow ExistingCorrespondenceWindow { get => (ExistingCorrespondenceWindow)ClassRegister.Get(typeof(ExistingCorrespondenceWindow)); }
+        public static ExistingFeesAcruingWindow ExistingFeesAcruingWindow { get => (ExistingFeesAcruingWindow)ClassRegister.Get(typeof(ExistingFeesAcruingWindow)); }
+        public static GridpricingLevelChangeWindow GridpricingLevelChangeWindow { get => (GridpricingLevelChangeWindow)ClassRegister.Get(typeof(GridpricingLevelChangeWindow)); }
+        public static CashItemEditorWindow CashItemEditorWindow { get => (CashItemEditorWindow)ClassRegister.Get(typeof(CashItemEditorWindow)); }
+        public static ExistingContactProfileWindow ExistingContactProfileWindow { get => (ExistingContactProfileWindow)ClassRegister.Get(typeof(ExistingContactProfileWindow)); }
+        public static GridPricingSearchFormWindow GridPricingSearchFormWindow { get => (GridPricingSearchFormWindow)ClassRegister.Get(typeof(GridPricingSearchFormWindow)); }
+        public static ExistingFlatFeeWindow ExistingFlatFeeWindow { get => (ExistingFlatFeeWindow)ClassRegister.Get(typeof(ExistingFlatFeeWindow)); }
+        public static FacilityHistoryAccrualDetailsWindow FacilityHistoryAccrualDetailsWindow { get => (FacilityHistoryAccrualDetailsWindow)ClassRegister.Get(typeof(FacilityHistoryAccrualDetailsWindow)); }
+        public static FacilityHistoryHTMLReportWindow FacilityHistoryHTMLReportWindow { get => (FacilityHistoryHTMLReportWindow)ClassRegister.Get(typeof(FacilityHistoryHTMLReportWindow)); }
+        public static ExistingFeesFixedWindow ExistingFeesFixedWindow { get => (ExistingFeesFixedWindow)ClassRegister.Get(typeof(ExistingFeesFixedWindow)); }
+        public static TaxWindow TaxWindow { get => (TaxWindow)ClassRegister.Get(typeof(TaxWindow)); }
+        public static LoanHistoryDetailsWindow LoanHistoryDetailsWindow { get => (LoanHistoryDetailsWindow)ClassRegister.Get(typeof(LoanHistoryDetailsWindow)); }
+        public static AmortizationCalculatorWindow AmortizationCalculatorWindow { get => (AmortizationCalculatorWindow)ClassRegister.Get(typeof(AmortizationCalculatorWindow)); }
+        public static LoanHistoryAccrualDetailsWindow LoanHistoryAccrualDetailsWindow { get => (LoanHistoryAccrualDetailsWindow)ClassRegister.Get(typeof(LoanHistoryAccrualDetailsWindow)); }
+        public static LoanHistoryHTMLReportWindow LoanHistoryHTMLReportWindow { get => (LoanHistoryHTMLReportWindow)ClassRegister.Get(typeof(LoanHistoryHTMLReportWindow)); }
+        public static SearchForInvestorWindow SearchForInvestorWindow { get => (SearchForInvestorWindow)ClassRegister.Get(typeof(SearchForInvestorWindow)); }
+        public static SelectNewInvestorWindow SelectNewInvestorWindow { get => (SelectNewInvestorWindow)ClassRegister.Get(typeof(SelectNewInvestorWindow)); }
+        public static FacilityFXRateControlWindow FacilityFXRateControlWindow { get => (FacilityFXRateControlWindow)ClassRegister.Get(typeof(FacilityFXRateControlWindow)); }
+        public static LoanFXRateControlWindow LoanFXRateControlWindow { get => (LoanFXRateControlWindow)ClassRegister.Get(typeof(LoanFXRateControlWindow)); }
+        public static LoanInvoiceWindow LoanInvoiceWindow { get => (LoanInvoiceWindow)ClassRegister.Get(typeof(LoanInvoiceWindow)); }
+        public static ExistingSecurityUsersWindow ExistingSecurityUsersWindow { get => (ExistingSecurityUsersWindow)ClassRegister.Get(typeof(ExistingSecurityUsersWindow)); }
+        public static ExistingDesignationAuthoritiesWindow ExistingDesignationAuthoritiesWindow { get => (ExistingDesignationAuthoritiesWindow)ClassRegister.Get(typeof(ExistingDesignationAuthoritiesWindow)); }
+        public static EditSecurityUserWindow EditSecurityUserWindow { get => (EditSecurityUserWindow)ClassRegister.Get(typeof(EditSecurityUserWindow)); }
+        public static FieldMaskingOptionWindow FieldMaskingOptionWindow { get => (FieldMaskingOptionWindow)ClassRegister.Get(typeof(FieldMaskingOptionWindow)); }
+        public static CustomerHTMLReportWindow CustomerHTMLReportWindow { get => (CustomerHTMLReportWindow)ClassRegister.Get(typeof(CustomerHTMLReportWindow)); }
+        public static CustomerFieldChangeHistoryWindow CustomerFieldChangeHistoryWindow { get => (CustomerFieldChangeHistoryWindow)ClassRegister.Get(typeof(CustomerFieldChangeHistoryWindow)); }
+        public static DesignationAuthorityWindow DesignationAuthorityWindow { get => (DesignationAuthorityWindow)ClassRegister.Get(typeof(DesignationAuthorityWindow)); }
+        public static ServicingQueueInformationWindow ServicingQueueInformationWindow { get => (ServicingQueueInformationWindow)ClassRegister.Get(typeof(ServicingQueueInformationWindow)); }
+        public static BundleStatusMaintenanceWindow BundleStatusMaintenanceWindow { get => (BundleStatusMaintenanceWindow)ClassRegister.Get(typeof(BundleStatusMaintenanceWindow)); }
+        public static FacilityPricingOptionWindow FacilityPricingOptionWindow { get => (FacilityPricingOptionWindow)ClassRegister.Get(typeof(FacilityPricingOptionWindow)); }
+        public static FeeEventWindow FeeEventWindow { get => (FeeEventWindow)ClassRegister.Get(typeof(FeeEventWindow)); }
+        public static FutureFeeChangesWindow FutureFeeChangesWindow { get => (FutureFeeChangesWindow)ClassRegister.Get(typeof(FutureFeeChangesWindow)); }
+        public static FacilityFXRateHistoryWindow FacilityFXRateHistoryWindow { get => (FacilityFXRateHistoryWindow)ClassRegister.Get(typeof(FacilityFXRateHistoryWindow)); }
+        public static LoanFXRateHistoryWindow LoanFXRateHistoryWindow { get => (LoanFXRateHistoryWindow)ClassRegister.Get(typeof(LoanFXRateHistoryWindow)); }
+        public static FlatFeeWindow FlatFeeWindow { get => (FlatFeeWindow)ClassRegister.Get(typeof(FlatFeeWindow)); }
+        public static ViewBalanceCategoryWindow ViewBalanceCategoryWindow { get => (ViewBalanceCategoryWindow)ClassRegister.Get(typeof(ViewBalanceCategoryWindow)); }
+        public static TroubleAssetManagerWindow TroubleAssetManagerWindow { get => (TroubleAssetManagerWindow)ClassRegister.Get(typeof(TroubleAssetManagerWindow)); }
+        public static SNCReportDetailsWindow SNCReportDetailsWindow { get => (SNCReportDetailsWindow)ClassRegister.Get(typeof(SNCReportDetailsWindow)); }
+        public static DateErrorDialogWindow DateErrorDialogWindow { get => (DateErrorDialogWindow)ClassRegister.Get(typeof(DateErrorDialogWindow)); }
+        public static AdditionalBankSetupWindow AdditionalBankSetupWindow { get => (AdditionalBankSetupWindow)ClassRegister.Get(typeof(AdditionalBankSetupWindow)); }
+        public static STPPaymentInstructionsWindow STPPaymentInstructionsWindow { get => (STPPaymentInstructionsWindow)ClassRegister.Get(typeof(STPPaymentInstructionsWindow)); }
+        public static OnlineCashFlowVerificationWindow OnlineCashFlowVerificationWindow { get => (OnlineCashFlowVerificationWindow)ClassRegister.Get(typeof(OnlineCashFlowVerificationWindow)); }
+        public static AssignmentManagerHistoryWindow AssignmentManagerHistoryWindow { get => (AssignmentManagerHistoryWindow)ClassRegister.Get(typeof(AssignmentManagerHistoryWindow)); }
+        public static FacilityHistoryDetailsWindow FacilityHistoryDetailsWindow { get => (FacilityHistoryDetailsWindow)ClassRegister.Get(typeof(FacilityHistoryDetailsWindow)); }
+        public static MessageTypeMaintenanceWindow MessageTypeMaintenanceWindow { get => (MessageTypeMaintenanceWindow)ClassRegister.Get(typeof(MessageTypeMaintenanceWindow)); }
+        public static BundleNotificationsWindow BundleNotificationsWindow { get => (BundleNotificationsWindow)ClassRegister.Get(typeof(BundleNotificationsWindow)); }
+        public static CreationSelectItemsWindow CreationSelectItemsWindow { get => (CreationSelectItemsWindow)ClassRegister.Get(typeof(CreationSelectItemsWindow)); }
+        public static FreeFormEndOfBodyTextWindow FreeFormEndOfBodyTextWindow { get => (FreeFormEndOfBodyTextWindow)ClassRegister.Get(typeof(FreeFormEndOfBodyTextWindow)); }
+        public static CollateralNotificationsWindow CollateralNotificationsWindow { get => (CollateralNotificationsWindow)ClassRegister.Get(typeof(CollateralNotificationsWindow)); }
+        public static MarkToMarketWindow MarkToMarketWindow { get => (MarkToMarketWindow)ClassRegister.Get(typeof(MarkToMarketWindow)); }
+        public static FATCATransactionAdministrationWindow FATCATransactionAdministrationWindow { get => (FATCATransactionAdministrationWindow)ClassRegister.Get(typeof(FATCATransactionAdministrationWindow)); }
+        public static ReferenceIDWindow ReferenceIDWindow { get => (ReferenceIDWindow)ClassRegister.Get(typeof(ReferenceIDWindow)); }
+        public static MarketToMarketGroupWindow MarketToMarketGroupWindow { get => (MarketToMarketGroupWindow)ClassRegister.Get(typeof(MarketToMarketGroupWindow)); }
+        public static WorkWithBatchMessageRequestsWindow WorkWithBatchMessageRequestsWindow { get => (WorkWithBatchMessageRequestsWindow)ClassRegister.Get(typeof(WorkWithBatchMessageRequestsWindow)); }
+        public static BatchMessageRequestsViewCriteriaWindow BatchMessageRequestsViewCriteriaWindow { get => (BatchMessageRequestsViewCriteriaWindow)ClassRegister.Get(typeof(BatchMessageRequestsViewCriteriaWindow)); }
+        public static FreeFormNotesandDocumentsAttachmentsWindow FreeFormNotesandDocumentsAttachmentsWindow { get => (FreeFormNotesandDocumentsAttachmentsWindow)ClassRegister.Get(typeof(FreeFormNotesandDocumentsAttachmentsWindow)); }
+        public static FreeFormNoteWindow FreeFormNoteWindow { get => (FreeFormNoteWindow)ClassRegister.Get(typeof(FreeFormNoteWindow)); }
+        public static DocumentsAttachmentWindow DocumentsAttachmentWindow { get => (DocumentsAttachmentWindow)ClassRegister.Get(typeof(DocumentsAttachmentWindow)); }
+        public static SelectAnExistingFileWindow SelectAnExistingFileWindow { get => (SelectAnExistingFileWindow)ClassRegister.Get(typeof(SelectAnExistingFileWindow)); }
+        public static DiscountAddendumWindow DiscountAddendumWindow { get => (DiscountAddendumWindow)ClassRegister.Get(typeof(DiscountAddendumWindow)); }
+        public static LoanPayoffInformationWindow LoanPayoffInformationWindow { get => (LoanPayoffInformationWindow)ClassRegister.Get(typeof(LoanPayoffInformationWindow)); }
+        public static IndustryWindow IndustryWindow { get => (IndustryWindow)ClassRegister.Get(typeof(IndustryWindow)); }
+        public static ExternalRatingWindow ExternalRatingWindow { get => (ExternalRatingWindow)ClassRegister.Get(typeof(ExternalRatingWindow)); }
+        public static ExistingExternalRatingsWindow ExistingExternalRatingsWindow { get => (ExistingExternalRatingsWindow)ClassRegister.Get(typeof(ExistingExternalRatingsWindow)); }
+        public static SwitchServicingQueueWindow SwitchServicingQueueWindow { get => (SwitchServicingQueueWindow)ClassRegister.Get(typeof(SwitchServicingQueueWindow)); }
+        public static SessionPropertiesWindow SessionPropertiesWindow { get => (SessionPropertiesWindow)ClassRegister.Get(typeof(SessionPropertiesWindow)); }
+        public static CustomerFlowdownWindow CustomerFlowdownWindow { get => (CustomerFlowdownWindow)ClassRegister.Get(typeof(CustomerFlowdownWindow)); }
+        public static DealAssociationWindow DealAssociationWindow { get => (DealAssociationWindow)ClassRegister.Get(typeof(DealAssociationWindow)); }
+        public static GlobalChangeWindow GlobalChangeWindow { get => (GlobalChangeWindow)ClassRegister.Get(typeof(GlobalChangeWindow)); }
+        public static TicklerMessageMaintenanceWindow TicklerMessageMaintenanceWindow { get => (TicklerMessageMaintenanceWindow)ClassRegister.Get(typeof(TicklerMessageMaintenanceWindow)); }
+        public static ExistingLoanInvestorWindow ExistingLoanInvestorWindow { get => (ExistingLoanInvestorWindow)ClassRegister.Get(typeof(ExistingLoanInvestorWindow)); }
+        public static ExistingIneligiblesReservesWindow ExistingIneligiblesReservesWindow { get => (ExistingIneligiblesReservesWindow)ClassRegister.Get(typeof(ExistingIneligiblesReservesWindow)); }
+        public static IneligiblesReserveWindow IneligiblesReserveWindow { get => (IneligiblesReserveWindow)ClassRegister.Get(typeof(IneligiblesReserveWindow)); }
+        public static ReceivableAgingWindow ReceivableAgingWindow { get => (ReceivableAgingWindow)ClassRegister.Get(typeof(ReceivableAgingWindow)); }
+        public static ECCCollateralControlRecordWindow ECCCollateralControlRecordWindow { get => (ECCCollateralControlRecordWindow)ClassRegister.Get(typeof(ECCCollateralControlRecordWindow)); }
+        public static CollateralUpdateWindow CollateralUpdateWindow { get => (CollateralUpdateWindow)ClassRegister.Get(typeof(CollateralUpdateWindow)); }
+        public static ExistingReceivableAgingWindow ExistingReceivableAgingWindow { get => (ExistingReceivableAgingWindow)ClassRegister.Get(typeof(ExistingReceivableAgingWindow)); }
+        public static InvoiceCalculationDetailsWindow InvoiceCalculationDetailsWindow { get => (InvoiceCalculationDetailsWindow)ClassRegister.Get(typeof(InvoiceCalculationDetailsWindow)); }
+        public static CreditApplicationWindow CreditApplicationWindow { get => (CreditApplicationWindow)ClassRegister.Get(typeof(CreditApplicationWindow)); }
+        public static RestrictItemWindow RestrictItemWindow { get => (RestrictItemWindow)ClassRegister.Get(typeof(RestrictItemWindow)); }
+        public static HMDACRAReportingWindow HMDACRAReportingWindow { get => (HMDACRAReportingWindow)ClassRegister.Get(typeof(HMDACRAReportingWindow)); }
+        public static DealReferenceWindow DealReferenceWindow { get => (DealReferenceWindow)ClassRegister.Get(typeof(DealReferenceWindow)); }
+        public static DealRulesAssignmentFeeWindow DealRulesAssignmentFeeWindow { get => (DealRulesAssignmentFeeWindow)ClassRegister.Get(typeof(DealRulesAssignmentFeeWindow)); }
+        public static RiskScenarioWindow RiskScenarioWindow { get => (RiskScenarioWindow)ClassRegister.Get(typeof(RiskScenarioWindow)); }
+        public static MarketReportingDataWindow MarketReportingDataWindow { get => (MarketReportingDataWindow)ClassRegister.Get(typeof(MarketReportingDataWindow)); }
+        public static ViewLiabilityWindow ViewLiabilityWindow { get => (ViewLiabilityWindow)ClassRegister.Get(typeof(ViewLiabilityWindow)); }
+        public static CompetitiveBidOptionWindow CompetitiveBidOptionWindow { get => (CompetitiveBidOptionWindow)ClassRegister.Get(typeof(CompetitiveBidOptionWindow)); }
+        public static BidRequestWindow BidRequestWindow { get => (BidRequestWindow)ClassRegister.Get(typeof(BidRequestWindow)); }
+        public static ViewMonthlyBalanceWindow ViewMonthlyBalanceWindow { get => (ViewMonthlyBalanceWindow)ClassRegister.Get(typeof(ViewMonthlyBalanceWindow)); }
+        public static InvestorGroupMaintenanceWindow InvestorGroupMaintenanceWindow { get => (InvestorGroupMaintenanceWindow)ClassRegister.Get(typeof(InvestorGroupMaintenanceWindow)); }
+        public static AddFacilityInvestorsWindow AddFacilityInvestorsWindow { get => (AddFacilityInvestorsWindow)ClassRegister.Get(typeof(AddFacilityInvestorsWindow)); }
+        public static FinancialStatementWindow FinancialStatementWindow { get => (FinancialStatementWindow)ClassRegister.Get(typeof(FinancialStatementWindow)); }
+        public static BidResponseWindow BidResponseWindow { get => (BidResponseWindow)ClassRegister.Get(typeof(BidResponseWindow)); }
+        public static ScheduledTakedownWindow ScheduledTakedownWindow { get => (ScheduledTakedownWindow)ClassRegister.Get(typeof(ScheduledTakedownWindow)); }
+        public static DealRulesProRataFacilityWindow DealRulesProRataFacilityWindow { get => (DealRulesProRataFacilityWindow)ClassRegister.Get(typeof(DealRulesProRataFacilityWindow)); }
+        public static FeeAssignmentWindow FeeAssignmentWindow { get => (FeeAssignmentWindow)ClassRegister.Get(typeof(FeeAssignmentWindow)); }
+        public static TradeConsentWindow TradeConsentWindow { get => (TradeConsentWindow)ClassRegister.Get(typeof(TradeConsentWindow)); }
+        public static ContractRateWindow ContractRateWindow { get => (ContractRateWindow)ClassRegister.Get(typeof(ContractRateWindow)); }
+        public static WorkWithDetailsWindow WorkWithDetailsWindow { get => (WorkWithDetailsWindow)ClassRegister.Get(typeof(WorkWithDetailsWindow)); }
+        public static CollateralDebtorWindow CollateralDebtorWindow { get => (CollateralDebtorWindow)ClassRegister.Get(typeof(CollateralDebtorWindow)); }
+        public static ContractTypeLimitWindow ContractTypeLimitWindow { get => (ContractTypeLimitWindow)ClassRegister.Get(typeof(ContractTypeLimitWindow)); }
+        public static HighConcentrationDebtorWindow HighConcentrationDebtorWindow { get => (HighConcentrationDebtorWindow)ClassRegister.Get(typeof(HighConcentrationDebtorWindow)); }
+        public static CollateralDebtorVerificationWindow CollateralDebtorVerificationWindow { get => (CollateralDebtorVerificationWindow)ClassRegister.Get(typeof(CollateralDebtorVerificationWindow)); }
+        public static CrossLimitControlWindow CrossLimitControlWindow { get => (CrossLimitControlWindow)ClassRegister.Get(typeof(CrossLimitControlWindow)); }
+        public static DocumentWindow DocumentWindow { get => (DocumentWindow)ClassRegister.Get(typeof(DocumentWindow)); }
+        public static NewDocumentMasterTypeSelectionWindow NewDocumentMasterTypeSelectionWindow { get => (NewDocumentMasterTypeSelectionWindow)ClassRegister.Get(typeof(NewDocumentMasterTypeSelectionWindow)); }
+        public static UCCFilingWindow UCCFilingWindow { get => (UCCFilingWindow)ClassRegister.Get(typeof(UCCFilingWindow)); }
+        public static SplitRiskRatingWindow SplitRiskRatingWindow { get => (SplitRiskRatingWindow)ClassRegister.Get(typeof(SplitRiskRatingWindow)); }
+        public static FacilityFeeInvoiceDetailsWindow FacilityFeeInvoiceDetailsWindow { get => (FacilityFeeInvoiceDetailsWindow)ClassRegister.Get(typeof(FacilityFeeInvoiceDetailsWindow)); }
+        public static ViewPendingTransactionsWindow ViewPendingTransactionsWindow { get => (ViewPendingTransactionsWindow)ClassRegister.Get(typeof(ViewPendingTransactionsWindow)); }
+        public static FacilityToLoanProRataVerificationWindow FacilityToLoanProRataVerificationWindow { get => (FacilityToLoanProRataVerificationWindow)ClassRegister.Get(typeof(FacilityToLoanProRataVerificationWindow)); }
+        public static FacilityToLoanProRataVerificationHTMLReportWindow FacilityToLoanProRataVerificationHTMLReportWindow { get => (FacilityToLoanProRataVerificationHTMLReportWindow)ClassRegister.Get(typeof(FacilityToLoanProRataVerificationHTMLReportWindow)); }
+        public static ViewECCLimitStructureWindow ViewECCLimitStructureWindow { get => (ViewECCLimitStructureWindow)ClassRegister.Get(typeof(ViewECCLimitStructureWindow)); }
+        public static FacilityLoanSummaryWindow FacilityLoanSummaryWindow { get => (FacilityLoanSummaryWindow)ClassRegister.Get(typeof(FacilityLoanSummaryWindow)); }
+        public static CollateralDocumentTrackerWindow CollateralDocumentTrackerWindow { get => (CollateralDocumentTrackerWindow)ClassRegister.Get(typeof(CollateralDocumentTrackerWindow)); }
+        public static ViewProfileContactsWindow ViewProfileContactsWindow { get => (ViewProfileContactsWindow)ClassRegister.Get(typeof(ViewProfileContactsWindow)); }
+        public static LoanTransactionArchiveInquiryWindow LoanTransactionArchiveInquiryWindow { get => (LoanTransactionArchiveInquiryWindow)ClassRegister.Get(typeof(LoanTransactionArchiveInquiryWindow)); }
+        public static ViewGLAccountDetailWindow ViewGLAccountDetailWindow { get => (ViewGLAccountDetailWindow)ClassRegister.Get(typeof(ViewGLAccountDetailWindow)); }
+        public static TransactionDetailHistoryHTMLReportWindow TransactionDetailHistoryHTMLReportWindow { get => (TransactionDetailHistoryHTMLReportWindow)ClassRegister.Get(typeof(TransactionDetailHistoryHTMLReportWindow)); }
+        public static BillingModifierWindow BillingModifierWindow { get => (BillingModifierWindow)ClassRegister.Get(typeof(BillingModifierWindow)); }
+        public static FloatFeeWindow FloatFeeWindow { get => (FloatFeeWindow)ClassRegister.Get(typeof(FloatFeeWindow)); }
+        public static ScheduledChargeWindow ScheduledChargeWindow { get => (ScheduledChargeWindow)ClassRegister.Get(typeof(ScheduledChargeWindow)); }
+        public static FutureAccrualScheduleChangeWindow FutureAccrualScheduleChangeWindow { get => (FutureAccrualScheduleChangeWindow)ClassRegister.Get(typeof(FutureAccrualScheduleChangeWindow)); }
+        public static FacilityFavoritesWindow FacilityFavoritesWindow { get => (FacilityFavoritesWindow)ClassRegister.Get(typeof(FacilityFavoritesWindow)); }
+        public static LoanFavoritesWindow LoanFavoritesWindow { get => (LoanFavoritesWindow)ClassRegister.Get(typeof(LoanFavoritesWindow)); }
+        public static ForeignCurrencyEquivalentsWindow ForeignCurrencyEquivalentsWindow { get => (ForeignCurrencyEquivalentsWindow)ClassRegister.Get(typeof(ForeignCurrencyEquivalentsWindow)); }
+        public static InvestorDataHTMLReportWindow InvestorDataHTMLReportWindow { get => (InvestorDataHTMLReportWindow)ClassRegister.Get(typeof(InvestorDataHTMLReportWindow)); }
+        public static CopyDealFacilityDataWindow CopyDealFacilityDataWindow { get => (CopyDealFacilityDataWindow)ClassRegister.Get(typeof(CopyDealFacilityDataWindow)); }
+        public static AdverseActionEventWindow AdverseActionEventWindow { get => (AdverseActionEventWindow)ClassRegister.Get(typeof(AdverseActionEventWindow)); }
+        public static TradeDealTrancheFundingWindow TradeDealTrancheFundingWindow { get => (TradeDealTrancheFundingWindow)ClassRegister.Get(typeof(TradeDealTrancheFundingWindow)); }
+        public static FacilityInvestorSummaryWindow FacilityInvestorSummaryWindow { get => (FacilityInvestorSummaryWindow)ClassRegister.Get(typeof(FacilityInvestorSummaryWindow)); }
+        public static LoanInvestorSummaryWindow LoanInvestorSummaryWindow { get => (LoanInvestorSummaryWindow)ClassRegister.Get(typeof(LoanInvestorSummaryWindow)); }
+        public static AdvanceScheduleHistoryWindow AdvanceScheduleHistoryWindow { get => (AdvanceScheduleHistoryWindow)ClassRegister.Get(typeof(AdvanceScheduleHistoryWindow)); }
+        public static FacilityInvestorDataHTMLReportWindow FacilityInvestorDataHTMLReportWindow { get => (FacilityInvestorDataHTMLReportWindow)ClassRegister.Get(typeof(FacilityInvestorDataHTMLReportWindow)); }
+        public static MTMTransactionWindow MTMTransactionWindow { get => (MTMTransactionWindow)ClassRegister.Get(typeof(MTMTransactionWindow)); }
+        public static MarkToMarketAccountSelectorWindow MarkToMarketAccountSelectorWindow { get => (MarkToMarketAccountSelectorWindow)ClassRegister.Get(typeof(MarkToMarketAccountSelectorWindow)); }
+        public static ViewCrossLimitToFacilityWindow ViewCrossLimitToFacilityWindow { get => (ViewCrossLimitToFacilityWindow)ClassRegister.Get(typeof(ViewCrossLimitToFacilityWindow)); }
+        public static MassTransactionWindow MassTransactionWindow { get => (MassTransactionWindow)ClassRegister.Get(typeof(MassTransactionWindow)); }
+        public static FeeAmortizationSummaryHTMLWindow FeeAmortizationSummaryHTMLWindow { get => (FeeAmortizationSummaryHTMLWindow)ClassRegister.Get(typeof(FeeAmortizationSummaryHTMLWindow)); }
+        public static EIRCalculationDetailsWindow EIRCalculationDetailsWindow { get => (EIRCalculationDetailsWindow)ClassRegister.Get(typeof(EIRCalculationDetailsWindow)); }
+        public static AppraisalWindow AppraisalWindow { get => (AppraisalWindow)ClassRegister.Get(typeof(AppraisalWindow)); }
+        public static LoanRealEstateProjectWindow LoanRealEstateProjectWindow { get => (LoanRealEstateProjectWindow)ClassRegister.Get(typeof(LoanRealEstateProjectWindow)); }
+        public static TenantWindow TenantWindow { get => (TenantWindow)ClassRegister.Get(typeof(TenantWindow)); }
+        public static DisbursementScheduleHTMLDataViewWindow DisbursementScheduleHTMLDataViewWindow { get => (DisbursementScheduleHTMLDataViewWindow)ClassRegister.Get(typeof(DisbursementScheduleHTMLDataViewWindow)); }
+        public static SmallBusinessLendingWindow SmallBusinessLendingWindow { get => (SmallBusinessLendingWindow)ClassRegister.Get(typeof(SmallBusinessLendingWindow)); }
+        public static EscrowAnalysisCalculatorWindow EscrowAnalysisCalculatorWindow { get => (EscrowAnalysisCalculatorWindow)ClassRegister.Get(typeof(EscrowAnalysisCalculatorWindow)); }
+        public static FormalAnalysisRecordHTMLReportWindow FormalAnalysisRecordHTMLReportWindow { get => (FormalAnalysisRecordHTMLReportWindow)ClassRegister.Get(typeof(FormalAnalysisRecordHTMLReportWindow)); }
+        public static MonthlyAccrualSummaryByCurrencyWindow MonthlyAccrualSummaryByCurrencyWindow { get => (MonthlyAccrualSummaryByCurrencyWindow)ClassRegister.Get(typeof(MonthlyAccrualSummaryByCurrencyWindow)); }
+        public static SBALoanPaymentWindow SBALoanPaymentWindow { get => (SBALoanPaymentWindow)ClassRegister.Get(typeof(SBALoanPaymentWindow)); }
+        public static ExistingTableSettingsWindow ExistingTableSettingsWindow { get => (ExistingTableSettingsWindow)ClassRegister.Get(typeof(ExistingTableSettingsWindow)); }
+        public static FormatAndSortWindow FormatAndSortWindow { get => (FormatAndSortWindow)ClassRegister.Get(typeof(FormatAndSortWindow)); }
+        public static CommitmentChangeWindow CommitmentChangeWindow { get => (CommitmentChangeWindow)ClassRegister.Get(typeof(CommitmentChangeWindow)); }
+        public static TradeDealTrancheWindow TradeDealTrancheWindow { get => (TradeDealTrancheWindow)ClassRegister.Get(typeof(TradeDealTrancheWindow)); }
+        public static TradeDealWindow TradeDealWindow { get => (TradeDealWindow)ClassRegister.Get(typeof(TradeDealWindow)); }
+        public static DealSearchWindow DealSearchWindow { get => (DealSearchWindow)ClassRegister.Get(typeof(DealSearchWindow)); }
+        public static TradeWindow TradeWindow { get => (TradeWindow)ClassRegister.Get(typeof(TradeWindow)); }
+        public static ExistingDealTrancheFundingWindow ExistingDealTrancheFundingWindow { get => (ExistingDealTrancheFundingWindow)ClassRegister.Get(typeof(ExistingDealTrancheFundingWindow)); }
+        public static GLConditionWindow GLConditionWindow { get => (GLConditionWindow)ClassRegister.Get(typeof(GLConditionWindow)); }
+        public static GLDerivationParameterWindow GLDerivationParameterWindow { get => (GLDerivationParameterWindow)ClassRegister.Get(typeof(GLDerivationParameterWindow)); }
+        public static NewUserQuickStartWindow NewUserQuickStartWindow { get => (NewUserQuickStartWindow)ClassRegister.Get(typeof(NewUserQuickStartWindow)); }
+        public static FieldMaskingWindow FieldMaskingWindow { get => (FieldMaskingWindow)ClassRegister.Get(typeof(FieldMaskingWindow)); }
+        public static NewCustomerGroupCategoryWindow NewCustomerGroupCategoryWindow { get => (NewCustomerGroupCategoryWindow)ClassRegister.Get(typeof(NewCustomerGroupCategoryWindow)); }
+        public static GLExternalChartOfAccountWindow GLExternalChartOfAccountWindow { get => (GLExternalChartOfAccountWindow)ClassRegister.Get(typeof(GLExternalChartOfAccountWindow)); }
+        public static ExistingGLExternalChartOfAccountsWindow ExistingGLExternalChartOfAccountsWindow { get => (ExistingGLExternalChartOfAccountsWindow)ClassRegister.Get(typeof(ExistingGLExternalChartOfAccountsWindow)); }
+        public static CopyExistingAccountReferenceWindow CopyExistingAccountReferenceWindow { get => (CopyExistingAccountReferenceWindow)ClassRegister.Get(typeof(CopyExistingAccountReferenceWindow)); }
+        public static ExistingGLExternalReferenceWindow ExistingGLExternalReferenceWindow { get => (ExistingGLExternalReferenceWindow)ClassRegister.Get(typeof(ExistingGLExternalReferenceWindow)); }
+        public static PortfolioAuthorityWindow PortfolioAuthorityWindow { get => (PortfolioAuthorityWindow)ClassRegister.Get(typeof(PortfolioAuthorityWindow)); }
+        public static ExistingPortfolioAuthoritiesWindow ExistingPortfolioAuthoritiesWindow { get => (ExistingPortfolioAuthoritiesWindow)ClassRegister.Get(typeof(ExistingPortfolioAuthoritiesWindow)); }
+        public static BusinessEntityWindow BusinessEntityWindow { get => (BusinessEntityWindow)ClassRegister.Get(typeof(BusinessEntityWindow)); }
+        public static CopyExistingBusinessEntityWindow CopyExistingBusinessEntityWindow { get => (CopyExistingBusinessEntityWindow)ClassRegister.Get(typeof(CopyExistingBusinessEntityWindow)); }
+        public static MenuWindow MenuWindow { get => (MenuWindow)ClassRegister.Get(typeof(MenuWindow)); }
+        public static LabelPreferenceWindow LabelPreferenceWindow { get => (LabelPreferenceWindow)ClassRegister.Get(typeof(LabelPreferenceWindow)); }
+        public static ComponentRoutingWindow ComponentRoutingWindow { get => (ComponentRoutingWindow)ClassRegister.Get(typeof(ComponentRoutingWindow)); }
+        public static AccrualCalulatorWindow AccrualCalulatorWindow { get => (AccrualCalulatorWindow)ClassRegister.Get(typeof(AccrualCalulatorWindow)); }
+        public static FeeTemplateAccruingWindow FeeTemplateAccruingWindow { get => (FeeTemplateAccruingWindow)ClassRegister.Get(typeof(FeeTemplateAccruingWindow)); }
+        public static FieldChangeHistoryWindow FieldChangeHistoryWindow { get => (FieldChangeHistoryWindow)ClassRegister.Get(typeof(FieldChangeHistoryWindow)); }
+        public static CalculateAccruedToAmountRatioSharesWindow CalculateAccruedToAmountRatioSharesWindow { get => (CalculateAccruedToAmountRatioSharesWindow)ClassRegister.Get(typeof(CalculateAccruedToAmountRatioSharesWindow)); }
 
-    stages {
-        stage('Call API') {
-            steps {
-                powershell '''
-                    # Enforce TLS 1.2 (or TLS 1.1 if needed)
-                    [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
-                    # Define the URL of the API endpoint
-                    $url = 'https://reqres.in/api/users?page=2'
-
-                    # Make the API request
-                    $response = Invoke-WebRequest -Uri $url -Method Get
-
-                    # Output the status code and response content
-                    Write-Output "API response status: $($response.StatusCode)"
-                    Write-Output "API response body: $($response.Content)"
-                '''
-            }
-        }
     }
 }
