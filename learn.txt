@@ -1,37 +1,12 @@
-pipeline {
-    agent any
+powershell.exe : Invoke-WebRequest : ERROR
+At C:\Users\svc-stsauto\.jenkins\workspace\SimplePipeline@tmp\durable-877aa359\powershellWrapper.ps1:3 char:1
++ & powershell -NoProfile -NonInteractive -ExecutionPolicy Bypass -Comm ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Invoke-WebRequest : ERROR:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+The requested URL could not be retrieved
 
-    stages {
-        stage('Call API') {
-            steps {
-                powershell '''
-                    # Enforce TLS 1.2 (or TLS 1.1 if needed)
-                    [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+The following error was encountered while trying to retrieve the URL: 
 
-                    # Define the URL of the API endpoint
-                    $url = 'http://10.7.194.46:8181/SAFALServer/api/rest/signin'
-                    
-                    # Define the Authorization token
-                    $token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJNYW5vai5QYXBuZWphQGZpc2dsb2JhbC5jb20iLCJpYXQiOjE3MjI1OTgyMTEsImV4cCI6MTcyMjYwMTgxMX0.K12ninki-bHM_SIgEVo0kHijQAouHapabWhZ2-kWhpA'
-
-                    # Define the POST data (JSON format)
-                    $postData = @{
-                        userEmail = "Manoj.Papneja@fisglobal.com"
-                        userCred = "Safal@2023"
-                    } | ConvertTo-Json
-
-                    # Make the API request with headers and body
-                    $headers = @{
-                        'Authorization' = "Bearer $token"
-                        'Content-Type' = 'application/json'
-                    }
-                    $response = Invoke-WebRequest -Uri $url -Method Post -Headers $headers -Body $postData
-
-                    # Output the status code and response content
-                    Write-Output "API response status: $($response.StatusCode)"
-                    Write-Output "API response body: $($response.Content)"
-                '''
-            }
-        }
-    }
-}
+http://10.7.194.46:8181/SAFALServer/api/rest/signin
