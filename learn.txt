@@ -1,94 +1,30 @@
-using GTS_CORE.CoreLibs.ExecutionHelper;
-using GTS_OSAF.CoreLibs;
-using Spring.Aop.Framework;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Reflection;
+pipeline {
+    agent any
 
-namespace GTS_OSAF.Config
-{
+    stages {
+        stage('Call API') {
+            steps {
+                powershell '''
+                    # Enforce TLS 1.2 (or TLS 1.1 if needed)
+                    [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
-    public enum ApplicationLevel
-    {
-        Application,Page,
-        TestFixture,Invalid,
-        Native
-    }
-[DebuggerStepThrough]
-    public class ClassRegister
-    {
-        static Dictionary<Type, Object> initializedObjects = new Dictionary<Type, object>();
+                    # Define the URL of the API endpoint
+                    $url = 'http://10.7.194.46:8181/SAFALServer/api/rest/signin'
+                    
+                    # Define the Authorization token
+                    $token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJNYW5vai5QYXBuZWphQGZpc2dsb2JhbC5jb20iLCJpYXQiOjE3MjI1OTgyMTEsImV4cCI6MTcyMjYwMTgxMX0.K12ninki-bHM_SIgEVo0kHijQAouHapabWhZ2-kWhpA'
 
-        public static object Get(Type type)
-        {
-            object initializedObject = null;
-            ApplicationLevel level;
-            level = GetClassLevel(type);
-            if (!initializedObjects.ContainsKey(type))
-            {
-                object obj = Activator.CreateInstance(type);
-                ProxyFactory factory = new ProxyFactory(obj);
-                switch (level)
-                {
-                    case ApplicationLevel.Application:
-                        initializedObject = ApplicationConfiguration.AddBusinessAdvicesToObject(factory);
-                        break;
-                    case ApplicationLevel.Page:
-                        initializedObject = ApplicationConfiguration.AddPageAdvicesToObject(factory);
-                        break;
-                    default:
-                        initializedObject = factory.GetProxy();
-                        break;
+                    # Make the API request
+                    $headers =  @{
+                        'Authorization' = "Bearer $token"
+                    }
+                    $response = Invoke-WebRequest -Uri $url -Method Post -Headers $headers
 
-                }
-                initializedObjects.Add(type, initializedObject);
-
+                    # Output the status code and response content
+                    Write-Output "API response status: $($response.StatusCode)"
+                    Write-Output "API response body: $($response.Content)"
+                '''
             }
-            else
-                initializedObject = initializedObjects[type];
-            return initializedObject;
-        }
-
-        internal static ApplicationLevel GetClassLevel(Type type)
-        {
-            ApplicationLevel level;
-           TypeInfo typeInfo = type.GetTypeInfo();
-            var attrs = typeInfo.GetCustomAttributes();
-            foreach (var attr in attrs)
-            {
-                if (attr.GetType().Name.Equals("Page"))
-                {
-                    level = ApplicationLevel.Page;
-                    return level;
-                }
-                else
-                     if (attr.GetType().Name.Equals("App"))
-                {
-                    level = ApplicationLevel.Application;
-                    return level;
-                }
-                else
-                if(attr.GetType().Name.Equals("TestFixtureAttribute"))
-                {
-                level=ApplicationLevel.TestFixture;
-                 return level;
-                }
-            }
-             if(isNativeLibrary(type.Name))
-                return ApplicationLevel.Native;
-            return ApplicationLevel.Invalid;
-        }
-
-        private static bool isNativeLibrary(string name)
-        {
-          foreach(string library in ExecutionInfo.NativeLibrary)
-          {
-              if(name.Equals(library))
-              return true;
-          }
-          return false;
-
         }
     }
 }
