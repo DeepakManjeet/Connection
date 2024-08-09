@@ -1,4 +1,37 @@
-{
-    "userEmail": "Manoj.Papneja@fisglobal.com",
-    "userCred": "Safal@2023"
+pipeline {
+    agent any
+
+    stages {
+        stage('Call API') {
+            steps {
+                powershell '''
+                    # Enforce TLS 1.2 (or TLS 1.1 if needed)
+                    [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+
+                    # Define the URL of the API endpoint
+                    $url = 'http://10.7.194.46:8181/SAFALServer/api/rest/signin'
+                    
+                    # Define the Authorization token
+                    $token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJNYW5vai5QYXBuZWphQGZpc2dsb2JhbC5jb20iLCJpYXQiOjE3MjI1OTgyMTEsImV4cCI6MTcyMjYwMTgxMX0.K12ninki-bHM_SIgEVo0kHijQAouHapabWhZ2-kWhpA'
+
+                    # Define the POST data (JSON format)
+                    $postData = @{
+                        userEmail = "Manoj.Papneja@fisglobal.com"
+                        userCred = "Safal@2023"
+                    } | ConvertTo-Json
+
+                    # Make the API request with headers and body
+                    $headers = @{
+                        'Authorization' = "Bearer $token"
+                        'Content-Type' = 'application/json'
+                    }
+                    $response = Invoke-WebRequest -Uri $url -Method Post -Headers $headers -Body $postData
+
+                    # Output the status code and response content
+                    Write-Output "API response status: $($response.StatusCode)"
+                    Write-Output "API response body: $($response.Content)"
+                '''
+            }
+        }
+    }
 }
