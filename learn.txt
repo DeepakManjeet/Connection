@@ -1,7 +1,1 @@
-Used to provide objective of the Test case
-
-Used to tag the Test scripts
-
-Used to define the Test script Name
-
-Both a and b
+If we provide 3 duplicate Test data values in input data file, which data it will pick up
