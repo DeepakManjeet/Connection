@@ -1,2 +1,7 @@
-[Category("Smoke")]
-        [Category("Regression")]
+Used to provide objective of the Test case
+
+Used to tag the Test scripts
+
+Used to define the Test script Name
+
+Both a and b
