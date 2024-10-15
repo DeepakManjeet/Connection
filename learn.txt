@@ -1,108 +1,67 @@
-//#########################################################################################################################################################################################################
-//TEST SCRIPT NAME            : COR31TC2NewLoanSetup_1 
-//OBJECTIVE                   : Verify the ability to create backdated General Loans for a Direct Facility in Servicing application.
+//#########################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################
+//TEST SCRIPT NAME            : LIBORP4COR31_2_DPN
+//OBJECTIVE                   : Test the Simple w/lag RFR loan.  Process EODs until it reached a split month-end. Verify accruals are correct based on the new 'Split Month-End processing for RFR loans. Ensure the buckets for MTD/QTD/YTD/ITD are displaying the correct accruals and the same applies to invoices.
 //AUTHOR                      : Sudheer Kumar A
-//DATE                        : 11/22/2021
-//PRE-CONDITIONS              : Make sure to run NewCustomerSetup_1 and LIBORP4NewDirectFacilitySetup_2 scripts before execution of this Script.
-//##########################################################################################################################################################################################################
-//MANUAL TEST CASE NAME       : LIBOR Replacement Phase 4. 
-//##########################################################################################################################################################################################################
+//DATE                        : 12/08/2021
+//PRE-CONDITIONS              : Make sure to run NewCustomerSetup_1, LIBORP4NewDirectFacilitySetup_2, COR31TC2NewLoanSetup_1 scripts before execution of this Script.
+//                            : Make sure to run EODs until application date reaches to the print date of the Loan Invoice(Print Date is Available in COR31TC2NewLoanSetup.csv Output data file).
+//                            : Make sure to run ServicingLogin script after running EOD to update the Current Processing date.
+//###########################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################
+//MANUAL TEST CASE NAME       : COR31-TC#2
+//###########################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################
 using GTS_OSAF;
 using GTS_OSAF.HelperLibs.DataAdapter;
 using GTS_OSAF.HelperLibs.Reporter;
-using System.Collections.Generic;
 using NUnit.Framework;
 using GTS_OSAF.CoreLibs;
+using System.Collections.Generic;
+using GTS_OSAF.Util;
 using ACBS.BusinessFunctions.Applications;
+using ACBS.ObjectFactory.Servicing.Windows;
 using ACBS.Utils;
+
 namespace ACBS.TestScripts.Tests.UseCaseSuite
 {
     [TestFixture]
-    public partial class LIBORP4NewLoanSetup : TestBase
+    public partial class LIBORPhase4 : TestBase
     {
         [Test]
-        [Property("TestDescription", "Verify the ability to create backdated General Loans for a Direct Facility in Servicing application.")]
+        [Property("TestDescription", "Test the Simple w/lag RFR loan.  Process EODs until it reached a split month-end. Verify accruals are correct based on the new 'Split Month-End processing for RFR loans. Ensure the buckets for MTD/QTD/YTD/ITD are displaying the correct accruals and the same applies to invoices.")]
         [Category("Smoke")]
         [Category("Regression")]
-        [Category("BaseSetup")]
 
-        public void COR31TC2NewLoanSetup_1()
+        public void LIBORP4COR31_2_DPN()
         {
-
             WindowsApplication appHandle;
             appHandle = ApplicationHandlerFactory.GetApplication(ApplicationType.Windows);
-            ACBSUtility.ACBSUtilityLibrary.GetCurrentServicingQueueName("GLOBAL_SERVICINGQUEUE4_NAME", "YES");
+             ACBSUtility.ACBSUtilityLibrary.GetCurrentServicingQueueName("GLOBAL_SERVICINGQUEUE4_NAME", "YES");
             ACBSUtility.ACBSUtilityLibrary.GetCurrentPortFolioName("GLOBAL_PORTFOLIO4_NAME", "YES");
             string CalenderCode = ACBSUtility.ACBSUtilityLibrary.GetCurrentCalendarID("GLOBAL_CALENDAR4_ID", "YES");
             ACBSUtility.ACBSUtilityLibrary.GetCurrentRateIndexID("GLOBAL_RATE_INDEX4_ID", "YES");
-            string Calendar = ACBSUtility.ACBSUtilityLibrary.GetCurrentCalendarName("GLOBAL_CALENDAR4_NAME", "YES");
-            string AccrualScheduleIndexRateTable = ACBSUtility.ACBSUtilityLibrary.GetCurrentRateIndexName("GLOBAL_RATE_INDEX4_NAME", "YES");
             ACBSUtility.ACBSUtilityLibrary.CloseAllServicingSubWindows();
 
-            string CIF1 = Data.Fetch("NewCustomerSetup", "CustomerNumber");
-            string FCT1 = Data.Fetch("LIBORP4NewDirectFacilitySetup", "NewBackDatedDirectFacSetup1_FacilityNumber");
-            string FacilityEffectiveDate = Data.Fetch("LIBORP4NewDirectFacilitySetup", "NewBackDatedDirectFacSetup1_FacilityEffectiveDate");
+            string LN1 = Data.Fetch("COR31TC2NewLoanSetup", "NewLoanSetup1_LoanNumber");
+            string LN1AccrualScheduleID = Data.Fetch("COR31TC2NewLoanSetup", "NewLoanSetup1_AccrualScheduleID");
+            string LN1Amount = Data.Fetch("COR31TC2NewLoanSetup", "NewLoanSetup1_LoanAmount");
+            string LN1LoanEffectiveDate = Data.Fetch("COR31TC2NewLoanSetup", "NewLoanSetup1_LoanEffectiveDate");
+            string LN1AccrualStartDate = Data.Fetch("COR31TC2NewLoanSetup", "NewLoanSetup1_AccrualScheduleEffectiveDate");
             string CurrentSystemDate = Data.Fetch("ServicingLogin", "ApplicationProcessDate");
+            string LN1AccrualScheduleLagDays = Data.Fetch("COR31TC2NewLoanSetup", "NewLoanSetup1_AccrualScheduleLagDays");
+            string LN1AccrualScheduleYearBasis = Data.Fetch("COR31TC2NewLoanSetup", "NewLoanSetup1_AccrualScheduleYearBasis");
+            string LN1RepaymentScheduleNextDueDate = Data.Fetch("COR31TC2NewLoanSetup", "NewLoanSetup1_RepaymentScheduleNextDueDate");
+            double SpreadRate = double.Parse(Data.Fetch("COR31TC2NewLoanSetup", "NewLoanSetup1_AccrualScheduleSpreadRate"));
+            double ReserveRate = double.Parse(Data.Fetch("COR31TC2NewLoanSetup", "NewLoanSetup1_AccrualScheduleReserveRate"));
             //----------------------------Script starts from here-----------------------------------------------------------------------------------------
-            Report.Step("Bring Direct Facility <FCT1> into session. Create 1 month back dated Loan - LN1 by entering all field values (From Loan Servicing Queue window, right click on Facility| Special Actions| Process New| New Loan). Ensure to add a RFR Accrual Schedule (Rate Calculation Method: BASE + SPREAD+ RESERVE, Year Basis: Actual/360, Index Rate Table: <INDEXRATETABLE1>, RFR Calculation Method: SIMPLE, Lag Days: 15) and Primary Repayment Schedule (Bill Type: INTEREST ONLY, Next Due Date: <Loan Effective Date + 2 Months>, Business Day Adjustment: Modified Following, Bill Frequency: MONTHLY, Bill Calendar: <RFRCAL1>, Lead Days: 15).");
-            string[] Loan1NewLoantabInfo = InputData.Get("COR31TC2BackDatedDirectCreditLoanNewLoanTabFieldValues");
-            string LoanEffectiveDate = FacilityEffectiveDate;
-            LoanEffectiveDate = ACBSUtility.ACBSUtilityLibrary.GetBusinessDate(LoanEffectiveDate, "NEXT");
-            Loan1NewLoantabInfo[7] = LoanEffectiveDate;
-            Loan1NewLoantabInfo[8] = LoanEffectiveDate;
+            string BorrowerInvoiceAmount = LIBORModel.ConvertDoubleTostring(LIBORModel.GetTotalSimpleInterestForThePeriod(LN1Amount, LN1LoanEffectiveDate, LN1RepaymentScheduleNextDueDate, LN1AccrualScheduleLagDays, LN1AccrualScheduleYearBasis, SpreadRate, ReserveRate, 0, 99), 2);
 
-            string[] Loan1AccrualScheduleBasicInformationFieldValues = InputData.Get("COR31TC2BackDatedDirectCreditLoanAccrualScheduleBasicInformationFieldValues");
-            string LoanEffectiveDatePlus2Months = ACBSUtility.ACBSUtilityLibrary.CalculateNewDate(LoanEffectiveDate, "M", 2);
-            string NextRatePeriodDate = ACBSUtility.ACBSUtilityLibrary.ConvertDateInGivenFormat(LoanEffectiveDatePlus2Months, "M/dd/yy");
-            NextRatePeriodDate = ACBSUtility.ACBSUtilityLibrary.GetBusinessDate(NextRatePeriodDate, "NEXT");
-            Loan1AccrualScheduleBasicInformationFieldValues[19] = AccrualScheduleIndexRateTable;
-            string[] Loan1RepaymentScheduleBasicInformationFieldValues = InputData.Get("COR31TC2BackDatedDirectCreditLoanRepaymentScheduleBasicInformationFieldValues");
-            string NextDueDate = NextRatePeriodDate;
-            Loan1RepaymentScheduleBasicInformationFieldValues[4] = NextDueDate;
-            Loan1RepaymentScheduleBasicInformationFieldValues[8] = Calendar;
-            Loan1RepaymentScheduleBasicInformationFieldValues[9] = NextDueDate;
-            string LN1 = Application.ACBSServicingLibrary.CreateLoan(CIF1, FCT1, Loan1NewLoantabInfo, InputData.Get("COR31TC2BackDatedDirectCreditLoanServicingTabFieldValues"), InputData.Get("COR31TC2BackDatedDirectCreditLoanRiskTabFieldValues"), InputData.Get("COR31TC2BackDatedDirectCreditLoanRegulatoryTabFieldValues"), InputData.Get("COR31TC2BackDatedDirectCreditLoanIndustryDetailsFieldValues"), InputData.Get("COR31TC2BackDatedDirectCreditLoanMiscellaneousTabFieldValues"), null, null, null, null, InputData.Get("COR31TC2BackDatedDirectCreditLoanAccrualScheduleInformationFieldValues"), Loan1AccrualScheduleBasicInformationFieldValues, null, null, InputData.Get("COR31TC2BackDatedDirectCreditLoanRepaymentScheduleInformationFieldValues"), Loan1RepaymentScheduleBasicInformationFieldValues, InputData.Get("COR31TC2BackDatedDirectCreditLoanRepaymentScheduleBillingInformationFieldValues"), null, null, null, null, null, null, null);
-            string Loan1AccId = RunTimeData.Get("LoanAccrualScheduleID");
+            Report.Step("Navigate to Loan Invoice window for the loan - LN1(From the Account Explorer, right-click on Loan record and select Special Actions, Loan Invoices. The Loan Invoices screen appears.)");
+            ACBSServicingObjectFactory.LoanServicingQueueWindow.NavigateToLoanInvoicesWindow(LN1);
 
-            Report.Step("Convert the Date in YYYYMMDD format and set the current month end Date as Non Business Day in Database.");
-            string MonthEndDate = ACBSUtility.ACBSUtilityLibrary.GetMonthEndDate(CurrentSystemDate);
-            string MonthEndDateFormat = ACBSUtility.ACBSUtilityLibrary.ConvertDateInGivenFormat(MonthEndDate, "yyyyMMdd");
-            Application.ACBSDBLibrary.SetSpecifiedDateStatusInCalendar(CalenderCode, MonthEndDateFormat, "N");
-
-            Report.Step("Convert the Date in YYYYMMDD format and set the future month (Next Month) 1st two day's to Non Business day's in Database.");
-            string NextMonthFirstDate = ACBSUtility.ACBSUtilityLibrary.CalculateNewDate(MonthEndDate, "D", 1);
-            string GetMonthFirstDate = ACBSUtility.ACBSUtilityLibrary.GetMonthFirstDate(NextMonthFirstDate);
-            string NextMonthSecondDate = ACBSUtility.ACBSUtilityLibrary.CalculateNewDate(GetMonthFirstDate, "D", 1);
-            string GetMonthFirstDateFormat = ACBSUtility.ACBSUtilityLibrary.ConvertDateInGivenFormat(GetMonthFirstDate, "yyyyMMdd");
-            string NextMonthSecondDateFormat = ACBSUtility.ACBSUtilityLibrary.ConvertDateInGivenFormat(NextMonthSecondDate, "yyyyMMdd");
-            Application.ACBSDBLibrary.SetSpecifiedDateStatusInCalendar(CalenderCode, GetMonthFirstDateFormat, "N");
-            Application.ACBSDBLibrary.SetSpecifiedDateStatusInCalendar(CalenderCode, NextMonthSecondDateFormat, "N");
-
-            Report.Step("Calculate Loan <LN1> Invoice Print Date.");
-            string LeadDays = Loan1RepaymentScheduleBasicInformationFieldValues[12];
-            string LoanInvoicePrintDate = ACBSUtility.ACBSUtilityLibrary.CalculateNewDateWithLagDays(NextDueDate, int.Parse(LeadDays));
-
-            ACBSUtility.ACBSUtilityLibrary.Info("Save the Loan Number, Loan Effective Date, Loan Rate Maturity Date, Loan Maturity Date, Loan Amount, Loan Currency, Accrual Schedule ID, Accrual Schedule Efective Date, Spread Rate, Reserve Rate, Next rate Period date, Frequency, Lag days, Year Basis, Observation Shift, Primary Repayment Schedule Type, Next Due Date and Next Accrue To Date field values in Output file.");
-            Data.Store("NewLoanSetup1_LoanNumber", LN1);
-            Data.Store("NewLoanSetup1_LoanEffectiveDate", Loan1NewLoantabInfo[7]);
-            Data.Store("NewLoanSetup1_CurrentSystemDate", Data.Fetch("ServicingLogin", "ApplicationProcessDate"));
-            Data.Store("NewLoanSetup1_LoanMaturityDate", Loan1NewLoantabInfo[10]);
-            Data.Store("NewLoanSetup1_LoanRateMaturityDate", Loan1NewLoantabInfo[9]);
-            Data.Store("NewLoanSetup1_LoanAmount", Loan1NewLoantabInfo[5]);
-            Data.Store("NewLoanSetup1_LoanCurrency", Loan1NewLoantabInfo[6]);
-            Data.Store("NewLoanSetup1_AccrualScheduleID", Loan1AccId);
-            Data.Store("NewLoanSetup1_AccrualScheduleEffectiveDate", LoanEffectiveDate);
-            Data.Store("NewLoanSetup1_AccrualScheduleYearBasis", Loan1AccrualScheduleBasicInformationFieldValues[7]);
-            Data.Store("NewLoanSetup1_AccrualScheduleSpreadRate", Loan1AccrualScheduleBasicInformationFieldValues[9]);
-            Data.Store("NewLoanSetup1_AccrualScheduleReserveRate", Loan1AccrualScheduleBasicInformationFieldValues[10]);
-            Data.Store("NewLoanSetup1_AccrualScheduleLagDays", Loan1AccrualScheduleBasicInformationFieldValues[40]);
-            Data.Store("NewLoanSetup1_ObservationShift", Loan1AccrualScheduleBasicInformationFieldValues[42]);
-            Data.Store("NewLoanSetup1_AccrualScheduleIndexRateChangeFrequency", Loan1AccrualScheduleBasicInformationFieldValues[45]);
-            Data.Store("NewLoanSetup1_RepaymentScheduleType", Loan1RepaymentScheduleBasicInformationFieldValues[3]);
-            Data.Store("NewLoanSetup1_RepaymentScheduleNextDueDate", NextDueDate);
-            Data.Store("NewLoanSetup1_RepaymentScheduleNextAccrueToDate", NextDueDate);
-            Data.Store("NewLoanSetup1_RepaymentScheduleNextDueDateFrequency", Loan1RepaymentScheduleBasicInformationFieldValues[11]);
-            Data.Store("NewLoanSetup1_LoanInvoicePrintDate", LoanInvoicePrintDate);
+            Report.Step("Verify that Invoice details are displayed as expected for Borrower.");
+            List<string> InvoiceDetails = new List<string>();
+            InvoiceDetails.Add(LN1RepaymentScheduleNextDueDate + " " + BorrowerInvoiceAmount);
+            ACBSServicingObjectFactory.LoanInvoiceWindow.VerifyGeneratedInvoicesWithAdjustment(InvoiceDetails);
+            ACBSUtility.ACBSUtilityLibrary.CloseServicingWindow("Loan Invoices");
 
         }
     }
