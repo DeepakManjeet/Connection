@@ -1,49 +1,5 @@
-        public static string UserName = "Xpath;//input[@id = 'idp-first-time-login-loginname']";
-
-
-<!doctype html>
-
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta http-equiv="cache-control" content="no-store, no-cache" />
-    <meta http-equiv="pragma" content="no-cache" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="/cls/favicon.ico" />
-    <title>Commercial Lending Suite</title>
-
-
-    
-    <base href="/cls/">
-
-    <style>
-        @font-face {
-            font-family: Source Sans Pro;
-            src: url("assets/fonts/SourceSansPro-Regular.otf") format("opentype");
-        }
-    </style>
-        <link rel="stylesheet" href="/cls/styles.a9225e5ed364faa0.css" />
-        <link class="style-manager-theme" rel="stylesheet" href="/cls/assets/themes/default.css" />
-
-</head>
-
-<body>
-    
-
-
-<app-root>
-    <ruf-loading-screen></ruf-loading-screen>
-</app-root>
-    
-    <script>
-        var appHostPath = "cls";
-        var global = globalThis;
-    </script>
-        <script src="/cls/runtime.6479f8a0856c39ab.js"></script>
-        <script src="/cls/polyfills.64ca5071751f1657.js"></script>
-        <script src="/cls/main.3e773fdee7cb2cff.js"></script>
-
-</body>
-
-</html>
+public static string CreateNewFacilityButton = "Xpath;//button[text()='Create New Facility']";
+public static string PrimaryBorrowerCounterparty = "Xpath;//select[@formcontrolname='primaryBorrower']";
+public static string ProductCategory = "Xpath;//select[@formcontrolname='productCategory']";
+public static string CancelButton = "Xpath;//button[text()='Cancel']";
+public static string CreateButton = "Xpath;//button[text()='Create']";
