@@ -1,68 +1,49 @@
-//#########################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################
-//TEST SCRIPT NAME            : LIBORP4COR31_2_DPN
-//OBJECTIVE                   : Test the Simple w/lag RFR loan.  Process EODs until it reached a split month-end. Verify accruals are correct based on the new 'Split Month-End processing for RFR loans. Ensure the buckets for MTD/QTD/YTD/ITD are displaying the correct accruals and the same applies to invoices.
-//AUTHOR                      : Sudheer Kumar A
-//DATE                        : 12/08/2021
-//PRE-CONDITIONS              : Make sure to run NewCustomerSetup_1, LIBORP4NewDirectFacilitySetup_2, COR31TC2NewLoanSetup_1 scripts before execution of this Script.
-//                            : Make sure to run EODs until application date reaches to the print date of the Loan Invoice(Print Date is Available in COR31TC2NewLoanSetup.csv Output data file).
-//                            : Make sure to run ServicingLogin script after running EOD to update the Current Processing date.
-//###########################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################
-//MANUAL TEST CASE NAME       : COR31-TC#2
-//###########################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################
-using GTS_OSAF;
-using GTS_OSAF.HelperLibs.DataAdapter;
-using GTS_OSAF.HelperLibs.Reporter;
-using NUnit.Framework;
-using GTS_OSAF.CoreLibs;
-using System.Collections.Generic;
-using GTS_OSAF.Util;
-using ACBS.BusinessFunctions.Applications;
-using ACBS.ObjectFactory.Servicing.Windows;
-using ACBS.Utils;
+        public static string UserName = "Xpath;//input[@id = 'idp-first-time-login-loginname']";
 
-namespace ACBS.TestScripts.Tests.UseCaseSuite
-{
-    [TestFixture]
-    public partial class LIBORPhase4 : TestBase
-    {
-        [Test]
-        [Property("TestDescription", "Test the Simple w/lag RFR loan.  Process EODs until it reached a split month-end. Verify accruals are correct based on the new 'Split Month-End processing for RFR loans. Ensure the buckets for MTD/QTD/YTD/ITD are displaying the correct accruals and the same applies to invoices.")]
-        [Category("Smoke")]
-        [Category("Regression")]
 
-        public void LIBORP4COR31_2_DPN()
-        {
-            WindowsApplication appHandle;
-            appHandle = ApplicationHandlerFactory.GetApplication(ApplicationType.Windows);
-             ACBSUtility.ACBSUtilityLibrary.GetCurrentServicingQueueName("GLOBAL_SERVICINGQUEUE4_NAME", "YES");
-            ACBSUtility.ACBSUtilityLibrary.GetCurrentPortFolioName("GLOBAL_PORTFOLIO4_NAME", "YES");
-            string CalenderCode = ACBSUtility.ACBSUtilityLibrary.GetCurrentCalendarID("GLOBAL_CALENDAR4_ID", "YES");
-            ACBSUtility.ACBSUtilityLibrary.GetCurrentRateIndexID("GLOBAL_RATE_INDEX4_ID", "YES");
-            ACBSUtility.ACBSUtilityLibrary.CloseAllServicingSubWindows();
+<!doctype html>
 
-            string LN1 = Data.Fetch("COR31TC2NewLoanSetup", "NewLoanSetup1_LoanNumber");
-            string LN1AccrualScheduleID = Data.Fetch("COR31TC2NewLoanSetup", "NewLoanSetup1_AccrualScheduleID");
-            string LN1Amount = Data.Fetch("COR31TC2NewLoanSetup", "NewLoanSetup1_LoanAmount");
-            string LN1LoanEffectiveDate = Data.Fetch("COR31TC2NewLoanSetup", "NewLoanSetup1_LoanEffectiveDate");
-            string LN1AccrualStartDate = Data.Fetch("COR31TC2NewLoanSetup", "NewLoanSetup1_AccrualScheduleEffectiveDate");
-            string CurrentSystemDate = Data.Fetch("ServicingLogin", "ApplicationProcessDate");
-            string LN1AccrualScheduleLagDays = Data.Fetch("COR31TC2NewLoanSetup", "NewLoanSetup1_AccrualScheduleLagDays");
-            string LN1AccrualScheduleYearBasis = Data.Fetch("COR31TC2NewLoanSetup", "NewLoanSetup1_AccrualScheduleYearBasis");
-            string LN1RepaymentScheduleNextDueDate = Data.Fetch("COR31TC2NewLoanSetup", "NewLoanSetup1_RepaymentScheduleNextDueDate");
-            double SpreadRate = double.Parse(Data.Fetch("COR31TC2NewLoanSetup", "NewLoanSetup1_AccrualScheduleSpreadRate"));
-            double ReserveRate = double.Parse(Data.Fetch("COR31TC2NewLoanSetup", "NewLoanSetup1_AccrualScheduleReserveRate"));
-            //----------------------------Script starts from here-----------------------------------------------------------------------------------------
-            string BorrowerInvoiceAmount = LIBORModel.ConvertDoubleTostring(LIBORModel.GetTotalSimpleInterestForThePeriod(LN1Amount, LN1LoanEffectiveDate, LN1RepaymentScheduleNextDueDate, LN1AccrualScheduleLagDays, LN1AccrualScheduleYearBasis, SpreadRate, ReserveRate, 0, 99), 2);
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta http-equiv="cache-control" content="no-store, no-cache" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="/cls/favicon.ico" />
+    <title>Commercial Lending Suite</title>
 
-            Report.Step("Navigate to Loan Invoice window for the loan - LN1(From the Account Explorer, right-click on Loan record and select Special Actions, Loan Invoices. The Loan Invoices screen appears.)");
-            ACBSServicingObjectFactory.LoanServicingQueueWindow.NavigateToLoanInvoicesWindow(LN1);
 
-            Report.Step("Verify that Invoice details are displayed as expected for Borrower.");
-            List<string> InvoiceDetails = new List<string>();
-            InvoiceDetails.Add(LN1RepaymentScheduleNextDueDate + " " + BorrowerInvoiceAmount);
-            ACBSServicingObjectFactory.LoanInvoiceWindow.VerifyGeneratedInvoicesWithAdjustment(InvoiceDetails);
-            ACBSUtility.ACBSUtilityLibrary.CloseServicingWindow("Loan Invoices");
+    
+    <base href="/cls/">
 
+    <style>
+        @font-face {
+            font-family: Source Sans Pro;
+            src: url("assets/fonts/SourceSansPro-Regular.otf") format("opentype");
         }
-    }
-}
+    </style>
+        <link rel="stylesheet" href="/cls/styles.a9225e5ed364faa0.css" />
+        <link class="style-manager-theme" rel="stylesheet" href="/cls/assets/themes/default.css" />
+
+</head>
+
+<body>
+    
+
+
+<app-root>
+    <ruf-loading-screen></ruf-loading-screen>
+</app-root>
+    
+    <script>
+        var appHostPath = "cls";
+        var global = globalThis;
+    </script>
+        <script src="/cls/runtime.6479f8a0856c39ab.js"></script>
+        <script src="/cls/polyfills.64ca5071751f1657.js"></script>
+        <script src="/cls/main.3e773fdee7cb2cff.js"></script>
+
+</body>
+
+</html>
