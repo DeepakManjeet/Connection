@@ -1,3 +1,1 @@
-<button ng-class="{'eo-button eo-button--raised':edorasWidgetActionButton.state.isDiscard, 'ec-button':!edorasWidgetActionButton.state.isDiscard, ok:!edorasWidgetActionButton.state.isDiscard, disabled:edorasWidgetActionButton.state.isExecuting, spinnerLoading:edorasWidgetActionButton.state.isExecuting}" ng-click="edorasWidgetActionButton.executeAction().bind(this)" ng-disabled="edorasWidgetActionButton.state.isExecuting" ng-if="edorasWidgetActionButton.state.isVisible" ew-tooltip="" data-title="" class="ng-binding ng-scope tipsy-disabled eo-button eo-button--raised">
-  Cancel
-</button>
+//input[@type='search' and @id='input-2'] or [@type='search' and @id='input-67']
