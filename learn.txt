@@ -1,1 +1,4 @@
-//input[@type='search' and @id='input-2'] or [@type='search' and @id='input-67']
+ FlatFeeAmount="2299.32";
+            List<string> GeneratedInvoices = new List<string>();
+            GeneratedInvoices.Add(string.Format("{0:#,##0}", float.Parse(FlatFeeAmount)));
+            
