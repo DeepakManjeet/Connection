@@ -1,4 +1,37 @@
- FlatFeeAmount="2299.32";
-            List<string> GeneratedInvoices = new List<string>();
-            GeneratedInvoices.Add(string.Format("{0:#,##0}", float.Parse(FlatFeeAmount)));
-            
+using GTS_OSAF;
+using GTS_OSAF.HelperLibs.DataAdapter;
+using GTS_OSAF.HelperLibs.Reporter;
+using NUnit.Framework;
+using GTS_OSAF.CoreLibs;
+using System.Collections.Generic;
+using ACBS.BusinessFunctions.Applications;
+using ACBS.Utils;
+using ACBS.ObjectFactory.CLO.WEB;
+using System;
+using ACBS.Utils;
+
+
+
+namespace ACBS.TestScripts.Tests
+{
+    [TestFixture]
+    public partial class Ztest1 : TestBase
+    {
+        
+
+        [Test]
+        [Property("TestDescription", "CLO deal creation")]
+        public void Ztest()
+        {
+
+            Report.Step("Logging in CLO");    //Mandatory else exception will be thrown in report.pass statement
+           Login.LogInCLO();
+           
+                 
+      
+    }
+    [TearDown]
+
+     LogOut.LogOutCLO();
+}
+}
