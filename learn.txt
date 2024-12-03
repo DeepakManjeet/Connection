@@ -1,37 +1,26 @@
-using GTS_OSAF;
-using GTS_OSAF.HelperLibs.DataAdapter;
-using GTS_OSAF.HelperLibs.Reporter;
-using NUnit.Framework;
-using GTS_OSAF.CoreLibs;
-using System.Collections.Generic;
-using ACBS.BusinessFunctions.Applications;
-using ACBS.Utils;
-using ACBS.ObjectFactory.CLO.WEB;
-using System;
-using ACBS.Utils;
+#########################################################################################################
+Test Case Name : AF01ZeroAccrueFeeRateTransaction
+Test Objective : Verify the ability to check if 0.00% Accruing fee rate can be allowed through Transaction processing in Servicing application.
+#########################################################################################################
+1. Getting Test data from PreCondition_SourceData.csv file.
+2. Login into ACBS Servicing application with valid user credentials.
+3. Create a new Bundle and navigate to new Transaction window.
+4. Select the facility and enter the transaction code as 2790.
+5. Enter the transaction details on new Transaction window with Transaction Rate as Zero.
+6. Save and Submit the bundle. Login with approver credentials and post the bundle.
+7. Verify that the Zero Accrual Rate is successfully updated in Accruing Fee.
+8. Logout from Servicing application.
 
 
-
-namespace ACBS.TestScripts.Tests
-{
-    [TestFixture]
-    public partial class Ztest1 : TestBase
-    {
-        
-
-        [Test]
-        [Property("TestDescription", "CLO deal creation")]
-        public void Ztest()
-        {
-
-            Report.Step("Logging in CLO");    //Mandatory else exception will be thrown in report.pass statement
-           Login.LogInCLO();
-           
-                 
-      
-    }
-    [TearDown]
-
-     LogOut.LogOutCLO();
-}
-}
+#########################################################################################################
+Test Case Name : AD01LoanPrincipalAndRateSummary
+Test Objective : Capture screen prints for Loan Principal and Rate summary
+#########################################################################################################
+1. Getting Test data from PreCondition_SourceData.csv file.
+2. Login into ACBS Servicing application with valid user credentials.
+3. Select the Facility from explorer screen and then select Loan from the explorer screen. Take screenshot.
+4. Right click to view loan. Take screenshot for Loan Basic Information screen
+5. Navigate to Loan History window. Right click and select Special Action and then Loan History
+6. Navigate to Principal Summary information tab under views. Take screenshot of Principal Summary with respective effective date.
+7. Navigate to Rate Summary information tab under views. Take screenshot of Rate Summary with respective effective date.
+8. Logout from Servicing application.
