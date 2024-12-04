@@ -1,0 +1,374 @@
+#########################################################################################################
+Test Case Name : EStatementAdhocStatementforBotswana024
+Test Objective : Verify that the Adhoc statement is generated in Botswana
+#########################################################################################################
+1. Output Data for EStatementAdhocStatementforBotswana024
+2. Output Data for EStatementESTMTStatementforBotswana025
+3. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+4. Create the notification for Adhoc statement with required information
+5. Fetch the notification name and Verify Adhoc Statement is generated successfully and verify the notification data
+6. Navigate to Existing Statement Parameter Window. Verify the required statement parameter is present in Existing statement parameter window for the script : EStatementESTMTStatementforBotswana025
+7. Logout from Servicing application.
+8. Store the Loan Number.
+
+
+#########################################################################################################
+Test Case Name : EStatementAdhocStatementforCameroon016
+Test Objective : Verify that the Adhoc statement is generated in Cameroon
+#########################################################################################################
+1. Output Data for EStatementAdhocStatementforCameroon016
+2. Output Data for EStatementESTMTStatementforCameroon017
+3. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+4. Create the notification for Adhoc statement with required information
+5. Fetch the notification name and Verify if Adhoc Statement is generated successfully and verify the Notification data
+6. Navigate to existing Statement Parameter Window. Verify the required statement parameter is present in existing statement parameter window for script : EStatementESTMTStatementforCameroon017
+7. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : EStatementAdhocStatementforHongKongGLS09
+Test Objective : Verify that the Adhoc statement is generated in HK
+#########################################################################################################
+1. Output Data for EStatementAdhocStatementforHongKongGLS09
+2. Output Data for EStatementESTMTStatementforHK010
+3. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+4. Create the notification for Adhoc statement with required information
+5. Fetch the notification name and Verify the Adhoc Statement is generated successfully and verify the notification data
+6. Get the Facility and Navigate to existing Statement Parameter Window. Verify the required statement parameter is present in existing statement parameter window.
+7. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : EStatementAdhocStatementforKenya022
+Test Objective : Verify that the Adhoc statement is generated in Kenya
+#########################################################################################################
+1. Output Data for EStatementAdhocStatementforKenya022
+2. Output Data for EStatementESTMTStatementforKenya023
+3. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+4. Create the notification for Adhoc statement with required information
+5. Fetch the notification name and Verify if Adhoc Statement is generated successfully and verify the notification data
+6. Navigate to existing Statement Parameter Window and Verify the required statement parameter is present in existing statement parameter window for the script : EStatementESTMTStatementforKenya023
+7. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : EStatementAdhocStatementforSingapore011
+Test Objective : Verify that the Adhoc statement is generated in SG
+#########################################################################################################
+1. Output Data for EStatementAdhocStatementforSingapore011
+2. Output Data for EStatementESTMTStatementforSG012
+3. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+4. Create the notification for Adhoc statement with required information
+5. Fetch the notification name and Verify if Adhoc Statement is generated successfully and verify the notification data
+6. Get the Facility and Navigate to Existing Statement Parameter Window
+7. Verify the required statement parameter is present in existing statement parameter window.
+8. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : EStatementAdhocStatementforSouthAfrica020
+Test Objective : Verify that the Adhoc statement is generated in South Africa
+#########################################################################################################
+1. Output Data for EStatementAdhocStatementforSouthAfrica020
+2. Output Data for EStatementESTMTStatementforSAGLS028
+3. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+4. Create the notification for Adhoc statement with required information
+5. Fetch the notification name and Verify Adhoc Statement is generated successfully and verify the notification data
+6. Verify the required statement parameter is present in Existing statement parameter window for the script : EStatementESTMTStatementforSAGLS028
+7. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : EStatementAdhocStatementforTanzania018
+Test Objective : Verify that the Adhoc statement is generated in Tanzania
+#########################################################################################################
+1. Output Data for EStatementAdhocStatementforTanzania018
+2. Output Data for EStatementESTMTStatementforTanzania019
+3. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+4. Create the notification for Adhoc statement with required information
+5. Fetch the notification name and Verify Adhoc Statement is generated successfully and verify the notification data
+6. Verify the required statement parameter is present in existing statement parameter window for the script : EStatementESTMTStatementforTanzania019
+7. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : EStatementAdhocStatementforCNGLS01
+Test Objective : Verify the Adhoc statement generated in Chinese is not in English
+#########################################################################################################
+1. Output Data for EStatementAdhocStatementforCNGLS01
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Create the notification for Adhoc statement with required information
+4. Fetch the notification name and Verify the Notification data in PDF document.
+5. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : EStatementAdhocStatementforInidaGLS07
+Test Objective : Verify that the Adhoc statement is generated in INDIA
+#########################################################################################################
+1. Output Data for EStatementAdhocStatementforInidaGLS07
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Create the notification for Adhoc statement with required information
+4. Fetch the notification name and Verify the Notification data in PDF document.
+5. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : EStatementCustomerStatement015
+Test Objective : Verify the estatement customer statements
+#########################################################################################################
+1. Output Data for EStatementCustomerStatement015
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Navigate to Customer Statement, Enter Dates in Customer statement page and Verify the customer statement
+4. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : EStatementDocStatementforMY05
+Test Objective : Verify the DOC1 statement generated for MY
+#########################################################################################################
+1. Output Data for EStatementDocStatementforMY05
+2. Output Data for EStatementESTMTStatementforMY013
+3. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+4. Navigate to existing Statement Parameter Window. Verify the required statement parameter is present in existing statement parameter window.
+5. Get the Facility and Navigate to existing Statement Parameter Window and Verify the required statement parameter is present in existing statement parameter window for the script : EStatementESTMTStatementforMY013
+6. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : EStatementDocStatementforHK04
+Test Objective : Verify the DOC1 statement generated for HK
+#########################################################################################################
+1. Output Data for EStatementDocStatementforHK04
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Navigate to existing Statement Parameter Window. Verify the required statement parameter is present in existing statement parameter window.
+4. Logout from servicing application.
+
+
+#########################################################################################################
+Test Case Name : EStatementDocStatementforHK04_DP
+Test Objective : Verify the DOC1 statement generated for HK
+#########################################################################################################
+1. Output Data for EStatementDocStatementforHK04_DP
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Generate the From dates and To Dates for Estatement verification. Verify DOC1 Statement generated for HK
+4. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : EStatementDocStatementforMY05_DP
+Test Objective : Verify the DOC1 statement generated for MY
+#########################################################################################################
+1. Output Data for EStatementDocStatementforMY05_DP
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Generate the From dates and To Dates for Estatement verification. Verify DOC1 Statement generated for MY
+4. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : EStatementDocStatementforSG06
+Test Objective : Verify the DOC1 statement generated for SG
+#########################################################################################################
+1. Output Data for EStatementDocStatementforSG06
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Navigate to existing Statement Parameter Window. Verify the required statement parameter is present in existing statement parameter window.
+4. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : EStatementESTMTStatementforBotswana025_DP
+Test Objective : Verify that the Facility level e-statement is generated in Botswana
+#########################################################################################################
+1. Output Data for EStatementESTMTStatementforBotswana025_DP
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Navigate to Statement Delivery Status Window. Actions | Other Options | Customer Statement |Statement Delivery Status. Verify E-STMT Statement generated for South Africa
+4. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : EStatementESTMTStatementforCameroonGLS027
+Test Objective : Verify that the loan level e-statement is generated in Cameroon
+#########################################################################################################
+1. Output Data for EStatementESTMTStatementforCameroonGLS027
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Navigate to Existing Statement Parameter Window. Verify the required statement parameter is present in Existing statement parameter window.
+4. Logout from Servicing application.
+5. Store the Loan Number.
+
+
+#########################################################################################################
+Test Case Name : EStatementESTMTStatementforCameroonGLS027_DP
+Test Objective : Verify that the loan level e-statement is generated in Cameroon
+#########################################################################################################
+1. Output Data for EStatementESTMTStatementforCameroonGLS027_DP
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Navigate to Statement Delivery Status Window. Actions | Other Options | Customer Statement |Statement Delivery Status. Verify E-STMT Statement generated for Cameroon
+4. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : EStatementESTMTStatementforHK010_DP
+Test Objective : Verify that the e-statement is generated in HK
+#########################################################################################################
+1. Output Data for EStatementESTMTStatementforHK010_DP
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Generate the From dates and To Dates for Estatement verification. Verify E-STMT Statement generated for HK
+4. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : EStatementESTMTStatementforIndia08
+Test Objective : Verify that the loan level e-statement is generated in INDIA
+#########################################################################################################
+1. Output Data for EStatementESTMTStatementforIndia08
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Navigate to Existing Statement Parameter Window. Verify the required statement parameter is present in Existing statement parameter window.
+4. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : EStatementESTMTStatementforIndia08_DP
+Test Objective : Verify that the loan level e-statement is generated in INDIA
+#########################################################################################################
+1. Output Data for EStatementESTMTStatementforIndia08_DP
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Generate the From dates and To Dates for Estatement verification. Verify E-STMT Statement generated for INDIA
+4. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : EStatementESTMTStatementforKenya023_DP
+Test Objective : Verify that the Facility level e-statement is generated in Kenya
+#########################################################################################################
+1. Output Data for EStatementESTMTStatementforKenya023_DP
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Navigate to Statement Delivery Status Window. Actions | Other Options | Customer Statement |Statement Delivery Status. Verify E-STMT Statement generated for Kenya
+4. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : EStatementESTMTStatementforKenyaGLS026
+Test Objective : Verify that the loan level e-statement is generated in Kenya
+#########################################################################################################
+1. Output Data for EStatementESTMTStatementforKenyaGLS026
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Navigate to Existing Statement Parameter Window and Verify the required statement parameter is present in Existing statement parameter window.
+4. Logout from Servicing application.
+5. Store the Loan Number.
+
+
+#########################################################################################################
+Test Case Name : EStatementESTMTStatementforKenyaGLS026_DP
+Test Objective : Verify that the loan level e-statement is generated in Kenya
+#########################################################################################################
+1. Output Data for EStatementESTMTStatementforKenyaGLS026_DP
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Navigate to Statement Delivery Status Window. Actions | Other Options | Customer Statement |Statement Delivery Status and Verify E-STMT Statement generated for Kenya
+4. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : EStatementESTMTStatementforMY013_DP
+Test Objective : Verify that eStatement generated for MY portfolio
+#########################################################################################################
+1. Output Data for EStatementESTMTStatementforMY013_DP
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Navigate to Statement Delivery Status Window. Actions | Other Options | Customer Statement |Statement Delivery Status and Generate the From dates and To Dates for Estatement verification.
+4. Verify E-STMT Statement generated for MY
+5. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : EStatementESTMTStatementforMyIslamic014
+Test Objective : Verify that eStatement generated for MY Islamic portfolio
+#########################################################################################################
+1. Output Data for EStatementESTMTStatementforMyIslamic014
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Navigate to existing Statement Parameter Window and Verify the required statement parameter is present in existing statement parameter window.
+4. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : EStatementESTMTStatementforMyIslamic014_DP
+Test Objective : Verify that eStatement generated for MY Islamic portfolio
+#########################################################################################################
+1. Output Data for EStatementESTMTStatementforMyIslamic014_DP
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Navigate to Statement Delivery Status Window. Actions | Other Options | Customer Statement |Statement Delivery Status and Generate the From dates and To Dates for Estatement verification.
+4. Verify E-STMT Statement generated for MY Islamic
+5. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : EStatementESTMTStatementforSA021
+Test Objective : Verify that the Facility level e-statement is generated in South Africa
+#########################################################################################################
+1. Output Data for EStatementESTMTStatementforSA021
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Verify the required statement parameter is present in existing statement parameter window.
+4. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : EStatementESTMTStatementforSA021_DP
+Test Objective : Verify that the Facility level e-statement is generated in South Africa
+#########################################################################################################
+1. Output Data for EStatementESTMTStatementforSA021_DP
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Navigate to Statement Delivery Status Window. Actions | Other Options | Customer Statement |Statement Delivery Status and Verify E-STMT Statement generated for South Africa
+4. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : EStatementESTMTStatementforSAGLS028_DP
+Test Objective : Verify that the loan level e-statement is generated in South Africa
+#########################################################################################################
+1. Output Data for EStatementESTMTStatementforSAGLS028_DP
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Navigate to Statement Delivery Status Window. Actions | Other Options | Customer Statement |Statement Delivery Status
+4. Verify E-STMT Statement generated for South Africa
+5. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : EStatementESTMTStatementforSG012_DP
+Test Objective : Verify that the e-statement is generated in SG
+#########################################################################################################
+1. Output Data for EStatementESTMTStatementforSG012_DP
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Navigate to Statement Delivery Status Window. Actions | Other Options | Customer Statement |Statement Delivery Status and Verify E-STMT Statement generated for SG
+4. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : EStatementESTMTStatementforTanzania019_DP
+Test Objective : Verify that the Facility level e-statement is generated in Tanzania
+#########################################################################################################
+1. Output Data for EStatementESTMTStatementforTanzania019_DP
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Navigate to Statement Delivery Status Window. Actions | Other Options | Customer Statement |Statement Delivery Status and Verify E-STMT Statement generated for TZ
+4. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : EStatementLoanESTMTStatementforBotswana029
+Test Objective : Verify that the loan level e-statement is generated in Botswana
+#########################################################################################################
+1. Output Data for EStatementLoanESTMTStatementforBotswana029
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Verify the required statement parameter is present in existing statement parameter window.
+4. Logout from Servicing application.
+5. Store the Loan Number.
+
+
+#########################################################################################################
+Test Case Name : EStatementLoanESTMTStatementforBotswana029_DP
+Test Objective : Verify that the loan level e-statement is generated in South Africa
+#########################################################################################################
+1. Output Data for EStatementLoanESTMTStatementforBotswana029_DP
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Navigate to Statement Delivery Status Window. Actions | Other Options | Customer Statement |Statement Delivery Status
+4. Verify Loan E-STMT Statement generated for South Africa
+5. Logout from Servicing application.
+
+

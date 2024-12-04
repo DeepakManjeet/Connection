@@ -1,0 +1,738 @@
+#########################################################################################################
+Test Case Name : DuplicateNotificationNotgeneratedwithRFRLoan034
+Test Objective : Verify that the duplicate notification has not been generated when a bundle processed with two transactions in same bundle(Ex
+#########################################################################################################
+1. Output Data for DuplicateNotificationNotgeneratedwithRFRLoan034
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Create New Bundle and navigate to New Transaction window
+4. Navigate to existing Accrual Schedule window and get the Next Rate Period date and Lag Days from Accrual Schedule Window. (Right click on the Loan and select Maintain Existing| Loan Pricing| Accrual Schedule).
+5. Create a bundle to create a new loan. Enter all the Loan Details: New Loan, Servicing Infor Risk Infor, Regulatory Info, Repayment Schedule and Additional Field
+6. Select the loan and enter the transaction code 3200. Enter New Transaction Details on New Transaction screen.
+7. Select the loan and enter the transaction code 3100. Enter New Transaction Details on New Transaction screen.
+8. Save and Submit the Bundle and Login with Approver credential and Approve the Bundle
+9. Fetch the notification name
+10. Check for duplicates
+11. Verify the Notification data in PDF document.
+12. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : FeeNoticeusingRFRLoan060
+Test Objective : Verify that Fee Notice got generated in English Language using RFR Loan.
+#########################################################################################################
+1. Output Data for FeeNoticeusingRFRLoan060
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Add the Fee for the Facility
+4. Approve Two touch for Fixed Fee creation
+5. From Edit Facility Window - Get the degment ID, Navigate to Existing Fees-Fixed window by selecting (View | Existing | Facility Structure | Fees-Fixed) menu option from the top menu bar.
+6. Verify Bill generated successfully
+7. Create New Bundle and navigate to New Transaction window
+8. Select the loan and enter the transaction code 2700, Enter New Transaction Details on New Transaction screen.
+9. Create the required notification
+10. Verify the Notification data in PDF document.
+11. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : LIBORP4COR25Setup
+Test Objective : Verify the ability to create a back dated RFR Loan for a Direct Facility in Servicing application.
+#########################################################################################################
+1. Output Data for LIBORP4COR25Setup
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Create a new Facility Pricing Option for Facility with Currency set to USD (Navigate to Create New | Facility Structure | Pricing Option) Copy Existing Templates and Schedules window opens. Click Cancel button in this window. New – Pricing Option window opens. Enter values for all mandatory fields in different tabs like Basic, Risk, Regulatory, Repayment Schedule etc. and click Quick Save. Confirm that Record Has Been Saved successfully.).
+4. Login to ACBS application with Checker Credentials and Approve two touch records.
+5. Create a Current Dated Loan for a Direct Facility by entering all field values. (From Loan Servicing Queue window, right click on Facility| Special Actions| Process New| New Loan). Ensure to add a RFR Accrual Schedule (Rate Calculation Method: BASE(COMP)+ SPREAD+ RESERVE, Year Basis: Actual/360, Spread Rate: 1, Reserve Rate: 1, Index Rate Table: <INDEXRATETABLE1>, RFR Calculation Method: ARREARS - COMPOUNDING BALANCE, Next Rate Period Date: <Loan Effective Date + 1 Month>, Lag Days: 5, Business Day Adjustment: Modified Following, Frequency: Monthly).
+6. Create a bundle to create a new loan. Enter all the Loan Details: New Loan, Servicing Infor Risk Infor, Regulatory Info, Repayment Schedule and Additional Field
+7. Save and Submit the Bundle and  Login with other credential and Approve the Bundle
+8. Verify the Base Rate is picked up based on the Index for
+
+
+#########################################################################################################
+Test Case Name : LIBORP4COR31_1Setup
+Test Objective : Verify the ability to create a back dated RFR Loan for a Direct Facility in Servicing application.
+#########################################################################################################
+1. Output Data for LIBORP4COR31Setup
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Create a new Facility Pricing Option for Facility  with Currency set to USD (Navigate to Create New | Facility Structure | Pricing Option) Copy Existing Templates and Schedules window opens. Click Cancel button in this window. New – Pricing Option window opens. Enter values for all mandatory fields in different tabs like Basic, Risk, Regulatory, Repayment Schedule etc. and click Quick Save. Confirm that Record Has Been Saved successfully.).
+4. Login to ACBS application with Checker Credentials and Approve two touch records.
+5. Create a Current Dated Loan for a Direct Facility by entering all field values. (From Loan Servicing Queue window, right click on Facility| Special Actions| Process New| New Loan). Ensure to add a RFR Accrual Schedule (Rate Calculation Method: BASE(COMP)+ SPREAD+ RESERVE, Year Basis: Actual/360, Spread Rate: 1, Reserve Rate: 1, Index Rate Table: <INDEXRATETABLE1>, RFR Calculation Method: ARREARS - COMPOUNDING BALANCE, Next Rate Period Date: <Loan Effective Date + 1 Month>, Lag Days: 5, Business Day Adjustment: Modified Following, Frequency: Monthly).
+6. Create a bundle to create a new loan. Enter all the Loan Details: New Loan, Servicing Infor Risk Infor, Regulatory Info, Repayment Schedule and Additional Field
+7. Save and Submit the Bundle and  Login with other credential and Approve the Bundle
+8. Verify the Base Rate is picked up based on the Index for
+
+
+#########################################################################################################
+Test Case Name : LIBORP4COR31_2Setup
+Test Objective : Verify the ability to create a back dated Normal Loan for a Direct Facility in Servicing application.
+#########################################################################################################
+1. Output Data for LIBORP4COR31setup2
+2. Login to ACBS Servicing Application with valid user credentials.
+3. Create a new Facility Pricing Option for Syndicated Facility <PricingOption> with Currency set to USD (Navigate to Create New | Facility Structure | Pricing Option) Copy Existing Templates and Schedules window opens. Click Cancel button in this window. New – Pricing Option window opens. Enter values for all mandatory fields in different tabs like Basic, Risk, Regulatory, Repayment Schedule etc. and click Quick Save. Confirm that Record Has Been Saved successfully.).
+4. Login through approver login to approve the created two touch request. 
+5. Create a bundle to create a new loan
+6. Enter all the Loan Details: New Loan, Servicing Infor Risk Infor, Regulatory Info, Repayment Schedule and Additional Field
+7. Save and Submit the Bundle and  Login with other credential and Approve the Bundle
+8. Verify the Base Rate is picked up based on the Index for
+9. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : LIBORReplacement01
+Test Objective : Verify to show the RFR Rate Index and Change Same Day fields control the appearance of the Daily RFR tab in the Accrual Schedule.
+#########################################################################################################
+1. Output Data for LIBORReplacement01
+2. Login to ACBS Servicing Application with valid user credentials.
+3. Bring current dated Loan
+4. Open Existing Accrual Schedule. Verify that Rate Index field value Change Timing field value is <LOAN1 Accrual Schedule Change Timing> in Edit - Accrual Schedule Window| Accrual Basic tab.
+5. Verify Daily RFR tab appears for further RFR entries.
+6. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : LIBORReplacement02
+Test Objective : Verify to show the Default settings from the Index Rate Master chosen flow down to the Accrual Schedule.
+#########################################################################################################
+1. Output Data for LIBORReplacement02
+2. Login to ACBS Servicing Application with valid user credentials.
+3. Bring current dated Loan
+4. Verify Rate Lock Days Filed is displayed defaults to blank in Daily RFR tab
+5. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : LIBORReplacement03
+Test Objective : Verify to show the fields Next Rate Period Business Days Adjustment, Rate Period Reset Frequency, Frequency Period and Due Month End Checkbox are available and editable.
+#########################################################################################################
+1. Output Data for LIBORReplacement03
+2. Login to ACBS Servicing Application with valid user credentials.
+3. Bring current dated Loan into session, Navigate to Existing Accrual Schedules Window by Right clicking on loan record and select (Maintain Existing | Loan Pricing | Accrual Schedules), Select Interest Accrual schedule from Existing Accrual schedule window and click on Open Icon. Review the data updated fields (Next Rate Period Business Days Adjustment, Rate Period Reset Frequency, Due Month End) in the Daily RFR tab in the Accrual Schedule Window.
+4. Verify Due Month End Check Box is Selected in Edit - Accrual Schedule Window | Accrual Schedule Basic Tab.
+5. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : LoanPayoffInformationerrormessage01
+Test Objective : Verify the warning message "***AMOUNT(S) EXPRESSED IN {currency}***" message is displayed on Loan Pre-Payment Calculator form after navigating to prepayment information and come back to payment information view options page."
+#########################################################################################################
+1. Output Data for LoanPayoffInformationerrormessage01
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Update the current system Date +5 day as non-business Day in Calendar.
+4. Bring back dated Loan that was created with RFR Accrual schedule - Rate calculation method: Compounding Rate into session. Navigate to Loan Payoff Information Window by right clicking on loan record and select (Special Actions | Loan Payoff). In the Loan Payoff Information window, navigate to What If Pre-Payment tab and enter an Effective Date that is greater than the Current Processing Date + Lag Days. Select Rate Group as GENERAL RATE GROUP, Currency as USD and Principal Prepayment Amount then click on Calculate Button. Verify the warning message ** Amount Expressed in USD** is displayed.
+5. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : LoanPayoffInformationerrormessage02
+Test Objective : Verify the message Principal Prepayment Amount should be less than or equal to Principal Balance” is displayed only when amount given is greater than principal balance.
+#########################################################################################################
+1. Output Data for LoanPayoffInformationerrormessage02
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Update the current system Date +5 day as non-business Day in Calendar.
+4. Bring back dated Loan that was created with RFR Accrual schedule - Rate calculation method: Compounding Rate into session. Navigate to Loan Payoff Information Window by right clicking on loan record and select (Special Actions | Loan Payoff).
+5. Enter the amount is greater than the principal balance amount in whatifprepayment pane. Verify the warning message *Prepayment Amount should be less than or equal to Balance Amount is displayed.
+6. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : NewLoanNoticeusingRFRLoan002
+Test Objective : Verify that New Loan Notice got generated in English Language using RFR Rate.
+#########################################################################################################
+1. Output Data for NewLoanNoticeusingRFRLoan002
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Navigate to Edit Facility and Get the Facility Currency
+4. Create a new Facility Pricing Option for Facility with Currency set to USD (Navigate to Create New | Facility Structure | Pricing Option) Copy Existing Templates and Schedules window opens. Click Cancel button in this window. New – Pricing Option window opens. Enter values for all mandatory fields in different tabs like Basic, Risk, Regulatory, Repayment Schedule etc. and click Quick Save. Confirm that Record Has Been Saved successfully.).
+5. Login through approver login to approve the created two touch request. 
+6. Create a Current Dated RFR Loan - LN1 for a Direct Facility - FCT1 by entering all field values. (From Loan Servicing Queue window, right click on Facility | Create New Bundle).
+7. Bring Facility <FCT1> into session and create a bundle. From Bundle Manager navigate to New Loan window by selecting menu Create -> Loan.
+8. Enter all the Loan Details: New Loan, Servicing Info Risk Info, Regulatory Info, Accrual Schedule Info, Repayment Schedule info.
+9. Create the required notification
+10. Verify the Notification data in PDF document.
+11. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : RateChangeNoticeusingRFRLoan003
+Test Objective : Verify that Rate Change Notice got generated in English Language using RFR Loan.
+#########################################################################################################
+1. Output Data for RateChangeNoticeusingRFRLoan003
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Navigate to existing Accrual Schedule window and get the Balance Category.
+4. Create New Bundle and navigate to New Transaction window
+5. Select the loan and enter the transaction code 3610, Enter New Transaction Details on New Transaction screen
+6. Create the required notification
+7. Verify the Notification data in PDF document.
+8. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : RFRAccrualScheduleValidation02
+Test Objective : Verify that a Validation form is generated if a Principal Plus Interest Repayment Schedule's Next Due Date and Next Accrue To Date are both not equal to the Accrual Schedule's RFR Next Rate Calculation Date.
+#########################################################################################################
+1. Output Data for RFRAccrualScheduleValidation02
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Navigate to existing Accrual Schedule window and get the Next Rate Period date and Lag Days from Accrual Schedule Window. (Right click on the Loan and select Maintain Existing| Loan Pricing| Accrual Schedule).
+4. From Loan Servicing Queue Window, Navigate to Secondary Repayment Schedule window for Loan Account (Search Loan| Right Click on Loan| Create New| Loan Servicing| Repayment Secondary), the New Repayment Secondary form appears. Specify different values under Secondary Repayment Schedule Window (Bill Type = PMT AMOUNT INCL ACC, Lead Days = 5 (Equal to the Lag Days), Business Days Adjustment = Modified Following, Frequency = Monthly), Set the date in both the Next Due Date and Next Accrue To Date fields to a date prior to the date set in the RFR Next Rate Calculation Date field entered in accrual schedule <Loan Accrual Schedule>. Save the Secondary Repayment Schedule.
+5. Verify Accruing Schedule and Billing Information Comparison Window is Displayed or not.
+6. From Loan Servicing Queue Window. Navigate to Secondary Repayment Schedule window for Loan Account
+7. Verify Accruing Schedule and Billing Information Comparison Window is Displayed or not.
+8. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : RFRAccrualYearBasisValidation01
+Test Objective : Test to show Year Basis Change on RFR Accrual Schedule Does not Blanket Spread to Investors.
+#########################################################################################################
+1. Output Data for RFRAccrualYearBasisValidation01
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Bring the  RFR Loan account
+4. Navigate to Existing Accrual schedule and perform Spread to the investors.
+5. Navigate to Investor window to check if accrual schedule is there for 800 ALM record.
+6. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : RFRLoanAccrualScheduleValidation025
+Test Objective : Verify that a Validation form is generated while adding Accrual Schedule and Secondary Repayment Schedule (PRIN AMT PLUS ACC), if the Lead Days is not same as Accrual Schedule's Lag Days.
+#########################################################################################################
+1. Output Data for RFRLoanAccrualScheduleValidation025
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Navigate to existing Accrual Schedule window and get the Next Rate Period date and Lag Days from Accrual Schedule Window. (Right click on the Loan and select Maintain Existing| Loan Pricing| Accrual Schedule).
+4. From Loan Servicing Queue Window, Navigate to Secondary Repayment Schedule window for Loan Account (Search Loan| Right Click on Loan| Create New| Loan Servicing| Repayment Secondary), the New Repayment Secondary form appears. Specify different values under Secondary Repayment Schedule Window (Bill Type = PMT AMOUNT INCL ACC, Lead Days = 10 (different than the Lag Days), Business Days Adjustment = Modified Following, Frequency = Monthly), Set the date in both the Next Due Date and Next Accrue To Date fields to a date equal to the date set in the RFR Next Rate Calculation Date field entered in accrual schedule <Loan Accrual Schedule>. Save the Secondary Repayment Schedule.
+5. Verify Accruing Schedule and Billing Information Comparison Window is Displayed or not.
+6. Click on Cancel button in Accruing Schedule and Billing Information Comparison Window. Provide the lead days same as the Lag days and add Secondary Repayment Schedule to the Loan.
+7. Login to ACBS application with Checker Credentials and Approve Two touch for Secondary Repayment Schedule.
+8. From the Loan record, navigate to Accrual Schedule window. The New - Accrual Schedule screen appears. The New - Accrual Schedule screen appears. Specify (Rate Index: <USD SOFR (SOFR)>, Changing Time: CHANGE SAME DAY, RFR Calculation Method: ARREARS - COMPOUNDING BALANCE, Next Rate Period Date: Same as Secondary Repayment Schedule, RFR Next Rate Period Business Day Adjustment = MODIFIED FOLLOWING, RFR Rate Period Reset Frequency = MONTHLY, Basis = Actual/360, Rate Calculation Method = BASE (COMP) + SPREAD + RESERVE), Set the Lag Days to a value less than the Lead Days in the Secondary Repayment Schedule, then Save the Interest Accrual schedule.
+9. Verify Accruing Schedule and Billing Information Comparison Window is Displayed or not.
+10. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : RFRLoanAccrualScheduleValidation032
+Test Objective : Verify that a Validation form is generated if a Principal Plus Interest Repayment Schedule's Next Due Date and Next Accrue To Date are both not equal to the Accrual Schedule's RFR Next Rate Calculation Date.
+#########################################################################################################
+1. Output Data for RFRLoanAccrualScheduleValidation032
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Navigate to existing Accrual Schedule window and get the Next Rate Period date and Lag Days from Accrual Schedule Window. (Right click on the Loan and select Maintain Existing| Loan Pricing| Accrual Schedule).
+4. From Loan Servicing Queue Window, Navigate to Secondary Repayment Schedule window for Loan Account (Search Loan| Right Click on Loan| Create New| Loan Servicing| Repayment Secondary), the New Repayment Secondary form appears. Specify different values under Secondary Repayment Schedule Window (Bill Type = PMT AMOUNT INCL ACC, Lead Days = 5 (Equal to the Lag Days), Business Days Adjustment = Modified Following, Frequency = Monthly), Set the date in both the Next Due Date and Next Accrue To Date fields to a date prior to the date set in the RFR Next Rate Calculation Date field entered in accrual schedule <Loan Accrual Schedule>. Save the Secondary Repayment Schedule.
+5. Verify Accruing Schedule and Billing Information Comparison Window is Displayed or not.
+6. From Loan Servicing Queue Window. Navigate to Secondary Repayment Schedule window for Loan Account
+7. Verify Accruing Schedule and Billing Information Comparison Window is Displayed or not.
+8. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : RFRLoanAlertForNonDefaultCPI061
+Test Objective : Verify to create an Interest Payment under existing RFR Loan by creating a new Bundle and verify if there is alert for non default CPI used for RFR Loan.
+#########################################################################################################
+1. Output Data for RFRLoanAlertForNonDefaultCPI061
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Create New Bundle and navigate to New Transaction window
+4. Navigate to existing Accrual Schedule window and get the Next Rate Period date and Lag Days from Accrual Schedule Window. (Right click on the Loan and select Maintain Existing| Loan Pricing| Accrual Schedule).
+5. Create a bundle to create a new loan. Enter all the Loan Details: New Loan, Servicing Infor Risk Infor, Regulatory Info, Repayment Schedule and Additional Field
+6. Check if Facility has existing cash offset or not.
+7. Right click on Loan and select Create New Bundle option. Provide Bundle details and click Create Bundle button in Create Bundle window. Create | Transaction in Bundle Manager window.
+8. Select the Loan Account 
+9. Update the Cash offset details.
+10. Verify the save Transaction has done successfully.
+11. Verify alert warning message for having non default CPI is displayed.
+12. Logout from Servicing Application.
+
+
+#########################################################################################################
+Test Case Name : RFRLoanCheckDraftLoan16
+Test Objective : Verify that the 'Draft Loan checkbox' option is working as expected for the RFR Loan.
+#########################################################################################################
+1. Output Data for RFRLoanCheckDraftLoan16
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Create a General Context Bundle (Right click on Customer pane and select option Create Bundle | General Context...). Provide Bundle details and navigate to Bundle Manager Window. From Bundle Manager Window navigate to New Loan window by selecting menu Create -> Loan.
+4. Create a new RFR loan with all the required information & save it. (Ensure to add an Accrual Schedule and Repayment Schedule while creating the Loan).
+5. Navigate to Bundles Window and get the required bundle. Right click on Loan from Bundle Contents and select View Item option to navigate to View - Loan Window.
+6. In View - Loan window, verify that the loan saved as a draft checkbox is selected.
+7. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : RFRLoancreationwithSimpleratemethod009
+Test Objective : Verify the ability to create a RFR Loan with calculation method as Simple in servicing application.
+#########################################################################################################
+1. Output Data for RFRLoancreationwithSimpleratemethod009
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Navigate to Edit Facility and Get the Facility Currency
+4. Create a new Facility Pricing Option for Facility with Currency set to USD (Navigate to Create New | Facility Structure | Pricing Option) Copy Existing Templates and Schedules window opens. Click Cancel button in this window. New – Pricing Option window opens. Enter values for all mandatory fields in different tabs like Basic, Risk, Regulatory, Repayment Schedule etc. and click Quick Save. Confirm that Record Has Been Saved successfully.).
+5. Login through approver login to approve the created two touch request. 
+6. Create a Current Dated Loan - LN1 for a Direct Facility - FCT1 by entering all field values. (From Loan Servicing Queue window, right click on Facility| Special Actions| Process New| New Loan). Ensure to add a RFR Accrual Schedule (Rate Calculation Method: BASE(COMP)+ SPREAD+ RESERVE, Year Basis: Actual/360, Spread Rate: 1, Reserve Rate: 1, Index Rate Table: <INDEXRATETABLE1>, RFR Calculation Method: ARREARS - COMPOUNDING BALANCE, Next Rate Period Date: <Loan Effective Date + 1 Month>, Lag Days: 5, Business Day Adjustment: Modified Following, Frequency: Monthly).
+7. Create a bundle to create a new loan
+8. Enter all the Loan Details: New Loan, Servicing Infor Risk Infor, Regulatory Info, Repayment Schedule and Additional Field
+9. Save and Submit the Bundle and  Login with other credential and Approve the Bundle
+10. Verify the Base Rate is picked up based on the Index for 
+11. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : RFRLoanInterestPaymentMessagesVerify027
+Test Objective : Verify Batch Book Transfer CPI available on Payment Form for Interest Payment Transaction for the RFR Loan.
+#########################################################################################################
+1. Output Data for RFRLoancreationwithSimpleratemethod009
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Create New Bundle and navigate to New Transaction window
+4. Navigate to existing Accrual Schedule window and get the Next Rate Period date and Lag Days from Accrual Schedule Window. (Right click on the Loan and select Maintain Existing| Loan Pricing| Accrual Schedule).
+5. Create a bundle to create a new loan. Enter all the Loan Details: New Loan, Servicing Infor Risk Infor, Regulatory Info, Repayment Schedule and Additional Field
+6. Create New Bundle and navigate to New Transaction window
+7. Select the loan and enter the transaction code and Enter New Transaction Details on New Transaction screen.
+8. Enter cash item information and save the bundle transaction
+9. Save and Submit the Bundle and Login with Approver credential and Post the Bundle
+10. Validate if the payment message is generated
+11. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : RFRLoanInterestPaymentRevTransaction065
+Test Objective : Verify auto post P755 Interest Payment reversal transaction when Interest payment transaction posted on a Non Performing Accounting Method Loan.
+#########################################################################################################
+1. Output Data for RFRLoanInterestPaymentRevTransaction065
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Create New Bundle and navigate to New Transaction window
+4. Navigate to existing Accrual Schedule window and get the Next Rate Period date and Lag Days from Accrual Schedule Window. (Right click on the Loan and select Maintain Existing| Loan Pricing| Accrual Schedule).
+5. Create a bundle to create a new loan. Enter all the Loan Details: New Loan, Servicing Infor Risk Infor, Regulatory Info, Repayment Schedule and Additional Field
+6. Bring Loan into session. Right click on loan record and select Special Actions | Process New | Accounting Method Change. Change the Loan status to Non-Performing Loan with Credit Decision and Financial Effective Date as Loan Effective Date. Approve and post the bundle from Bundle Viewer window.
+7. Logoff the other user application and Login the ACBS application
+8. Create New Bundle and navigate to New Transaction window
+9. Select the loan and enter the transaction code 3200, Enter New Transaction Details on New Transaction screen
+10. Search for an existing Loan and navigate to Loan History window - Right click on Loan| Special Actions| Loan History.
+11. Filter Transactions by selecting 'All' option from Transaction Type.
+12. Verify auto post P755 Interest Payment reversal transaction when Interest payment transaction posted for RFR Loan
+13. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : RFRLoanInvoiceNotification004
+Test Objective : Verify that GLS Loan Invoice notification reflected for the RFR Loan.
+#########################################################################################################
+1. Output Data for RFRLoanInvoiceNotification004
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Perform Bill now for the created Repayment Secondary.
+4. Navigate to loan invoice window and get invoice number.
+5. Generate notice for the provided Loan ID : 
+6. Logout from servicing application.
+
+
+#########################################################################################################
+Test Case Name : RFRLoanInvoicewithIslamicPortfolio003
+Test Objective : Verify that GLS Finance Invoice notification reflected with the Islamic portfolio.
+#########################################################################################################
+1. Output Data for RFRLoanInvoicewithIslamicPortfolio003
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Perform Bill now for the created Repayment Secondary.
+4. Navigate to loan invoice window and get invoice number.
+5. Generate notice for the provided Loan.
+6. Logout from servicing application.
+
+
+#########################################################################################################
+Test Case Name : RFRLoanMaturityDateVerification063
+Test Objective : Verify to a rollover which the next rate maturity date exceeds the next repayment schedule and verify if there is an alert for it.
+#########################################################################################################
+1. Output Data for RFRLoanMaturityDateVerification063
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Navigate to existing Secondary Repayment Schedule window and Open the Existing Record. Get the Next Payment Due Date in Edit Repayment Primary Window.
+4. Bring Direct Credit Facility into session. Right click on facility and select Special Actions | Process New | Loan Rollover/Renewal. Select the Loan Account
+5. Select 'Save and Submit' icon in New - Rollover/Renewal window and verify that View Exceptions window is launched with a warning message 'Rate Maturity Date exceeds New Loan Maturity Date'
+6. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : RFRLoanNotificationwithIslamicPortfolio002
+Test Objective : Verify the Debit confirmation advise for Interest & instalment payments is generated as expected for RFR Loan with Islamic Portfolio.
+#########################################################################################################
+1. Output Data for RFRLoanNotificationwithIslamicPortfolio002
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Select the loan and enter the transaction code 3100. Enter New Transaction Details on New Transaction screen.
+4. Create New Bundle and navigate to New Transaction window
+5. Navigate to existing Accrual Schedule window and get the Next Rate Period date and Lag Days from Accrual Schedule Window. (Right click on the Loan and select Maintain Existing| Loan Pricing| Accrual Schedule).
+6. Create a bundle to create a new loan. Enter all the Loan Details: New Loan, Servicing Infor Risk Infor, Regulatory Info, Repayment Schedule and Additional Field
+7. Create New Bundle and navigate to New Transaction window
+8. Select the loan and enter the transaction code 3200. Enter New Transaction Details on New Transaction screen.
+9. Save and Submit the Bundle and Login with Approver credential and Approve the Bundle
+10. Fetch the notification name
+11. Check for duplicates
+12. Verify the Notification data in PDF document.
+13. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : RFRLoanRateChange082
+Test Objective : Check if rate change transaction goes through successfully for RFR Loan.
+#########################################################################################################
+1. Output Data for RFRLoanRateChange082
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Navigate to existing Accrual Schedule window and get the Base Rate and Spread Rate from Accrual Schedule Window. (Right click on the Loan and select Maintain Existing| Loan Pricing| Accrual Schedule).
+4. Create a bundle to create a new loan. Enter all the Loan Details: New Loan, Servicing Infor Risk Infor, Regulatory Info, Repayment Schedule and Additional Field
+5. Create a new Bundle for Transaction (Right Click on Loan Record and select option Create New Bundle). From Bundle Manager navigate to New Transaction window by selecting menu Create -> Transaction. Post the Transaction with the Transaction code 3610 and 3630.
+6. Enter the new Base rate in New - Transaction window with Effective date as Current System date. Save the Transaction to Bundle and verify whether Transaction is saved successfully.
+7. Enter the new Spread rate in New - Transaction window with Effective date as Current System date. Save the Transaction to Bundle and verify whether Transaction is saved successfully.
+8. Save and Submit the Bundle and Login with another credential to Approve/Post the Bundle.
+9. Navigate to existing Accrual Schedule window and Verify that the Base Rate and Spread Rate is changed after the Transaction. (Right click on the Loan and select Maintain Existing| Loan Pricing| Accrual Schedule).
+10. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : RFRLoanRolloverPrefixTransaction035
+Test Objective : Verify that during Auto-rate setting, when the Base Rate for Rollover is found Negative as per tenure
+#########################################################################################################
+1. Output Data for RFRLoanRolloverPrefixTransaction035
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Navigate to existing Accrual Schedule window and get the Next Rate Period date and Lag Days from Accrual Schedule Window. (Right click on the Loan and select Maintain Existing| Loan Pricing| Accrual Schedule).
+4. Create a bundle to create a new loan. Enter all the Loan Details: New Loan, Servicing Infor Risk Infor, Regulatory Info, Repayment Schedule and Additional Field
+5. Right click on facility and select Create New Bundle option. Provide Bundle details (Bundle Name, posting date as system Date + 3 Days) and click Create Bundle button in Create Bundle window. Click New Rollover /Renewal icon in Bundle Manager window.
+6. Navigate to new rollover/renewal window
+7. Select the first Loan Account 
+8. Navigate to bundle window and Submit the bundle for prefix approval.
+9. Prefix approve the bundle.
+10. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : RFRLoanRolloverRatesettingfieldsverification01
+Test Objective : Verify that the Rollover Rate Information forms have been changed to reflect the proposed Rollover Rate Information form changes.
+#########################################################################################################
+1. Output Data for RFRLoanRolloverRatesettingfieldsverification01
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Right click on facility and select Create New Bundle option. Provide Bundle details (Bundle Name, posting date as system Date + 3 Days) and click Create Bundle button in Create Bundle window. Click New Rollover /Renewal icon in Bundle Manager window.
+4. Select the first Loan Account 
+5. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : RFRLoanRolloverTransaction006
+Test Objective : Verify the Payment Message is generated for Loan Roll Over Transaction with RFR Loan.
+#########################################################################################################
+1. Output Data for RFRLoanRolloverTransaction006
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Navigate to existing Accrual Schedule window and get the Next Rate Period date and Lag Days from Accrual Schedule Window. (Right click on the Loan and select Maintain Existing| Loan Pricing| Accrual Schedule).
+4. Create a bundle to create a new loan. Enter all the Loan Details: New Loan, Servicing Infor Risk Infor, Regulatory Info, Repayment Schedule and Additional Field
+5. Right click on Loan and select Create New Bundle option. Provide Bundle details and click Create Bundle button in Create Bundle window. Create | Transaction in Bundle Manager window.
+6. Select the first Loan Account 
+7. Enter Rollover/Renewal Information.
+8. Verify Save Transaction has done successfully
+9. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : RFRLoanRolloverTransaction023
+Test Objective : Verify that any changes made in Servicing Parameters on Rollover transactions also is reflecting in the newly created Bundle Report as part of STP-2 for RFR Loan.
+#########################################################################################################
+1. Output Data for RFRLoanRolloverTransaction023
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Navigate to existing Accrual Schedule window and get the Next Rate Period date and Lag Days from Accrual Schedule Window. (Right click on the Loan and select Maintain Existing| Loan Pricing| Accrual Schedule).
+4. Create a bundle to create a new loan. Enter all the Loan Details: New Loan, Servicing Infor Risk Infor, Regulatory Info, Repayment Schedule and Additional Field
+5. Right click on facility and select Create New Bundle option. Navigate to Rollover/Renewal window. Select Create | Rollover/Renewal. Select the Loan Account 
+6. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : RFRLoanRollOverTransactionByNewBundle044
+Test Objective : Verify Login to ACBS and process a Rollover transaction by creating a new Bundle with RFR Loan.
+#########################################################################################################
+1. Output Data for RFRLoanRollOverTransactionByNewBundle044
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Create New Bundle and navigate to New Transaction window
+4. Navigate to existing Accrual Schedule window and get the Next Rate Period date and Lag Days from Accrual Schedule Window. (Right click on the Loan and select Maintain Existing| Loan Pricing| Accrual Schedule).
+5. Create a bundle to create a new loan. Enter all the Loan Details: New Loan, Servicing Infor Risk Infor, Regulatory Info, Repayment Schedule and Additional Field
+6. Right click on facility and select Create New Bundle option.
+7. Select the first Loan Account
+8. Save and Submit the Bundle and  Login with Different Login credential and Approve the Bundle
+9. Navigate to Payment Messages Window. Actions | Other Options | Payment Messages
+10. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : RFRLoanRoundingBaseRate024
+Test Objective : Verify that if Rounding method applies on the All-in-Rate, then the All-in rate should be calculated rounding the base rate for RFR Loan.(Ex
+#########################################################################################################
+1. Output Data for RFRLoanRoundingBaseRate024
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Create New Bundle and navigate to New Transaction window
+4. Navigate to existing Accrual Schedule window and get the Next Rate Period date and Lag Days from Accrual Schedule Window. (Right click on the Loan and select Maintain Existing| Loan Pricing| Accrual Schedule).
+5. Create a bundle to create a new loan. Enter all the Loan Details: New Loan, Servicing Infor Risk Infor, Regulatory Info, Repayment Schedule and Additional Field
+6. Navigate to Existing Accrual Schedule window to fetch Base Rate, Margin Rate, Reserve Rate and Al In Rate
+7. Right click on facility and select Create New Bundle option. Select the first Loan Account
+8. Enter the field values in New – Rollover/Renewal window: Change Amount = 10000.09.
+9. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : RFRLoanSimplewithaccrualschedule002
+Test Objective : Verify the Accrued amount is properly updated in finance summary option in accrual schedule for RFR calculation method as simple with different year basis codes.
+#########################################################################################################
+1. Output Data for RFRLoanSimplewithaccrualschedule002
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Bring the  RFR Loan account 
+4. Bring the  RFR Loan account
+5. Login to ACBS application with Checker Credentials and Login to ACBS application with Checker Credentials and Approve the Two-touch records for above all created Fixed Fees using checker.
+6. Logout from Servicing application.
+7. Store the data
+
+
+#########################################################################################################
+Test Case Name : RFRLoanUsingDuplicateNotification036
+Test Objective : Verify that the duplicate notification has generated when a bundle processed with two transactions in same bundle with RFR Loan (Ex
+#########################################################################################################
+1. Output Data for RFRLoanUsingDuplicateNotification036
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Create New Bundle and navigate to New Transaction window
+4. Navigate to existing Accrual Schedule window and get the Next Rate Period date and Lag Days from Accrual Schedule Window. (Right click on the Loan and select Maintain Existing| Loan Pricing| Accrual Schedule).
+5. Create a bundle to create a new loan. Enter all the Loan Details: New Loan, Servicing Infor Risk Infor, Regulatory Info, Repayment Schedule and Additional Field
+6. Right click on facility and select Create New Bundle option.
+7. Navigate to Rollover/Renewal window. Select Create | Rollover/Renewal
+8. Select the Loan Account in Transaction Account Selector window and click Select button.
+9. Enter the field values in New – Rollover/Renewal window
+10. Save and close the rollover window
+11. Proceeding for the second transaction
+12. Select the loan and enter the transaction code
+13. Enter New Transaction Details on New Transaction screen.
+14. Save and Submit the Bundle and Login with Approver credential and Approve the Bundle
+15. Posted the bundle successfully
+16. Posted the bundle successfully
+17. Fetch the notification name
+18. Validate if GLS Transaction Processed notice generated with the Principal payment transaction details
+19. Check for duplicates
+20. Verify the first Notification data in PDF document.
+21. Verify the second Notification data in PDF document.
+22. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : RFRLonaCreationWithSOFRIndex002
+Test Objective : Verify the ability to create a RFR Loan for a Direct Facility in Servicing application with SOFR Index.
+#########################################################################################################
+1. Output Data for RFRLonaCreationWithSOFRIndex002
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Navigate to Edit Facility and Get the Facility Currency
+4. Create a new Facility Pricing Option for Syndicated Facility <PricingOption> with Currency set to USD (Navigate to Create New | Facility Structure | Pricing Option) Copy Existing Templates and Schedules window opens. Click Cancel button in this window. New – Pricing Option window opens. Enter values for all mandatory fields in different tabs like Basic, Risk, Regulatory, Repayment Schedule etc. and click Quick Save. Confirm that Record Has Been Saved successfully.).
+5. Login through approver login to approve the created two touch request. 
+6. Create a Current Dated RFR Loan - LN1 for a Direct Facility - FCT1 by entering all field values. (From Loan Servicing Queue window, right click on Facility | Create New Bundle).
+7. Bring Facility <FCT1> into session and create a bundle. From Bundle Manager navigate to New Loan window by selecting menu Create -> Loan.
+8. Enter all the Loan Details: New Loan, Servicing Info Risk Info, Regulatory Info, Accrual Schedule Info, Repayment Schedule info.
+9. Save and Submit the Bundle and Login with another credential to Approve/Post the Bundle.
+10. Navigate to existing Accrual Schedule window and Verify that the Base Rate is picked up based on the rate present in Index Rate Table including Lag days. (Right click on the Loan and select Maintain Existing| Loan Pricing| Accrual Schedule).
+11. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : RFRLonaCreationWithSONIAIndex001
+Test Objective : Verify the ability to create a RFR Loan for a Direct Facility in Servicing application with SONIA Index.
+#########################################################################################################
+1. Output Data for RFRLonaCreationWithSONIAIndex001
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Navigate to Edit Facility and Get the Facility Currency
+4. Create a new Facility Pricing Option for Facility with Currency set to USD (Navigate to Create New | Facility Structure | Pricing Option) Copy Existing Templates and Schedules window opens. Click Cancel button in this window. New – Pricing Option window opens. Enter values for all mandatory fields in different tabs like Basic, Risk, Regulatory, Repayment Schedule etc. and click Quick Save. Confirm that Record Has Been Saved successfully.).
+5. Login through approver login to approve the created two touch request. 
+6. Create a Current Dated RFR Loan - LN1 for a Direct Facility - FCT1 by entering all field values. (From Loan Servicing Queue window, right click on Facility | Create New Bundle).
+7. Bring Facility <FCT1> into session and create a bundle. From Bundle Manager navigate to New Loan window by selecting menu Create -> Loan.
+8. Enter all the Loan Details: New Loan, Servicing Info Risk Info, Regulatory Info, Accrual Schedule Info, Repayment Schedule info.
+9. Save and Submit the Bundle and Login with another credential to Approve/Post the Bundle.
+10. Navigate to existing Accrual Schedule window and Verify that the Base Rate is picked up based on the rate present in Index Rate Table including Lag days. (Right click on the Loan and select Maintain Existing| Loan Pricing| Accrual Schedule).
+11. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : LIBORP1TC1NewLoan_1
+Test Objective : Verify the ability to create a RFR Loan for a Direct Facility in Servicing application.
+#########################################################################################################
+1. Output Data for RFRNewLoanSetup1
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Navigate to Edit Facility and Get the Facility Currency
+4. Create a new Facility Pricing Option for Facility with Currency set to USD (Navigate to Create New | Facility Structure | Pricing Option) Copy Existing Templates and Schedules window opens. Click Cancel button in this window. New – Pricing Option window opens. Enter values for all mandatory fields in different tabs like Basic, Risk, Regulatory, Repayment Schedule etc. and click Quick Save. Confirm that Record Has Been Saved successfully.).
+5. Login through approver login to approve the created two touch request. 
+6. Create a Current Dated Loan for a Direct Facility - FCT1 by entering all field values. (From Loan Servicing Queue window, right click on Facility| Special Actions| Process New| New Loan). Ensure to add a RFR Accrual Schedule (Rate Calculation Method: BASE(COMP)+ SPREAD+ RESERVE, Year Basis: Actual/360, Spread Rate: 1, Reserve Rate: 1, Index Rate Table: <INDEXRATETABLE1>, RFR Calculation Method: ARREARS - COMPOUNDING BALANCE, Next Rate Period Date: <Loan Effective Date + 1 Month>, Lag Days: 5, Business Day Adjustment: Modified Following, Frequency: Monthly).
+7. Enter all the Loan Details: New Loan, Servicing Infor Risk Infor, Regulatory Info, Repayment Schedule and Additional Field
+8. Save and Submit the Bundle and  Login with other credential and Approve the Bundle
+9. Verify the Base Rate is picked up based on the Index for
+10. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : LIBORP1TC3NewLoan_1
+Test Objective : Verify the ability to create a RFR Loan for a Direct Facility in Servicing application with SOFR Index.
+#########################################################################################################
+1. Output Data for RFRNewLoanSetup2
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Navigate to Edit Facility and Get the Facility Currency
+4. Create a new Facility Pricing Option for Facility with Currency set to USD (Navigate to Create New | Facility Structure | Pricing Option) Copy Existing Templates and Schedules window opens. Click Cancel button in this window. New – Pricing Option window opens. Enter values for all mandatory fields in different tabs like Basic, Risk, Regulatory, Repayment Schedule etc. and click Quick Save. Confirm that Record Has Been Saved successfully.).
+5. Login to ACBS application with Checker Credentials and Approve two touch records.
+6. Create a Current Dated Loan for a Direct Facility by entering all field values. (From Loan Servicing Queue window, right click on Facility| Special Actions| Process New| New Loan). Ensure to add a RFR Accrual Schedule (Rate Calculation Method: BASE(COMP)+ SPREAD+ RESERVE, Year Basis: Actual/360, Spread Rate: 1, Reserve Rate: 1, Index Rate Table: <INDEXRATETABLE1>, RFR Calculation Method: ARREARS - COMPOUNDING BALANCE, Next Rate Period Date: <Loan Effective Date + 1 Month>, Lag Days: 5, Business Day Adjustment: Modified Following, Frequency: Monthly).
+7. Create a bundle to create a new loan, Enter all the Loan Details: New Loan, Servicing Infor Risk Infor, Regulatory Info, Repayment Schedule and Additional Field
+8. Save and Submit the Bundle and  Login with other credential and Approve the Bundle
+9. Verify the Base Rate is picked up based on the Index for 
+
+
+#########################################################################################################
+Test Case Name : RFRSimpleRatemethodwithRollover008
+Test Objective : Verify the Roll Over scenario for RFR Loan with Method as Simple.
+#########################################################################################################
+1. Output Data for RFRSimpleRatemethodwithRollover008
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Navigate to existing Accrual Schedule window and get the Next Rate Period date and Lag Days from Accrual Schedule Window. (Right click on the Loan and select Maintain Existing| Loan Pricing| Accrual Schedule).
+4. Create a bundle to create a new loan. Enter all the Loan Details: New Loan, Servicing Infor Risk Infor, Regulatory Info, Repayment Schedule and Additional Field
+5. Right click on Loan and select Create New Bundle option. Provide Bundle details and click Create Bundle button in Create Bundle window. Create | Transaction in Bundle Manager window. Select the first Loan Account 
+6. Right click on facility and select Create New Bundle option.
+7. Select the first Loan Account
+8. Save and Submit the Bundle and  Login with Different Login credential and Approve the Bundle
+9. Navigate to the Edit Loan window and Verify the Princiapl balance amount is updated as per the Rollover amount
+10. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : LIBORP4COR31_DP1
+Test Objective : Verfiy the (MTD/QTD) values for accrued charged and G/L earnings balances on To-Date tab in View Balance Category window after one day end for RFR Loan.
+#########################################################################################################
+1. Output Data for RFRSplitMonthEndAndInvoice31_DP1
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Navigate to Loan Maintenance Screen for Loan. (Right click on loan record and select Open).
+4. Verfiy the (MTD/QTD/ITD/YTD) buckets amounts for accrued charged balances on To-Date tab in View Balance Category window.
+5. Verfiy the (MTD/QTD/ITD/YTD) buckets amounts for G/L earnings balances on To-Date tab in View Balance Category window.
+6. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : LIBORP4COR31_1_EOM
+Test Objective : Verify the (MTD/QTD) accrued amount's in the Accrual Schedule under the Financial summary view for RFR Loan Before month end date.
+#########################################################################################################
+1. Output Data for RFRSplitMonthEndAndInvoice31_1_EOM
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Bring back dated Loan <LN1> into session, Navigate to Existing Accrual Schedules Window by Right clicking on loan record and select (Maintain Existing | Loan Pricing | Accrual Schedules), Select Interest Accrual schedule from Existing Accrual schedule window and click on Open Icon.
+4. Verify the (MTD/QTD) accrued amount's in the Accrual Schedule under the Financial summary view.
+5. Verify the (MTD/QTD) accrued amount's in the Accrual Schedule under the Financial summary view.
+6. Search for an existing Loan and navigate to Loan History window - Right click on Loan| Special Actions| Loan History. Click on Accrual Charges view. Verify the Period Accrued amount in Loan History window.
+7. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : LIBORP4COR31_1_MP1
+Test Objective : Verify accruals are correct based on the new 'Split Month-End processing for non-RFR loans. Ensure the buckets for MTD/QTD/YTD/ITD are displaying the correct accruals for RFR Loan.
+#########################################################################################################
+1. Output Data for RFRSplitMonthEndAndInvoice31_1_MP1
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Bring back dated Loan <LN1> into session, Navigate to Existing Accrual Schedules Window by Right clicking on loan record and select (Maintain Existing | Loan Pricing | Accrual Schedules), Select Interest Accrual schedule from Existing Accrual schedule window and click on Open Icon.
+4. Verify the (MTD/QTD) accrued amount's in the Accrual Schedule under the Financial summary view.
+5. Verify the (MTD/QTD) accrued amount's in the Accrual Schedule under the Financial summary view.
+6. Search for an existing Loan and navigate to Loan History window - Right click on Loan| Special Actions| Loan History. Click on Accrual Charges view. Verify the Period Accrued amount in Loan History window.
+7. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : LIBORP4COR31_2_DP1
+Test Objective : Verfiy the (MTD/QTD) values for accrued charged and G/L earnings balances on To-Date tab in View Balance Category window after one day end for non RFR Loan.
+#########################################################################################################
+1. Output Data for RFRSplitMonthEndAndInvoice31_2_DP1
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Navigate to Loan Maintenance Screen for Loan <LN1> (Right click on loan record and select Open).
+4. Verfiy the (MTD/QTD) buckets amounts for accrued charged amounts on To-Date tab in View Balance Category window.
+5. Verfiy the (MTD/QTD) buckets amounts for G/L earnings balances on To-Date tab in View Balance Category window.
+6. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : LIBORP4COR31_2_EOM
+Test Objective : Verify the (MTD/QTD) accrued amount's in the Accrual Schedule under the Financial summary view for Normal Loan Before month end date.
+#########################################################################################################
+1. Output Data for RFRSplitMonthEndAndInvoice31_2_EOM
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Bring back dated Loan <LN1> into session, Navigate to Existing Accrual Schedules Window by Right clicking on loan record and select (Maintain Existing | Loan Pricing | Accrual Schedules), Select Interest Accrual schedule from Existing Accrual schedule window and click on Open Icon.
+4. Verify the (MTD/QTD) accrued amount's in the Accrual Schedule under the Financial summary view.
+5. Verify the (MTD/QTD) accrued amount's in the Accrual Schedule under the Financial summary view.
+6. Search for an existing Loan and navigate to Loan History window - Right click on Loan| Special Actions| Loan History. Click on Accrual Charges view. Verify the Period Accrued amount in Loan History window.
+7. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : LIBORP4COR31_2_MP1
+Test Objective : Verify accruals are correct based on the new 'Split Month-End processing for non-RFR loans. Ensure the buckets for MTD/QTD are displaying the correct accruals for non RFR Loan.
+#########################################################################################################
+1. Output Data for RFRSplitMonthEndAndInvoice31_2_MP1
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Bring back dated Loan <LN1> into session, Navigate to Existing Accrual Schedules Window by Right clicking on loan record and select (Maintain Existing | Loan Pricing | Accrual Schedules), Select Interest Accrual schedule from Existing Accrual schedule window and click on Open Icon.
+4. Verify the (MTD/QTD) accrued amount's in the Accrual Schedule under the Financial summary view.
+5. Verify the (MTD/QTD) accrued amount's in the Accrual Schedule under the Financial summary view.
+6. Search for an existing Loan and navigate to Loan History window - Right click on Loan| Special Actions| Loan History. Click on Accrual Charges view. Verify the Period Accrued amount in Loan History window.
+7. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : RolloverNoticeusingRFRLoan001
+Test Objective : Verify that rollover notice got generated in English Language with RFR Loan.
+#########################################################################################################
+1. Output Data for RolloverNoticeusingRFRLoan001
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Navigate to existing Accrual Schedule window and get the Next Rate Period date and Lag Days from Accrual Schedule Window. (Right click on the Loan and select Maintain Existing| Loan Pricing| Accrual Schedule).
+4. Create a bundle to create a new loan. Enter all the Loan Details: New Loan, Servicing Infor Risk Infor, Regulatory Info, Repayment Schedule and Additional Field
+5. Right click on facility and select Create New Bundle option. Navigate to Rollover/Renewal window. Select Create | Rollover/Renewal. Select the Loan Account 
+6. Enter Rollover/Renewal Information.
+7. Create the required notification
+8. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : WhatIfPrepayment25_1
+Test Objective : Test to show calculated Interest Due Amount from the What If Pre-Payment view matches the Current Payoff from the Payoff Information view.
+#########################################################################################################
+1. Output Data for WhatIfPrepayment25_1
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Bring back dated Loan that was created with RFR Accrual schedule - Rate calculation method: Compounding Rate into session. Navigate to Loan Payoff Information Window by right clicking on loan record and select (Special Actions | Loan Payoff). In the Loan Payoff Information window, select What If Pre-Payment tab and enter the Effective Date as current system date, Rate Group as GENERAL RATE GROUP, Currency as USD and Principal Prepayment Amount as 25000 then click on Calculate Button.
+4. Verify that the Interest Due Amount is calculated correctly if the entered Effective Date is same as the current system date. Take a note of the Calculated Interest Due Amount.
+5. Switch to the Payoff Information view on the same screen and verify the calculated Interest Due Amount from the What If Pre-Payment view matches the Current Payoff from the Payoff Information view.
+6. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : LIBORP4COR25_3
+Test Objective : Verify the warning message Interest Due Is An Estimate only is displayed when the effective date specified is greater than the Current Processing Date + the Lag Days in the Principal Payment/Effective Date form.
+#########################################################################################################
+1. Output Data for WhatIfPrepayment25_3
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Bring back dated Loan that was created with RFR Accrual schedule - Rate calculation method: Compounding Rate into session. Navigate to Loan Payoff Information Window by right clicking on loan record and select (Special Actions | Loan Payoff). In the Loan Payoff Information window, select What If Pre-Payment tab and enter an Effective Date that is greater than the Current Processing Date + Lag Days. Select Rate Group as GENERAL RATE GROUP, Currency as USD and Principal Prepayment Amount as 1500000 then click on Calculate Button.
+4. Verify that the system indicates Accrual Due is an Estimate Effective Date message if the Effective date entered on the Principal Payment/Effective Date form is greater than the Current Processing Group Date plus the number of Lag Days.
+5. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : LIBORP4COR25_4
+Test Objective : Verify that warning message ** RFR Accruals Calculated Through Next Business Day ** is displayed when Effective Date entered on Principal Prepayment Effective Date form is greater than the Current Processing Date and is on a Non-Business day.
+#########################################################################################################
+1. Output Data for WhatIfPrepayment25_4
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Update the current system Date + 4 day as non-business Day in Calendar.
+4. Bring back dated Loan that was created with RFR Accrual schedule - Rate calculation method: Compounding Rate into session. Navigate to Loan Payoff Information Window by right clicking on loan record and select (Special Actions | Loan Payoff). In the Loan Payoff Information window, select What If Pre-Payment tab and enter an Effective Date that is greater than the Current Processing Date + Lag Days. Select Rate Group as GENERAL RATE GROUP, Currency as USD and Principal Prepayment Amount as 1500000 then click on Calculate Button.
+5. Verify the warning message ** RFR Accruals Calculated Through Next Business Day ** is displayed if the entered Effective Date is greater than Current Processing Group date and is a non-business Day.
+6. Bring back dated Loan that was created with RFR Accrual schedule - Rate calculation method: Compounding Rate into session. Navigate to Loan Payoff Information Window by right clicking on loan record and select (Special Actions | Loan Payoff).
+7. In the Loan Payoff Information window, select What If Pre-Payment tab and enter an Effective Date that is greater than the Current Processing Date + Lag Days. Select Rate Group as GENERAL RATE GROUP, Currency as USD and Principal Prepayment Amount as 1500000 then click on Calculate Button. Verify the warning message ** RFR Accruals Calculated Through Next Business Day ** is not displayed if the entered Effective Date is greater than Current Processing Group date and is a Business Day.
+8. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : LIBORP4COR25_5
+Test Objective : Verify warning messages ** RFR Accruals Calculated Through Next Business Day ** AND **Interest Due Is an Estimate** are displayed when Effective Date entered is greater than the Current Processing Date + lag days and is on a Non-Business day in the Principal Payment/Effective Date form.
+#########################################################################################################
+1. Output Data for WhatIfPrepayment25_5
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Update the current system Date + Lag days + 7th Day as non-business Day in Calendar.
+4. Bring back dated Loan that was created with RFR Accrual schedule - Rate calculation method: Compounding Rate into session. Navigate to Loan Payoff Information Window by right clicking on loan record and select (Special Actions | Loan Payoff). In the Pre-payment Calculator Window, enter an Effective Date which is greater than the Current Processing Group Date + Lag days and is a non-business day. Select Rate Group as GENERAL RATE GROUP, Currency as USD and Principal Prepayment Amount as 100000 then click on Calculate Button.
+5. Verify the warning messages ** RFR Accruals Calculated Through Next Business Day ** and Interest Due Is An Estimate are displayed when the Effective Date entered is greater than Current Processing Group date + Lag days and is a non-business Day.
+6. Bring back dated Loan that was created with RFR Accrual schedule - Rate calculation method: Compounding Rate into session. Navigate to Loan Payoff Information Window by right clicking on loan record and select (Special Actions | Loan Payoff). In the Pre-payment Calculator Window, enter an Effective Date which is greater than the Current Processing Group Date + Lag days and is a non-business day. Select Rate Group as GENERAL RATE GROUP, Currency as USD and Principal Prepayment Amount as 100000 then click on Calculate Button.
+7. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : LIBORP4COR25_6
+Test Objective : Verify the message should display *** Amount(s) Expressed in EUR or GBP or USD*** if the different currency is selected in the Principal Payment/Effective Date form.
+#########################################################################################################
+1. Output Data for WhatIfPrepayment25_6
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Update the current system Date + Lag days + 7th Day as non-business Day in Calendar.
+4. Bring back dated Loan that was created with RFR Accrual schedule - Rate calculation method: Compounding Rate into session. Navigate to Loan Payoff Information Window by right clicking on loan record and select (Special Actions | Loan Payoff). In the Pre-payment Calculator Window, enter an Effective Date which is greater than the Current Processing Group Date + Lag days and is a non-business day. Select Rate Group as GENERAL RATE GROUP, Currency as USD and Principal Prepayment Amount as 100000 then click on Calculate Button.
+5. Verify the message text *** Amount(s) Expressed in AUD *** is displayed when the currency is entered different from the loan Base Currency: AUD.
+6. Bring back dated Loan that was created with RFR Accrual schedule - Rate calculation method: Compounding Rate into session. Navigate to Loan Payoff Information Window by right clicking on loan record and select (Special Actions | Loan Payoff). In the Pre-payment Calculator Window, enter an Effective Date which is greater than the Current Processing Group Date + Lag days and is a non-business day. Select Rate Group as GENERAL RATE GROUP, Currency as USD and Principal Prepayment Amount as 100000 then click on Calculate Button.
+7. Verify the message text *** Amount(s) Expressed in EUR *** is displayed when the currency is entered different from the loan Base Currency: AUD.
+8. Logout from Servicing application.
+
+

@@ -1,0 +1,436 @@
+#########################################################################################################
+Test Case Name : FacilityAccruingFees001andAssignmentFee006
+Test Objective : Check if a Accrual fee created for HK/MY OCC successfully for an existing facility.
+Verify that the new Assignment fees is created successfully under LT500 investor of an existing facility under HK Agency portfolio.
+#########################################################################################################
+1. Output Data for FacilityAccruingFees001
+2. Output Data for FeesNewAssignmentFee006
+3. Login to ACBS application with Maker Credentials and Switch the servicing queue and Portfolio for the script : FacilityAccruingFees001
+4. Create a Fee - Accruing for the Facility 
+5. Login to ACBS application with Maker Credentials and Switch the servicing queue and Portfolio for the script : FeesNewAssignmentFee006
+6. Create Assignment Fee under 500LT Investor.Enter Description, Fee Class Code and Default Charge Amount under the Fee assignment Window.
+7. Login to ACBS application with Checker Credentials and Login to ACBS application with Checker Credentials and Approve the Two-touch records for above all created maker records using checker.
+8. Login to ACBS application with Maker Credentials and Switch the servicing queue and Portfolio for the script : FacilityAccruingFees001
+9. From Edit Facility Window, Navigate to Existing Fees-Fixed window and create a Fee spread to Investor - Click on Action-> and select the Fee Spread.
+10. Login to ACBS application with Maker Credentials and Switch the servicing queue and Portfolio for the script : FeesNewAssignmentFee006
+11. Navigate to Existing record of Fee Assignment and Verify the created fee assignment is displayed under existing Fee Assignment window
+12. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : FacilityAccruingFees002
+Test Objective : Check if a "Fee Reversal" transaction can be processed for MY OCC successfully for an existing facility.
+#########################################################################################################
+1. Output Data for FacilityAccruingFees002
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue and Portfolio for the script : FacilityAccruingFees002
+3. Create a Fee - Accruing for the Facility 
+4. Login to ACBS application with Checker Credentials and Approve Two touch for Accruing Fee creation
+5. Create New Bundle and navigate to New Transaction window
+6. Post bundle transaction for 'Fee Payment' transaction using 2700 code.
+7. Bring the Facility 
+8. Post bundle transaction for 'Reverse Fee Payment' transaction using 2710 code.
+9. Enter New Transaction Details on New Transaction screen
+10. Bring the Facility 
+11. Log out from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : FacilityAccruingFeesCancellation022
+Test Objective : Verify the UpFront Fee Cancellation.
+#########################################################################################################
+1. Output Data for FacilityAccruingFeesCancellation022
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Navigate to Edit Facility and Get the Facility Amount
+4. Create a Fee - Accruing for the Facility by entering (Income Class: COMMITMENT FEES, Base Balance Type: ON LIMIT AMOUNT ,Accrual rate : 3 , Basis : ACTUAL/365, Percentage off : 100, Next Due Date as System Date+1, Bill Frequency : MONTHLY, Next Accrue-To Date as System Date+1).
+5. Login to ACBS application with Checker Credentials and Approve Two touch for Accruing Fee creation
+6. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+7. Bring the Facility into session and Navigate to Existing Fees-Accruing window and verify the field values (Fee Status: ACTIVE ACCOUNT, Fee Daily Accrual: <DailyAccrualAmount>) are shown correctly on Summary window. (Right click on Facility record <FCT1> and select Maintain Existing | Facility Structure | Fee-Accruing)
+8. Create New Bundle and navigate to New Transaction window
+9. Select the loan and enter the transaction code 2680 and Enter New Transaction Details on New Transaction screen
+10. Bring the Facility into session and Navigate to Existing Fees-Accruing Window and verify that Fee Status field is Changed to CANCELLED and accrual after the transaction value date is reversed on Summary window. (Right click on Facility record <FCT1> and select Maintain Existing | Facility Structure | Fee-Accruing)
+11. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : FacilityAmortizingFeeCancellation023
+Test Objective : Verify the UpFront Fee Cancellation.
+#########################################################################################################
+1. Output Data for FacilityAmortizingFeeCancellation023
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Create a Fixed Fee by entering all mandatory field values.(Income Class: Insurance Fees, Charge Type: UP-FRONT FEES, Earning Method: AMORTIZE WHEN CHARGED, Bill Frequency: Monthly, Charge Type: Up-Front Fees, Next Due Date AND Next Accrue-To Date as System Date+1). (Right click on facility record <FCT1> and select Create New | Facility Structure | Fee-Fixed)
+4. Login to ACBS application with Checker Credentials and Approve Two touch for Accruing Fee creation
+5. Verify the Fee Charged in Financial Summary Page.
+6. Create New Bundle and navigate to New Transaction window
+7. Select the loan and enter the transaction code as 2860 and Enter New Transaction Details on New Transaction screen
+8. Bring the Facility
+9. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : FacilityArrangementFee012and0013
+Test Objective : Verify to Check if a fixed "Arrangement" is created and verify if VAT is reflected for the fee booked in "SG" Portfolio. processing group.
+Verify to Check if a fixed "Arrangement" is created and verify if VAT is reflected for the fee booked in "CN" Porfolio. processing group.
+#########################################################################################################
+1. Output Data for FacilityArrangementFee012
+2. Output Data for FacilityArrangementFee013
+3. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+4. Create a Fixed Fee by entering all mandatory field values.(Income Class: INSURANCE FEES, Charge Type: UP-FRONT FEES, Earning Method: EARN WHEN CHARGED, Fixed Amount: 2000, Bill Frequency: Monthly, Charge Type: Up-Front Fees, Next Due Date AND Next Accrue-To Date as System Date+7). (Right click on facility record <FCT1> and select Create New | Facility Structure | Fee-Fixed)
+5. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+6. Create a Fixed Fee by entering all mandatory field values.(Income Class: INSURANCE FEES, Charge Type: UP-FRONT FEES, Earning Method: EARN WHEN CHARGED, Fixed Amount: 2000, Bill Frequency: Monthly, Charge Type: Up-Front Fees, Next Due Date AND Next Accrue-To Date as System Date+7). (Right click on facility record <FCT1> and select Create New | Facility Structure | Fee-Fixed)
+7. Login to ACBS application with Checker Credentials and Login to ACBS application with Checker Credentials and Approve the Two-touch records for above all created Fixed Fees using checker.
+8. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+9. Generate the Bill for Existing Fixed Fee <FixedFee> and confirm that bill have been generated successfully.
+10. From Edit Facility Window, Navigate to Existing Fees-Fixed window by selecting (View | Existing | Facility Structure | Fees-Fixed) menu option from the top menu bar and Select the Fixed-Fees Record in Existing Fees Fixed Window and Click Open Image Icon. Verify the Fee and check whether the Fee created with applicable GST
+11. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+12. Generate the Bill for Existing Fixed Fee <FixedFee> and confirm that bill have been generated successfully.
+13. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : FacilityFeeBypassTaxProcessing27
+Test Objective : Check if Bypass Tax Entries option can be selected while booking the LT650 Fees.
+#########################################################################################################
+1. Output Data for FacilityFeeBypassTaxProcessing27
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Create a Fixed Fee by entering all mandatory field values.(Income Class: COMMITMENT FEES, Check Bypass Tax Processing checkbox, Charge Type: UP-FRONT FEES, Earning Method: AMORTIZE WHEN PAID, Fixed Amount: 10000, Bill Frequency: Annually, Charge Type: Up-Front Fees, Next Due Date, Next Accrue-To Date as System Date+1) and Override GL Unit.
+4. Login to ACBS application with Checker Credentials and Approve Two touch for Fixed fee creation
+5. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : FacilityFeeOverrideGLUnit25
+Test Objective : Create fee with Override GL unit provided under Billing information.
+#########################################################################################################
+1. Output Data for FacilityFeeOverrideGLUnit25_1
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Create a Fixed Fee by entering all mandatory field values.(Income Class: COMMITMENT FEES, Charge Type: UP-FRONT FEES, Earning Method: AMORTIZE WHEN PAID, Fixed Amount: 10000, Bill Frequency: Annually, Charge Type: Up-Front Fees, Next Due Date, Next Accrue-To Date as System Date+1) and Override GL Unit.
+4. Login to ACBS application with Checker Credentials and Approve Two touch for Fixed fee creation
+5. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : FacilityFeeOverrideGLUnit25_2
+Test Objective : Update/Edit the Fee with Override GL unit provided under Billing information.
+#########################################################################################################
+1. Output Data for FacilityFeeOverrideGLUnit25_2
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Navigate to Billing information pane for the Existing Facility Fixed fee and verify Override GL Unit Can be modified.
+4. Login to ACBS application with Checker Credentials and Approve Two touch for Fixed fee creation
+5. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : FacilityFixedFee008and009
+Test Objective : Verify that facility with Customer location and RM location are same S GST and C GST (State and Central) are applied for the Fee Payment.
+Verify that facility with Customer location different from RM location then I GST (Integrated GST) are applied for the Fee Payment
+#########################################################################################################
+1. Output Data for FacilityFixedFee008
+2. Output Data for FacilityFixedFee009
+3. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+4. Add Facility additional field and select the state as Tamil Nadu.
+5. Create a Fixed Fee by entering all mandatory field values.(Income Class: INSURANCE FEES, Charge Type: UP-FRONT FEES, Earning Method: EARN WHEN CHARGED, Fixed Amount: 2000, Bill Frequency: Monthly, Charge Type: Up-Front Fees, Next Due Date AND Next Accrue-To Date as System Date+7). (Right click on facility record <FCT1> and select Create New | Facility Structure | Fee-Fixed)
+6. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+7. Create a Fixed Fee by entering all mandatory field values.(Income Class: INSURANCE FEES, Charge Type: UP-FRONT FEES, Earning Method: EARN WHEN CHARGED, Fixed Amount: 2000, Bill Frequency: Monthly, Charge Type: Up-Front Fees, Next Due Date AND Next Accrue-To Date as System Date+7). (Right click on facility record <FCT1> and select Create New | Facility Structure | Fee-Fixed)
+8. Login to ACBS application with Checker Credentials and Login to ACBS application with Checker Credentials and Approve the Two-touch records for above all created Fixed Fees using checker.
+9. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+10. Generate the Bill for Existing Fixed Fee and confirm that bill have been generated successfully.
+11. Verify the TAX Tab  whether the Fee created with IN S/CGST with 18% Tax
+12. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+13. Generate the Bill for Existing Fixed Fee and confirm that bill have been generated successfully.
+14. Verify the TAX Tab  whether the Fee created with IN IGST with 18% Tax <FixedFee1>.
+15. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : FacilityFixedFee010andFee011
+Test Objective : Verify that facility with SEZ then ZERO tax are applied for the Fee Payment.
+Verify that Check if the Fixed Fee posting of 18,181.82 is reflected in the GL as follows.
+#########################################################################################################
+1. Output Data for FacilityFixedFee010
+2. Output Data for FacilityFixedFee011
+3. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+4. Add Facility additional field and select the state as Tamil Nadu.
+5. Create a Fixed Fee by entering all mandatory field values.(Income Class: INSURANCE FEES, Charge Type: UP-FRONT FEES, Earning Method: EARN WHEN CHARGED, Fixed Amount: 2000, Bill Frequency: Monthly, Charge Type: Up-Front Fees, Next Due Date AND Next Accrue-To Date as System Date+7). (Right click on facility record <FCT1> and select Create New | Facility Structure | Fee-Fixed)
+6. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+7. Create a Fixed Fee by entering all mandatory field values.(Income Class: INSURANCE FEES, Charge Type: UP-FRONT FEES, Earning Method: EARN WHEN CHARGED, Fixed Amount: 2000, Bill Frequency: Monthly, Charge Type: Up-Front Fees, Next Due Date AND Next Accrue-To Date as System Date+7). (Right click on facility record <FCT1> and select Create New | Facility Structure | Fee-Fixed)
+8. Login to ACBS application with Checker Credentials and Login to ACBS application with Checker Credentials and Approve the Two-touch records for above all created Fixed Fees using checker.
+9. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+10. Generate the Bill for Existing Fixed Fee and confirm that bill have been generated successfully.
+11. From Edit Facility Window, Navigate to Existing Fees-Fixed window by selecting (View | Existing | Facility Structure | Fees-Fixed) menu option from the top menu bar and Select the Fixed-Fees Record in Existing Fees Fixed Window and Click Open Image Icon.
+12. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+13. Generate the Bill for Existing Fixed Fee and confirm that bill have been generated successfully.
+14. From Edit Facility Window, Navigate to Existing Fees-Fixed window by selecting (View | Existing | Facility Structure | Fees-Fixed) menu option from the top menu bar and Select the Fixed-Fees Record in Existing Fees Fixed Window and Click Open Image Icon.
+15. Verify TAX Tab whether the Fee created with IN IGST with 18% Tax.
+16. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : FacilityFixedFee010andFee011_DP1
+Test Objective : Verify that Check if the Fixed Fee posting of 18,181.82 is reflected in the GL as follows.
+#########################################################################################################
+1. Output Data for FacilityFeeOverrideGLUnit25
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Search for an existing Loan and navigate to General Ledger Inquiry window - Right click on Loan| Special Actions| Loan History. Verify the General Ledger Entries got posted.
+4. Logout from EDMI Message Console for the user
+
+
+#########################################################################################################
+Test Case Name : FacilityFixedFee04
+Test Objective : Check the Unbill option is enabled for users to perform the billing activity
+#########################################################################################################
+1. Output Data for FacilityFixedFee04
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Create a Fixed Fee by entering all mandatory field values.(Income Class: COMMITMENT FEES, Charge Type: UP-FRONT FEES, Earning Method: AMORTIZE WHEN PAID, Fixed Amount: 10000, Bill Frequency: Annually, Charge Type: Up-Front Fees, Next Due Date AND Next Accrue-To Date as System Date+1). (Right click on facility record <FCT1> and select Create New | Facility Structure | Fee-Fixed)
+4. Login to ACBS application with Checker Credentials and Approve Two touch for Fixed fee creation
+5. Generate the bill
+6. Unbill the invoice
+7. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : FacilityFixedFee20
+Test Objective : Check the Unbill option is enabled for users to perform the billing activity
+#########################################################################################################
+1. Output Data for FacilityFixedFee20
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Create a Fixed Fee <FixedFee> by entering all mandatory field values.(Income Class: COMMITMENT FEES, Charge Type: UP-FRONT FEES, Earning Method: AMORTIZE WHEN PAID, Fixed Amount: 10000, Bill Frequency: Annually, Charge Type: Up-Front Fees, Next Due Date AND Next Accrue-To Date as System Date+1). (Right click on facility record <FCT1> and select Create New | Facility Structure | Fee-Fixed)
+4. Login to ACBS application with Checker Credentials and Approve Two touch for Fixed fee creation
+5. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+6. Generate the bill
+7. Post the Transaction with an amount <10,000> for Facility
+8. Save and Submit the Bundle and  Login with other credential and Approve the Bundle
+9. Unbill the invoice
+10. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : FacilityPredictableEvent005
+Test Objective : Verify that the predictable events are generated based on the billing information.
+#########################################################################################################
+1. Output Data for FacilityPredictableEvent005
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Create a Fixed Fee by entering all mandatory field values.(Income Class: COMMITMENT FEES, Charge Type: UP-FRONT FEES, Earning Method: AMORTIZE WHEN PAID, Fixed Amount: 10000, Bill Frequency: Annually, Charge Type: Up-Front Fees. (Right click on facility record <FCT1> and select Create New | Facility Structure | Fee-Fixed)
+4. Login to ACBS application with Checker Credentials and Approve Two touch for Fixed Fee creation
+5. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+6. Verify Billing generated successfully
+7. Run Day end(s) and execute FacilityPredictableEvent005_DP3 test script.
+
+
+#########################################################################################################
+Test Case Name : FacilityPredictableEvent005_DP3
+Test Objective : Verify that the predictable events are generated based on the billing information.
+#########################################################################################################
+1. Output Data for FacilityPredictableEvent0005_DP3
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Navigate To Edit Customer Window for Customer and get the Customer name.
+4. Navigate to Bundles section and click on 'View' next to Show for. Verify the STP predictable event has been generated
+5. Logout from Servicing Application.
+
+
+#########################################################################################################
+Test Case Name : FacilityUpFrontFeeCancellation021
+Test Objective : Verify the UpFront Fee Cancellation.
+#########################################################################################################
+1. Output Data for FacilityUpFrontFeeCancellation021
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Create a Fixed Fee by entering all mandatory field values.(Income Class: Insurance Fees, Charge Type: UP-FRONT FEES, Earning Method: EARN WHEN PAID, Bill Frequency: Monthly, Charge Type: Up-Front Fees, Next Due Date AND Next Accrue-To Date as System Date+1). (Right click on facility record <FCT1> and select Create New | Facility Structure | Fee-Fixed)
+4. Login to ACBS application with Checker Credentials and Approve Two touch for Accruing Fee creation
+5. Create New Bundle and navigate to New Transaction window
+6. Select the loan and enter the transaction code as 2860 and Enter New Transaction Details on New Transaction screen
+7. Bring the Facility
+8. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : Facilityupfrontfeeworkflowvalidation001
+Test Objective : Verify the Facility Up-Front Fee Workflow Validation Issue for 2940 transaction.
+#########################################################################################################
+1. Output Data for Facilityupfrontfeeworkflowvalidation001
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Create a Fixed Fee by entering all mandatory field values.(Income Class: INSURANCE FEES, Charge Type: UP-FRONT FEES, Earning Method: EARN WHEN CHARGED, Fixed Amount: 2000, Bill Frequency: Monthly, Charge Type: Up-Front Fees, Next Due Date AND Next Accrue-To Date as System Date+7). (Right click on facility record <FCT1> and select Create New | Facility Structure | Fee-Fixed)
+4. Login to ACBS application with Checker Credentials and Approve Two touch for Fixed Fee creation
+5. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+6. From Edit Facility Window, Navigate to Existing Fees-Fixed window by selecting (View | Existing | Facility Structure | Fees-Fixed) menu option from the top menu bar and check if the newly created Fee is present or not.
+7. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : FeeBreakfunding18
+Test Objective : Check if a Break funding fee schedule created at loan level successfully for an existing facility
+#########################################################################################################
+1. Output Data for FeeBreakfunding18
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Right Click on the loan and select Create new bundle 
+4. Post 'Break funding Fee' transaction using Transaction code: 3810 to Loan Account - LN1 by entering Transaction Amount: 2500 and selecting Bypass Customer Checkbox. Right Click on Loan| Special Actions| Process New| Transaction| Enter Transaction Code 3810| Click Select button.
+5. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+6. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+7. Logout from servicing application.
+
+
+#########################################################################################################
+Test Case Name : FeeCommittment19
+Test Objective : Check if commitment fee can be created with back date and system invoices for a back value
+#########################################################################################################
+1. Output Data for FeeCommittment19
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Login to ACBS application with Checker Credentials and Approve Two touch for create Facility creation
+4. Create a Fee - Accruing for the Facility
+5. Login to ACBS application with Checker Credentials and Login to ACBS application with Checker Credentials and Approve the Two-touch records for above all created maker records using checker.
+6. Navigate to Facility History window & click on the respective fee to verify the periodic accrual fee has been generated
+7. Navigate to Facility Invoice window & Verify the Facility Invoices for Accruing-Fee <Accruing Fee>. (Right click on Facility record <FCT5> and select Special Actions | Facility Invoices
+8. Logout from servicing application.
+
+
+#########################################################################################################
+Test Case Name : FeesAgencyFeeCreation016
+Test Objective : Verify if Agency Fee share is created for the Agent role and apply the fee payment to the agent
+#########################################################################################################
+1. Output Data for FeesAgencyFeeCreation016
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Create a Fixed Fee by entering all mandatory field values.(Income Class: AGENCY FEES, Charge Type: Periodic, Earning Method: Earn when Paid, Fixed Amount: 2000, Bill Frequency: Annually). (Right click on facility record <FCT1> and select Create New | Facility Structure | Fee-Fixed)
+4. Login to ACBS application with Checker Credentials and Approve Two touch for Facility Additional Fields creation
+5. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+6. Verify the Fee Spread to all Agent available under the Facility 
+7. Approver Logout from Servicing application.
+8. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+9. Select the Facility Number 
+10. Save and Submit the Bundle and  Login with other credential and Approve the Bundle
+11. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : FeesAssignmentManager007
+Test Objective : Verify that the new Bundle has been created under the existing facility with Assignment manager, and check that the Assignment fees option is available in the drop-down of Assignment Fees field under 'Assignment Manager Form'.
+#########################################################################################################
+1. Output Data for FeesAssignmentManager007
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Create Assignment Fee under 500LT Investor.Enter Description, Fee Class Code and Default Charge Amount under the Fee assignment Window.
+4. Login to ACBS application with Checker Credentials and Approve Two touch for Fee Assignment creation
+5. Create a new Bundle under the Facility 
+6. Navigate to Assignment Manager in Bundle Manager window and create new Assignment.
+7. Save and Submit the Bundle and  Login with other credential and Approve the Bundle
+8. Logout from servicing application of Approver.
+
+
+#########################################################################################################
+Test Case Name : FeesBillNow003andFees017
+Test Objective : Verify the bill option is enabled for users to perform the billing activity
+Verify Tax related GL transaction should not be generated when 'Bypass Tax Processing' box was checked in fee template.
+#########################################################################################################
+1. Output Data for FeesBillNow003
+2. Output Data for FeesBypassTaxProcessingFees17
+3. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+4. Create a Fixed Fee by entering all mandatory field values.(Income Class: COMMITMENT FEES, Charge Type: UP-FRONT FEES, Earning Method: AMORTIZE WHEN PAID, Fixed Amount: 10000, Bill Frequency: Annually, Charge Type: Up-Front Fees. (Right click on facility record  and select Create New | Facility Structure | Fee-Fixed)
+5. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+6. Create a Fixed Fee by entering all mandatory field values.(Income Class: COMMITMENT FEES, Charge Type: UP-FRONT FEES, Earning Method: AMORTIZE WHEN PAID, Fixed Amount: 10000, Bill Frequency: Annually, Charge Type: Up-Front Fees, Next Due Date AND Next Accrue-To Date as System Date+1). (Right click on facility record and select Create New | Facility Structure | Fee-Fixed)
+7. Login to ACBS application with Checker Credentials and Login to ACBS application with Checker Credentials and Approve the Two-touch records for above all created Fixed Fees using checker.
+8. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+9. Verify Billing generated successfully
+10. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+11. Verify Billing generated successfully
+12. Navigate to Existing Facility and select the View Image and Check whether the Tax tab is present in the Edit - Fee Fixed Window
+13. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : FeesDefaultAssignmentFee015
+Test Objective : Verify that default Assignment Fee charged could be overriden in Assignment manager
+#########################################################################################################
+1. Output Data for FeesDefaultAssignmentFee015
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Create Assignment Fee under 500LT Investor.Enter Description, Fee Class Code and Default Charge Amount under the Fee assignment Window.
+4. Login to ACBS application with Checker Credentials and Approve Two touch for Fee Assignment creation
+5. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+6. Create a new Bundle under the Facility 
+7. Navigate to Assignment Manager in Bundle Manager window and create new Assignment.
+8. Create the required notification
+9. Fetch the notification name
+10. Verify the Notification data in PDF documennt
+11. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : FeesProductControlFeeBooking024
+Test Objective : Verify LT 650 - Product Control Fee booking
+#########################################################################################################
+1. Output Data for FeesProductControlFeeBooking024_1
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Create a 'Self Originated' Facility for the Customer by entering mandatory field values (Facility Currency: USD, Facility Booking Class: NEW C/A, Facility Origination: SELF-ORIGINATED, Facility Structure: DIRECT CREDIT, Purpose: MULTIPURPOSES, Facility Amount: 1,000,00.00).
+4. Login through approver login to approve the created two touch request. 
+5. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+6. Create a Fixed Fee <FixedFee> by entering all mandatory field values.(Income Class:YIELD ENHNCMNT FEE, Charge Type: UP-FRONT FEES, Earning Method: Suspended, Fixed Amount: 100000, Bill Frequency: Annually. (Right click on facility record <FacilityNum1> and select Create New | Facility Structure | Fee-Fixed)
+7. Login to ACBS application with Checker Credentials and Approve Two touch for Fixed Fee creation
+8. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+9. Verify Bill generated successfully
+10. Post the Transaction with an amount <10,000> for Facility 
+11. Select the Loan Account 
+12. Save and Submit the Bundle and  Login with other credential and Approve the Bundle
+13. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+14. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+15. Add Investor as a Member of the Investor with 100% Contract Percentage for the Participant Facility. (Lender Type: PART SOLD-ACTUAL (700)). Right click on the Facility and select Create New | Facility Structure | Investors.
+16. Logout from servicing application of Approver.
+
+
+#########################################################################################################
+Test Case Name : FeesProductControlFeeBooking024
+Test Objective : Verify LT 650 - Product Control Fee booking
+#########################################################################################################
+1. Output Data for FeesProductControlFeeBooking024_2
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Navigate to Existing Investor Window and open the 500 LT Investor and add a new Fees schedule.
+4. Create a Fixed Fee by entering all mandatory field values.(Income Class:YIELD ENHNCMNT FEE, Charge Type: UP-FRONT FEES, Earning Method: Earn when paid, Fixed Amount: 750000, Bill Frequency: Annually. (Right click on facility record <FacilityNum1> and select Create New | Facility Structure | Fee-Fixed)
+5. Login to ACBS application with Checker Credentials and Approve Two touch for Fixed Fee creation
+6. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+7. Navigate to Existing Investor Window and open the 500 LT Investor and Generate the bill.
+8. Verify Bill generated successfully
+9. Navigate to Existing Investor Window and open the 500 LT Investor and add a new Fees schedule.
+10. Create a Fixed Fee by entering all mandatory field values.(Income Class:YIELD ENHNCMNT FEE, Charge Type: UP-FRONT FEES, Earning Method: Amortise when paid, Fixed Amount: 250000, Bill Frequency: Annually. (Right click on facility record <FacilityNum1> and select Create New | Facility Structure | Fee-Fixed)
+11. Login to ACBS application with Checker Credentials and Approve Two touch for Fixed Fee creation
+12. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+13. Navigate to Existing Investor Window and open the 650 LT Investor and Generate the bill.
+14. Verify Bill generated successfully
+15. Select the Facility Account 
+16. Approver Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : FeeTrusty14
+Test Objective : Verify that Trustee Fee notification got generated with 20% VAT for non EU countries
+#########################################################################################################
+1. Output Data for FeeTrusty14
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Create a 'Self Originated' Facility for the Customer by entering mandatory field values (Facility Currency: USD, Facility Booking Class: NEW C/A, Facility Origination: SELF-ORIGINATED, Facility Structure: DIRECT CREDIT, Purpose: MULTIPURPOSES, Facility Amount: 1,000,00.00).
+4. Login through approver login to approve the created two touch request. 
+5. Create a Fixed Fee by entering all mandatory field values.(Income Class: COMMITMENT FEES, Charge Type: UP-FRONT FEES, Earning Method: AMORTIZE WHEN PAID, Fixed Amount: 10000, Bill Frequency: Annually, Charge Type: Up-Front Fees, Next Due Date AND Next Accrue-To Date as System Date+1). (Right click on facility record <FCT1> and select Create New | Facility Structure | Fee-Fixed)
+6. Login to ACBS application with Checker Credentials and Approve Two touch for Fixed fee creation
+7. Generate the bill
+8. Generate the Notification for the provided record type for the respective record ID
+9. Verify that VAT rate is 20.00% is displayed properly in PDF document.
+10. Logout from Servicing application.
+
+
+#########################################################################################################
+Test Case Name : PeriodicFeeCharge001
+Test Objective : Verify the Facility Invoice Transaction Details are properly Updated for Periodic Fee Charges .
+#########################################################################################################
+1. Output Data for PeriodicFeeCharge001
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Create a Fixed Fee by entering all mandatory field values.(Income Class: INSURANCE FEES, Charge Type: UP-FRONT FEES, Earning Method: EARN WHEN CHARGED, Fixed Amount: 2000, Bill Frequency: Monthly, Charge Type: Up-Front Fees, Next Due Date AND Next Accrue-To Date as System Date+7). (Right click on facility record and select Create New | Facility Structure | Fee-Fixed)
+4. Login to ACBS application with Checker Credentials and Approve Two touch for Fixed Fee creation
+5. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+6. Navigate to Facility History window & click on the respective fee to verify the periodic fee has been generated
+7. Generate the Bill for Existing Fixed Fee <FixedFee> and confirm that bill have been generated successfully.
+8. Logout from Servicing application.
+9. Run day ends for the next due date as per teh billing.
+
+
+#########################################################################################################
+Test Case Name : PeriodicFeeCharge001_DP2
+Test Objective : Verify the Facility Invoice Transaction Details are properly Updated for Periodic Fee Charges .
+#########################################################################################################
+1. Output Data for PeriodicFeeCharge001_DP2
+2. Login to ACBS application with Maker Credentials and Switch the servicing queue 
+3. Navigate to Facility History window & click on the respective fee to verify the periodic fee has been generated. Verify the Transaction code 2900 has been generated in facility history window.
+4. Logout from Servicing application.
+
+
