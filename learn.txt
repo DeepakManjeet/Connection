@@ -1,7 +1,11 @@
-git config --global https.proxy https://e#:pswd@proxy.fnfis.com:8080
-git config --global http.proxy http://e#:pswd@proxy.fnfis.com:8080
-in above lines:
-e# = e5721153
-pswd = P@ssw0rd@9992284742 (means pswd of system)
-P@ssw0rdSy$tem#68
-P%40ssw0rdSy%24tem%2368
+upload another user code to bitbucket:
+1. create a new folder and git clone from master branch
+2. Create a new branch in Jira project
+3. use git fetch --all and git checkout <new_branch_name> in that newly created folder
+4. copy and paste with replace those 6 folders from another user WS to this newly created folder
+5. use command git status to check the staus of files
+6. open VS code in that new folder and compare all files side by side
+7. after resolving all conflicts, again check git status, all files should be green
+8. git commit -m"ticket_name"
+9. git push
+10. Raise merge request in bitbucket
