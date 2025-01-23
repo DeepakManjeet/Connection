@@ -4,7 +4,7 @@ upload another user code to bitbucket:
 3. use git fetch --all and git checkout <new_branch_name> in that newly created folder
 4. copy and paste with replace those 6 folders from another user WS to this newly created folder
 5. use command git status to check the staus of files
-6. open VS code in that new folder and compare all files side by side
+6. open VS code in that new folder using code. in git bash and compare all files side by side
 7. after resolving all conflicts, again check git status, all files should be green
 8. git commit -m"ticket_name"
 9. git push
