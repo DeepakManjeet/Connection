@@ -1,7 +1,0 @@
-for (int i = 0; i < FiledValues.Length; i++)
-                    {
-                        if (FiledValues[i] != "")
-                        {
-                            test = test + FiledNames[i] + ": " + FiledValues[i] + ", ";
-                        }
-                    }
