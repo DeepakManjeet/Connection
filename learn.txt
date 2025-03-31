@@ -11,3 +11,9 @@ upload another user code to bitbucket:
 10. Raise merge request in bitbucket
 
                         index = Array.FindIndex(aFullMessage, line => line.Contains("<scb:payloadFormat>"));
+
+
+using System.Text.RegularExpressions;
+
+int index = Array.FindIndex(aFullMessage, line => 
+    Regex.IsMatch(line, @"<scb:\s*payloadFormat>"));
