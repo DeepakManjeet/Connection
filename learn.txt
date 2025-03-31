@@ -9,3 +9,5 @@ upload another user code to bitbucket:
 8. git commit -m"ticket_name"
 9. git push
 10. Raise merge request in bitbucket
+
+                        index = Array.FindIndex(aFullMessage, line => line.Contains("<scb:payloadFormat>"));
