@@ -17,3 +17,34 @@ upload another user code to bitbucket:
 
 int index = Array.FindIndex(aFullMessage, line => 
     Regex.IsMatch(line, @"<scb:\s*payloadFormat>"));
+
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        // Define the string array with all values
+        string[] values = new string[]
+        {
+            "000302866", "000302874", "000302897", "000302931", "000303613", "000303774",
+            "000303324", "000303766", "000303343", "000303368", "000303651", "000303667",
+            "000303676", "000303684", "000303694", "000303703", "000303757", "000303427",
+            "000303735", "000303741", "000303983", "000303921", "000303964", "000304327",
+            "000304365", "000304396", "000304342", "000304371", "000304417", "000304404",
+            "000303216", "000303224", "000303234", "000303247", "000303278", "000303195",
+            "000303207", "000303375", "000303381", "000303555", "000303561", "000302902",
+            "000302964", "000303532", "000303586", "000303712", "000302918", "000302974",
+            "000303291", "000303548", "000303414", "000303607", "000303802", "000303818"
+        };
+
+        // Iterate over each value in the array using a foreach loop
+        foreach (string value in values)
+        {
+            // Perform any desired action for each value
+            // For demonstration, we are printing it to the console:
+            Console.WriteLine($"Processing value: {value}");
+        }
+    }
+}
+
