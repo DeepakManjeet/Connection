@@ -38,13 +38,14 @@ class Program
             "000303291", "000303548", "000303414", "000303607", "000303802", "000303818"
         };
 
-        // Iterate over each value in the array using a foreach loop
-        foreach (string value in values)
+        // Iterate over the array using a for loop starting from index 1
+        for (int i = 1; i < values.Length; i++)
         {
-            // Perform any desired action for each value
-            // For demonstration, we are printing it to the console:
-            Console.WriteLine($"Processing value: {value}");
+            // Perform the desired action on each value
+            // Here we simply print the value to the console
+            Console.WriteLine($"Processing value: {values[i]}");
         }
     }
 }
+
 
