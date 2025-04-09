@@ -12,6 +12,16 @@ upload another user code to bitbucket:
 
                         index = Array.FindIndex(aFullMessage, line => line.Contains("<scb:payloadFormat>"));
 
+000302931
+000303613
+000303774
+000302866
+000302897
+000303324
+000303766
+000303343
+000303368
+000303651
 
 
 
