@@ -13,48 +13,4 @@ upload another user code to bitbucket:
                         index = Array.FindIndex(aFullMessage, line => line.Contains("<scb:payloadFormat>"));
 
 
-
-int index = Array.FindIndex(aFullMessage, line => 
-    Regex.IsMatch(line, @"<scb:\s*payloadFormat>"));
-
-using System;
-
-class Program
-{
-    static void Main()
-    {
-        // Define the string array with the specified values
-        string[] values = new string[]
-        {
-            "000302931",
-            "000303613",
-            "000303774",
-            "000302866",
-            "000302897",
-            "000303324",
-            "000303766",
-            "000303343",
-            "000303368",
-            "000303651"
-        };
-
-        // Iterate over the array starting from index 1
-        for (int i = 1; i < values.Length; i++)
-        {
-            // Perform your action for each value. Here, we print it to the console.
-            Console.WriteLine($"Processing value: {values[i]}");
-        }
-    }
-}
-
-
-
- string CIF1 = Data.Fetch("NewCustomerSetup", "CustomerNumber");
-            string FCT1 = Data.Fetch("NewDirectFacilitySetup", "NewDirectFacSetup1_FacilityNumber");
-
-            //----------------------------Script starts from here-----------------------------------------------------------------------------------------
-            Report.Step("Create a General Loan - LN1 for a Direct Facility - FCT1 by entering all field values. (From Loan Servicing Queue window, right click on Facility| Special Actions| Process New| New Loan)");
-            string[] NewLoantabInfo = InputData.Get("GeneralLoanNewLoanTabFieldValues");
-            string[] RepaymentScheduleBasicInformationFieldValues = InputData.Get("GeneralLoanRepaymentScheduleBasicInformationFieldValues");
-            string LN1 = Application.ACBSServicingLibrary.CreateLoan(CIF1, FCT1, NewLoantabInfo, InputData.Get("GeneralLoanServicingTabFieldValues"), InputData.Get("GeneralLoanRiskTabFieldValues"), InputData.Get("GeneralLoanRegulatoryTabFieldValues"), InputData.Get("GeneralLoanIndustryDetailsFieldValues"), InputData.Get("GeneralLoanMiscellaneousTabFieldValues"), null, null, null, null, InputData.Get("GeneralLoanAccrualScheduleInformationFieldValues"), InputData.Get("GeneralLoanAccrualScheduleBasicInformationFieldValues"), null, null, InputData.Get("GeneralLoanRepaymentScheduleInformationFieldValues"), RepaymentScheduleBasicInformationFieldValues, InputData.Get("GeneralLoanRepaymentScheduleBillingInformationFieldValues"), null, null, null, null, null, null, null);
-
+^\s*\w+\s+\w+\s*=\s*(?:"[^"]*"|'[^']*'|-?\d+(?:\.\d+)?|(?:true|false)).*//
