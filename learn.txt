@@ -48,3 +48,13 @@ class Program
 }
 
 
+
+ string CIF1 = Data.Fetch("NewCustomerSetup", "CustomerNumber");
+            string FCT1 = Data.Fetch("NewDirectFacilitySetup", "NewDirectFacSetup1_FacilityNumber");
+
+            //----------------------------Script starts from here-----------------------------------------------------------------------------------------
+            Report.Step("Create a General Loan - LN1 for a Direct Facility - FCT1 by entering all field values. (From Loan Servicing Queue window, right click on Facility| Special Actions| Process New| New Loan)");
+            string[] NewLoantabInfo = InputData.Get("GeneralLoanNewLoanTabFieldValues");
+            string[] RepaymentScheduleBasicInformationFieldValues = InputData.Get("GeneralLoanRepaymentScheduleBasicInformationFieldValues");
+            string LN1 = Application.ACBSServicingLibrary.CreateLoan(CIF1, FCT1, NewLoantabInfo, InputData.Get("GeneralLoanServicingTabFieldValues"), InputData.Get("GeneralLoanRiskTabFieldValues"), InputData.Get("GeneralLoanRegulatoryTabFieldValues"), InputData.Get("GeneralLoanIndustryDetailsFieldValues"), InputData.Get("GeneralLoanMiscellaneousTabFieldValues"), null, null, null, null, InputData.Get("GeneralLoanAccrualScheduleInformationFieldValues"), InputData.Get("GeneralLoanAccrualScheduleBasicInformationFieldValues"), null, null, InputData.Get("GeneralLoanRepaymentScheduleInformationFieldValues"), RepaymentScheduleBasicInformationFieldValues, InputData.Get("GeneralLoanRepaymentScheduleBillingInformationFieldValues"), null, null, null, null, null, null, null);
+
