@@ -15,48 +15,4 @@ upload another user code to bitbucket:
 
 ^\s*\w+\s+\w+\s*=\s*(?:"[^"]*"|'[^']*'|-?\d+(?:\.\d+)?|(?:true|false)).*//
 
-# Update-DocTables.ps1
-# --------------------
-# Loops through all .docx in a folder,
-# opens each in Word via COM, writes
-# "Environment: PDC8WACBASPCV61" into
-# the first table’s cell(1,2), then saves.
-
-param(
-    [string]$FolderPath = "C:\Path\To\Your\Docs",
-    [string]$EnvText     = "Environment: PDC8WACBASPCV61"
-)
-
-# Create Word COM object
-$word = New-Object -ComObject Word.Application
-$word.Visible = $false
-$word.DisplayAlerts = 0  # wdAlertsNone
-
-try {
-    Get-ChildItem -Path $FolderPath -Filter *.docx | ForEach-Object {
-        $fullName = $_.FullName
-        Write-Host "▶ Processing $($_.Name)" -ForegroundColor Cyan
-
-        # Open document (ReadOnly = $false, Visible = $false)
-        $doc = $word.Documents.Open($fullName, [ref]$false, [ref]$false, [ref]$false)
-
-        if ($doc.Tables.Count -ge 1) {
-            $tbl  = $doc.Tables.Item(1)      # first table
-            $cell = $tbl.Cell(1, 2)         # row=1, col=2
-            $cell.Range.Text = $EnvText     # overwrite text
-            $doc.Save()
-            Write-Host "  ✓ Updated table in $($_.Name)" -ForegroundColor Green
-        }
-        else {
-            Write-Host "  ⚠ No tables found in $($_.Name)" -ForegroundColor Yellow
-        }
-
-        $doc.Close()
-    }
-}
-finally {
-    $word.Quit()
-    [System.Runtime.Interopservices.Marshal]::ReleaseComObject($word) | Out-Null
-    Write-Host "`nAll done." -ForegroundColor Magenta
-}
 
