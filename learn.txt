@@ -9499,3 +9499,1343 @@ public class User32API
     public static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
     public const int SW_RESTORE = 9;
 }
+
+
+
+
+
+
+CUSTOMER PAGE_______________________________________________________________________________________________________________
+*************************************************
+
+using WebLink.ObjectFactory.Common.Pages;
+using GTS_OSAF.CoreLibs;
+using GTS_OSAF.HelperLibs.Reporter;
+using GTS_OSAF.HelperLibs.DataAdapter;
+using System;
+using WebLink.Utils;
+using WebLink.BusinessFunctions.Applications;
+using System.Windows;
+using GTS_CORE.CoreLibs;
+using GTS_OSAF;
+using OpenQA.Selenium;
+
+
+namespace WebLink.ObjectFactory.SPUser.Pages
+{
+    public class NewCustomerPage
+    {
+        public static string AddCustomerButton = "Xpath;//button//span[contains(text(),'Add Customer')]";
+        public static string DetailsButton = "Xpath;//*[@id='mbtnAccountDetails'] | //*[contains(@id,'opCard_Details')]";
+        public static string WaitStatusDropdown = "Xpath;//mat-select[contains(@id,'Status')]";
+        public static string TopCardHeaderCustomerTypeObject = "Xpath;//*[@id='customerbanner_customerType']";
+        public static string CustomerBasicEditButton = "Xpath;//*[@id='customerDetBasic_edit_icon']";
+        public static string CustomerRiskEditButton = "Xpath;//*[@id='customerDetRisk_edit_icon']";
+        public static string CustomerClassificationEditButton = "Xpath;//*[@id='customerDetClassification_edit_icon']";
+        public static string CustomerAdditionalInformationEditButton = "Xpath;//*[@id='customerDetAddInfo_edit_icon']";
+        public static string CustomerAdditionalDataEditButton = "Xpath;//*[@id='customerDetAddData_edit_icon']";
+        public static string CustomerAdditionalDataCancelButton = "Xpath;//*[@id='customerAdditionalData_Cancel']";
+        public static string CustSelectTemplateDropdown = "Xpath;//*[@id='_wselTemplates']";
+        public static string BasicTab = "Xpath;//*[@id='Basic_linkButton']";
+        public static string CustomerDetailsTab = "Xpath;//span[contains(text(),'Customer Details')] [@class='ruf-icon-before']";
+        public static string AddNewCustomerLabel = "Xpath;//span[contains(text(),'Add New Customer')]";
+        public static string AlternateIDField = "Xpath;//input[@id='General_alternateId']";
+        public static string TaxIDField = "Xpath;//input[@id='General_taxId']";
+        public static string ShortNameField = "Xpath;//input[@id='General_shortname']";
+        public static string Name1Field = "Xpath;//input[@id='General_partyName1']";
+        public static string SortNameField = "Xpath;//input[@id='General_sortname']";
+        public static string Name2Field = "Xpath;//input[@id='General_partyName2']";
+        public static string InvestorCheckBox = "Xpath;//input[@id='General_investor-input']";
+        public static string Name3Field = "Xpath;//input[@id='General_partyName3']";
+        public static string CustomerPrimaryOfficerField = "Xpath;//input[@id='AccountResponsibility_primaryOfficer']";
+        public static string CustomerSecondaryOfficerField = "Xpath;//input[@id='AccountResponsibility_secondaryOfficer']";
+        public static string CustomerIndustryClassificationField = "Xpath;//input[@id='CustomerProfile_industryClassification']";
+        public static string PrimaryOfficerSearchButton = "Xpath;//mat-icon[@id='AccountResponsibility_primaryOfficer_searchIcon']";
+        public static string SecondaryOfficerSearchButton = "Xpath;//mat-icon[@id='AccountResponsibility_secondaryOfficer_searchIcon']";
+        public static string SecondaryOfficerSearchLabel = "Xpath;//span[contains(text(),'Secondary Officer Search')]";
+        public static string DefaultGLUnitDropdown = "Xpath;//mat-select[@id='AccountResponsibility_defaultGlUnit']";
+        public static string CustServicingSectionDropdown = "Xpath;//mat-select[@id='AccountResponsibility_servcingSection']";
+        public static string CustServicingUnitDropdown = "Xpath;//mat-select[@id='AccountResponsibility_servicingUnit']";
+        public static string CustOfficerRiskRatingDropdown = "Xpath;//mat-select[@id='RiskRating_officerRiskRating']";
+        public static string CustOfficerRiskDateField = "Xpath;//input[@id='RiskRating_officerRiskDate']";
+        public static string CustNextReviewDateField = "Xpath;//input[@id='RiskRating_nextReviewDate']";
+        public static string CustProbabilityofDefaultField = "Xpath;//input[@id='RiskRating_probabilityOfDefault']";
+        public static string CustLossGivenDefaultField = "Xpath;//input[@id='RiskRating_lossGivenDefault']";
+        public static string CustReviewFrequencyDropdown = "Xpath;//mat-select[@id='RiskRating_reviewFrequency']";
+        public static string CustCurrencyDropdown = "Xpath;//mat-select[@id='LiabilityProfile_currency']";
+        public static string RiskInformationTab = "Xpath;//*[@id='RiskInformation_linkButton']";
+        public static string CustomerWatchStatusCheckBox = "Xpath;//input[@id='RiskRating_customerWatchStatus-input']";
+        public static string WatchListReasonDropdown = "Xpath;//mat-select[@id='RiskRating_watchListReason']";
+        public static string WatchDateField = "Xpath;//input[@id='RiskRating_watchDate']";
+        public static string DirectLiabilityLimitField = "Xpath;//input[@id='LiabilityProfile_directLiabilityLimit']";
+        public static string TotalLiabilityLimitField = "Xpath;//input[@id='LiabilityProfile_totalLiabilityLimit']";
+        public static string DateApprovedField = "Xpath;//input[@id='LiabilityProfile_dateApproved']";
+        public static string ClassificationTab = "Xpath;//*[@id='Classification_linkButton']";
+        public static string CustomerTypeDropdown = "Xpath;//mat-select[@id='CustomerProfile_customerType']";
+        public static string CitizenshipClassDropdown = "Xpath;//mat-select[@id='CustomerProfile_citizenshipClass']";
+        public static string MinorityClassDropdown = "Xpath;//mat-select[@id='CustomerProfile_minorityClass']";
+        public static string TaxStatusDropdown = "Xpath;//mat-select[@id='CustomerProfile_taxStatus']";
+        public static string FATCAStatusDropdown = "Xpath;//mat-select[@id='CustomerProfile_fatcaStatus']";
+        public static string FATCACompliantDropdown = "Xpath;//mat-select[@id='CustomerProfile_fatcaCompliant']";
+        public static string ConfidentialHandlingDropdown = "Xpath;//mat-select[@id='CustomerProfile_confidentialHandling']";
+        public static string RestrictCustomerToThisPortfolioDropdown = "Xpath;//mat-select[@id='CustomerProfile_restrictCustomerToThisPortfolio']";
+        public static string InternalCustomerDropdown = "Xpath;//mat-select[@id='CustomerProfile_internalCustomer']";
+        public static string StatusDropdown = "Xpath;//mat-select[@id='CustomerProfile_status']";
+        public static string DispositionDropdown = "Xpath;//mat-select[@id='CustomerProfile_disposition']";
+        public static string AdditionalInformationTab = "Xpath;//*[@id='AdditionalInformation_linkButton']";
+        public static string AdditionalInformationMaxButton = "Xpath;//*[@id='customerDetAddInfo']//*[@ngclass='customerDetailHeader'] [@aria-expanded='false']";
+        public static string CustRequiredSecurityDropdown = "Xpath;//mat-select[@id='MiscellaneousInformation_requiredSecurity']";
+        public static string DefaultLanguageDropdown = "Xpath;//mat-select[@id='MiscellaneousInformation_defaultLanguage']";
+        public static string BirthIncorporatedDateField = "Xpath;//input[@id='RelationshipDates_birthDate']";
+        public static string DateRelationshipInitiatedField = "Xpath;//input[@id='RelationshipDates_relationshipDate']";
+        public static string PublishedNameField = "Xpath;//input[@id='ReferenceInformation_publishedName']";
+        public static string WebsiteURLField = "Xpath;//input[@id='ReferenceInformation_websiteURL']";
+        public static string CustCode1Dropdown = "Xpath;//mat-select[@id='UserDefined_adcode1']";
+        public static string CustCode2Dropdown = "Xpath;//mat-select[@id='UserDefined_adcode2']";
+        public static string CustCode3Dropdown = "Xpath;//mat-select[@id='UserDefined_adcode3']";
+        public static string CustDate1Field = "Xpath;//input[@id='UserDefined_date1']";
+        public static string CustDate2Field = "Xpath;//input[@id='UserDefined_date2']";
+        public static string CustAmount1Field = "Xpath;//input[@id='UserDefined_amount1']";
+        public static string CustAmount2Field = "Xpath;//input[@id='UserDefined_amount2']";
+        public static string CustStandardReferenceIDTypeDropdown = "Xpath;//mat-select[@id='ReferenceInformation_stdReferenceIdType']";
+        public static string CustStandardReferenceIDField = "Xpath;//input[@id='ReferenceInformation_stdReferenceId']";
+        public static string CustomerIdField = "Xpath;//span[contains(text(),'Customer Id:')]/following-sibling::span";
+        public static string CustomerNameField = "Xpath;//span[contains(text(),'Customer Name')]/following-sibling::span";
+        public static string AdditionalDataTab = "Xpath;//*[@id='AdditionalData_linkButton']";
+
+        public static string ElementGroupsDropdown = "Xpath;//mat-select[@id='customerDetailsAdditionalData_dropdownOptionControl']";
+        public static string CECLAmount1Field = "Xpath;//input[@id='customerDetailsAdditionalData_CECL_CUST_AMOUNT_1']";
+        public static string CECLDate1Field = "Xpath;//input[@id='customerDetailsAdditionalData_CECL_CUST_DATE_1']";
+        public static string CECLDate2Field = "Xpath;//input[@id='customerDetailsAdditionalData_CECL_CUST_DATE_2']";
+        public static string CECLTEXT1Field = "Xpath;//input[@id='customerDetailsAdditionalData_CECL_CUST_TEXT_1']";
+        public static string CECLTEXT2Field = "Xpath;//input[@id='customerDetailsAdditionalData_CECL_CUST_TEXT_2']";
+        public static string jjdtestcustomeradeField = "Xpath;//input[@id='customerDetailsAdditionalData_JJDTESTCUSTOMERADE']";
+        public static string estatement2Dropdown = "Xpath;//*[@id='customerDetailsAdditionalData_ESTATEMENT_2']";//*[@id='customerDetailsAdditionalData_ESTATEMENT_2']
+        public static string FpMLPreferenceIndicator2Field = "Xpath;//input[@id='customerDetailsAdditionalData_FPML2']";
+        public static string Delivery_Statement_3Dropdown = "Xpath;//mat-select[@id='customerDetailsAdditionalData_DLVERY_STATEMENT_3']";
+        public static string eStatementDeliveryTypeDropdown = "Xpath;//mat-select[@id='customerDetailsAdditionalData_DLVRY_TYPE_ESTATEMENTS']";
+        public static string EuroclearEBIDField = "Xpath;//input[@id='customerDetailsAdditionalData_EUROCLEAR_EB_ID']";
+        public static string additionalinfoField = "Xpath;//input[@id='customerDetailsAdditionalData_123']";
+        public static string DTCCParticipantIDField = "Xpath;//input[@id='customerDetailsAdditionalData_DTCC_PART_ID']";
+        public static string SPIDField = "Xpath;//input[@id='customerDetailsAdditionalData_SP_ID']";
+        public static string ClearparIDField = "Xpath;//input[@id='customerDetailsAdditionalData_CST_CLEARPAR_ID']";
+        public static string SWIFTBICBEIField = "Xpath;//input[@id='customerDetailsAdditionalData_SWIFT_ID']";
+        public static string FpMLPreferenceIndicatorDropdown = "Xpath;//mat-select[@id='customerDetailsAdditionalData_FPML_PREF_INDICATOR']";
+        public static string MarkitEntityIDField = "Xpath;//input[@id='customerDetailsAdditionalData_MEI']";
+        public static string FpMLDestinationField = "Xpath;//input[@id='customerDetailsAdditionalData_FPML_DESTINATION']";
+        public static string LegalSignatureNameField = "Xpath;//input[@id='customerDetailsAdditionalData_LEGAL_ENTITY_NAME']";
+        public static string LIQCustomerNumberField = "Xpath;//input[@id='customerDetailsAdditionalData_JPLIQCUSTNUM']";
+        public static string IsBorrowerGroupField = "Xpath;//input[@id='customerDetailsAdditionalData_ISBORROWERGROUP']";
+
+
+        public static string SucessMessageObject = "Xpath;//*[@ngclass='sucessInformation']";
+        public static string VerifyCustomerDetailsButton = "Xpath;//ruf-labeled-icon//*[contains(text(),'Customer Details')]";
+        public static string VerifyCustomerBasicTab = "Xpath;//*[@id='Basic_linkButton']";
+        public static string VerifyCustomerRiskInformationTab = "Xpath;//*[@id='RiskInformation_linkButton']";
+        public static string VerifyCustomerClassificationTab = "Xpath;//*[@id='Classification_linkButton']";
+        public static string VerifyCustomerAdditionalInformationTab = "Xpath;//*[@id='AdditionalInformation_linkButton']";
+        public static string VerifyCustomerCustomerIDField = "Xpath;//*[@id='General_customerId_view'] | //input[@id='General_customerId']";
+        public static string VerifyCustomerTaxIDField = "Xpath;//*[@id='General_taxId_view'] | //input[@id='General_taxId']";
+        public static string VerifyCustomerName1Field = "Xpath;//*[@id='General_partyName1_view'] | //input[@id='General_partyName1']";
+        public static string VerifyCustomerName2Field = "Xpath;//*[@id='General_partyName2_view'] | //input[@id='General_partyName2']";
+        public static string VerifyCustomerName3Field = "Xpath;//*[@id='General_partyName3_view'] | //input[@id='General_partyName3']";
+        public static string VerifyCustomerAlternateIDField = "Xpath;//*[@id='General_alternateId_view'] | //input[@id='General_alternateId']";
+        public static string VerifyCustomerShortNameField = "Xpath;//*[@id='General_shortname_view'] | //input[@id='General_shortname']";
+        public static string VerifyCustomerSortNameField = "Xpath;//*[@id='General_sortname_view'] | //input[@id='General_sortname']";
+        public static string VerifyCustomerInvestorField = "Xpath;//*[@id='General_investor_view'] | //input[@id='General_investor-input']";
+        public static string VerifyCustomerPrimaryOfficerField = "Xpath;//*[@id='AccountResponsibility_primaryOfficer_view'] | //input[@id='AccountResponsibility_primaryOfficer']";
+        public static string VerifyCustomerSecondaryOfficerField = "Xpath;//*[@id='AccountResponsibility_secondaryOfficer_view'] | //input[@id='AccountResponsibility_secondaryOfficer']";
+        public static string VerifyCustomerServicingUnitField = "Xpath;//*[@id='AccountResponsibility_servicingUnit_view'] | //mat-select[@id='AccountResponsibility_servicingUnit']";
+        public static string VerifyCustomerServicingSectionField = "Xpath;//*[@id='AccountResponsibility_servcingSection_view'] | //mat-select[@id='AccountResponsibility_servcingSection']";
+        public static string VerifyCustomerDefaultGLUnitField = "Xpath;//*[@id='AccountResponsibility_defaultGlUnit_view'] | //mat-select[@id='AccountResponsibility_defaultGlUnit']";
+        public static string VerifyCustomerOfficerRiskRatingField = "Xpath;//*[@id='RiskRating_officerRiskRating_view'] | //mat-select[@id='RiskRating_officerRiskRating']";
+        public static string VerifyCustomerOfficerRiskDateField = "Xpath;//*[@id='RiskRating_officerRiskDate_view'] | //input[@id='RiskRating_officerRiskDate']";
+        public static string VerifyCustomerNextReviewField = "Xpath;(//*[@id='RiskRating_nextReviewDate_view'] | //input[@id='RiskRating_nextReviewDate'])[1]";
+        public static string VerifyCustomerWatchDateField = "Xpath;//*[@id='RiskRating_watchDate_view'] | //input[@id='RiskRating_watchDate']";
+        public static string VerifyCustomerReviewFrequencyField = "Xpath;//*[@id='RiskRating_reviewFrequency_view'] | //mat-select[@id='RiskRating_reviewFrequency']";
+        public static string VerifyCustomerWatchStatusField = "Xpath;//*[@id='RiskRating_customerWatchStatus_view'] | //input[@id='RiskRating_customerWatchStatus-input']";
+        public static string VerifyCustomerWatchListReasonField = "Xpath;//*[@id='RiskRating_watchListReason_view'] | //mat-select[@id='RiskRating_watchListReason']";
+        public static string VerifyCustomerProbabilityofDefaultField = "Xpath;//*[@id='RiskRating_probabilityOfDefault_view'] | //input[@id='RiskRating_probabilityOfDefault']";
+        public static string VerifyCustomerLossGivenDefaultField = "Xpath;//*[@id='RiskRating_lossGivenDefault_view'] | //input[@id='RiskRating_lossGivenDefault']";
+        public static string VerifyCustomerDirectLiabilityLimitField = "Xpath;//*[@id='LiabilityProfile_directLiabilityLimit_view'] | //input[@id='LiabilityProfile_directLiabilityLimit']";
+        public static string VerifyCustomerTotalLiabilityLimitField = "Xpath;//*[@id='LiabilityProfile_totalLiabilityLimit_view'] | //input[@id='LiabilityProfile_totalLiabilityLimit']";
+        public static string VerifyCustomerCurrencyField = "Xpath;//*[@id='LiabilityProfile_currency_view'] | //mat-select[@id='LiabilityProfile_currency']";
+        public static string VerifyCustomerDateApprovedField = "Xpath;//*[@id='LiabilityProfile_dateApproved_view'] | //input[@id='LiabilityProfile_dateApproved']";
+        public static string VerifyCustomerTypeField = "Xpath;//*[@id='CustomerProfile_customerType_view'] | //mat-select[@id='CustomerProfile_customerType']";
+        public static string VerifyCustomerMinorityClassField = "Xpath;//*[@id='CustomerProfile_minorityClass_view'] | //mat-select[@id='CustomerProfile_minorityClass']";
+        public static string VerifyCustomerFATCAStatusField = "Xpath;//*[@id='CustomerProfile_fatcaStatus_view'] | //mat-select[@id='CustomerProfile_fatcaStatus']";
+        public static string VerifyCustomerConfidentialHandlingField = "Xpath;//*[@id='CustomerProfile_confidentialHandling_view'] | //mat-select[@id='CustomerProfile_confidentialHandling']";
+        public static string VerifyCustomerInternalCustomerField = "Xpath;//*[@id='CustomerProfile_internalCustomer_view'] | //mat-select[@id='CustomerProfile_internalCustomer']";
+        public static string VerifyCustomerDispositionField = "Xpath;//*[@id='CustomerProfile_disposition_view'] | //mat-select[@id='CustomerProfile_disposition']";
+        public static string VerifyCustomerCitizenshipClassField = "Xpath;//*[@id='CustomerProfile_citizenshipClass_view'] | //mat-select[@id='CustomerProfile_citizenshipClass']";
+        public static string VerifyCustomerTaxStatusField = "Xpath;//*[@id='CustomerProfile_taxStatus_view'] | //mat-select[@id='CustomerProfile_taxStatus']";
+        public static string VerifyCustomerFATCACompliantField = "Xpath;//*[@id='CustomerProfile_fatcaCompliant_view'] | //mat-select[@id='CustomerProfile_fatcaCompliant']";
+        public static string VerifyCustomerRestrictCustomerToThisPortfolioField = "Xpath;//*[@id='CustomerProfile_restrictCustomerToThisPortfolio_view'] | //mat-select[@id='CustomerProfile_restrictCustomerToThisPortfolio']";
+        public static string VerifyCustomerIndustryClassificationField = "Xpath;//*[@id='CustomerProfile_industryClassification_view'] | //input[@id='CustomerProfile_industryClassification']";
+        public static string VerifyCustomerStatusField = "Xpath;//*[@id='CustomerProfile_status_view'] | //mat-select[@id='CustomerProfile_status']";
+        public static string VerifyCustomerRequiredSecurityField = "Xpath;//*[@id='MiscellaneousInformation_requiredSecurity_view'] | //mat-select[@id='MiscellaneousInformation_requiredSecurity']";
+        public static string VerifyCustomerDefaultLanguageField = "Xpath;//*[@id='MiscellaneousInformation_defaultLanguage_view'] | //mat-select[@id='MiscellaneousInformation_defaultLanguage']";
+        public static string VerifyCustomerBirthIncorporatedDateField = "Xpath;//*[@id='RelationshipDates_birthDate_view'] | //input[@id='RelationshipDates_birthDate']";
+        public static string VerifyCustomerDateRelationshipInitiatedField = "Xpath;//*[@id='RelationshipDates_relationshipDate_view'] | //input[@id='RelationshipDates_relationshipDate']";
+        public static string VerifyCustomerPublishedNameField = "Xpath;//*[@id='ReferenceInformation_publishedName_view'] | //input[@id='ReferenceInformation_publishedName']";
+        public static string VerifyCustomerWebsiteURLField = "Xpath;//*[@id='ReferenceInformation_websiteURL_view'] | //input[@id='ReferenceInformation_websiteURL']";
+        public static string VerifyCustomerStandardReferenceIDTypeField = "Xpath;//*[@id='ReferenceInformation_stdReferenceIdType_view'] | //mat-select[@id='ReferenceInformation_stdReferenceIdType']";
+        public static string VerifyCustomerStandardReferenceIDField = "Xpath;//*[@id='ReferenceInformation_stdReferenceId_view'] | //input[@id='ReferenceInformation_stdReferenceId']";
+        public static string VerifyCustomerUserDefinedCode1Field = "Xpath;//*[@id='UserDefined_adcode1_view'] | //mat-select[@id='UserDefined_adcode1']";
+        public static string VerifyCustomerUserDefinedCode2Field = "Xpath;//*[@id='UserDefined_adcode2_view'] | //mat-select[@id='UserDefined_adcode2']";
+        public static string VerifyCustomerUserDefinedCode3Field = "Xpath;//*[@id='UserDefined_adcode3_view'] | //mat-select[@id='UserDefined_adcode3']";
+        public static string VerifyCustomerUserDefinedDate1Field = "Xpath;(//*[@id='UserDefined_date1_view'] | //input[@id='UserDefined_date1'])[1]";
+        public static string VerifyCustomerUserDefinedDate2Field = "Xpath;(//*[@id='UserDefined_date2_view'] | //input[@id='UserDefined_date2'])[1]";
+        public static string VerifyCustomerUserDefinedAmount1Field = "Xpath;//*[@id='UserDefined_amount1_view'] | //input[@id='UserDefined_amount1']";
+        public static string VerifyCustomerUserDefinedAmount2Field = "Xpath;//*[@id='UserDefined_amount2_view'] | //input[@id='UserDefined_amount2']";
+
+        public static string VerifyCustomerTopCardPrimaryOfficerField = "Xpath;//*[@id='topCard_header_primaryOfficer']";
+        public static string VerifyCustomerTopCardSecondaryOfficerField = "Xpath;//*[@id='topCard_header_secondaryOfficer']";
+        public static string VerifyCustomerTopCardCustomerIdentifierField = "Xpath;//*[@id='topCard_header_customerIdentifier']";
+        public static string VerifyCustomerTopCardCustomerTypeField = "Xpath;//*[@id='topCard_header_customerType']";
+        public static string VerifyCustomerTopCardOfficerRiskRatingField = "Xpath;//*[@id='topCard_header_officerRiskRating']";
+        public static string VerifyCustomerTopCardIndustryClassificationField = "Xpath;//*[@id='topCard_header_industryClassificationInfo']";
+
+
+        static WebApplication appHandle = ApplicationHandlerFactory.GetApplication(ApplicationType.WEB);
+
+        public virtual void NavigateToExistingCustomerDetails(string CustomerID)
+        {
+            try
+            {
+
+                if (WebLinkUtility.WebLinkUtilityLibrary.IsObjectExistsInPage(CustomerDetailsTab, 1))
+                {
+                    WebLinkUtility.WebLinkUtilityLibrary.SelectButton(CustomerDetailsTab);
+                    WebLinkUtility.WebLinkUtilityLibrary.WaitMajorTimeForObject(VerifyCustomerName1Field);
+                }
+                if (CustomerID != null && CustomerID != "" && WebLinkUtility.WebLinkUtilityLibrary.IsMessageExistInPage("Customer ID::" + CustomerID) != true)
+                {
+                    Report.Info("Search for customer with Customer Number/Name/Tax ID from Search bar on the top.");
+                    BusinessFunctions.Applications.Application.SPUserSubFunctions.SearchAccount("Customer", CustomerID);
+                    WebLinkUtility.WebLinkUtilityLibrary.WaitMajorTimeForObject(WaitStatusDropdown);
+                    appHandle.PageScroll(ScrollTo.DOWN, 1);
+                    WebLinkUtility.WebLinkUtilityLibrary.SelectButton(DetailsButton);
+                    WebLinkUtility.WebLinkUtilityLibrary.WaitTillObjectValuePresent(VerifyCustomerName1Field);
+                    appHandle.PageScroll(ScrollTo.DOWN, 1);
+                    WebLinkUtility.WebLinkUtilityLibrary.WaitTillObjectValuePresent(TopCardHeaderCustomerTypeObject);
+                    WebLinkUtility.WebLinkUtilityLibrary.ConfirmMessageNotExistInPage("Error");
+                    try { Environment.GetEnvironmentVariable("CustomerMoreSelection"); } catch (Exception) { Environment.SetEnvironmentVariable("CustomerMoreSelection", "NO"); }
+                    if (Environment.GetEnvironmentVariable("CustomerMoreSelection") != "YES")
+                        WebLinkSPUserPageFactory.EnableMoreDetailsPage.SelectAllSubRecordsInEnableMoreDetailsPage();
+                    Environment.SetEnvironmentVariable("CustomerMoreSelection", "YES");
+                    NavigateToCustomerDetailsTab();
+
+                }
+                else
+                {
+                    WebLinkUtility.WebLinkUtilityLibrary.ConfirmObjectExistsInPage(CustomerDetailsTab);
+                    NavigateToCustomerDetailsTab();
+                }
+
+            }
+            catch (System.Exception e)
+            {
+                string ExceptionMessage = e.Message;
+                WebLinkUtility.WebLinkUtilityLibrary.HandlePageException(ExceptionMessage);
+            }
+        }
+
+
+        public virtual void NavigateToNewCustomerPage()
+        {
+            try
+            {
+                if (WebLinkUtility.WebLinkUtilityLibrary.IsMessageExistInPage("Add New Customer") == false)
+                {
+                    Report.Info("On Servicing Portal Home page, click Add Customer button on Recent Customers card. The Add New Customer page appears.");
+                    WebLinkCommonPageFactory.CommonPage.NavigateToHomePage();
+                    WebLinkUtility.WebLinkUtilityLibrary.SelectButton(AddCustomerButton);
+                    WebLinkUtility.WebLinkUtilityLibrary.WaitMediumTimeForObject(AlternateIDField);
+                }
+                Environment.SetEnvironmentVariable("ApprovalProcessCustomerInfo", "New Customer");
+                if (WebLinkSPUserPageFactory.ApproveAndCompleteRequestPage.IsApprovalProcessActiveForParentRecord("New Customer"))
+                {
+                    WebLinkCommonPageFactory.CommonPage.NavigateToHomePage();
+                    WebLinkUtility.WebLinkUtilityLibrary.SelectButton(AddCustomerButton);
+                    WebLinkUtility.WebLinkUtilityLibrary.WaitMediumTimeForObject(AlternateIDField);
+                }
+
+            }
+            catch (System.Exception e)
+            {
+                string ExceptionMessage = e.Message;
+                WebLinkUtility.WebLinkUtilityLibrary.HandlePageException(ExceptionMessage);
+            }
+        }
+
+        public virtual void NavigateToEditCustomerDetailsPage(string CustID, string TabName)
+        {
+            try
+            {
+                if (WebLinkUtility.WebLinkUtilityLibrary.IsObjectExistsInPage(CustomerDetailsTab, 1) != true)
+                {
+                    WebLinkSPUserPageFactory.NewCustomerPage.NavigateToExistingCustomerDetails(CustID);
+                }
+                else
+                {
+                    WebLinkUtility.WebLinkUtilityLibrary.SelectButton(CustomerDetailsTab);
+                    if (appHandle.GetElementValue(VerifyCustomerCustomerIDField).ToUpper().Trim().Contains(CustID.ToUpper().Trim()) != true)
+                        WebLinkSPUserPageFactory.NewCustomerPage.NavigateToExistingCustomerDetails(CustID);
+                }
+                WebLinkUtility.WebLinkUtilityLibrary.SelectButton(CustomerDetailsTab);
+                string keyelement = TabName.ToLower();
+                switch (keyelement)
+                {
+                    case "basic":
+                        Report.Info("Click on Basic tab and select Edit icon to modify customer Basic Details.");
+                        WebLinkUtility.WebLinkUtilityLibrary.SelectButton(BasicTab);
+                        WebLinkUtility.WebLinkUtilityLibrary.SelectButton(CustomerBasicEditButton);
+                        break;
+                    case "risk information":
+                        Report.Info("Click on Risk Information tab and select Edit icon to modify customer Risk Information Details.");
+                        WebLinkUtility.WebLinkUtilityLibrary.SelectButton(RiskInformationTab);
+                        WebLinkUtility.WebLinkUtilityLibrary.SelectButton(CustomerRiskEditButton);
+                        break;
+                    case "classification":
+                        Report.Info("Click on Classification tab and select Edit icon to modify customer Classification Details.");
+                        WebLinkUtility.WebLinkUtilityLibrary.SelectButton(ClassificationTab);
+                        WebLinkUtility.WebLinkUtilityLibrary.SelectButton(CustomerClassificationEditButton);
+                        break;
+                    case "additional information":
+                        Report.Info("Click on Additional Information tab and select Edit icon to modify customer Additional Information Details.");
+                        WebLinkUtility.WebLinkUtilityLibrary.SelectButton(AdditionalInformationTab);
+                        if (WebLinkUtility.WebLinkUtilityLibrary.IsObjectExistsInPage(AdditionalInformationMaxButton))
+                            WebLinkUtility.WebLinkUtilityLibrary.SelectButton(AdditionalInformationMaxButton);
+                        WebLinkUtility.WebLinkUtilityLibrary.SelectButton(CustomerAdditionalInformationEditButton);
+                        break;
+                    case "additional data":
+                        Report.Info("Click on Additional Data tab and select Edit icon to modify customer Additional Data Details.");
+                        WebLinkUtility.WebLinkUtilityLibrary.SelectButton(AdditionalDataTab);
+                        WebLinkUtility.WebLinkUtilityLibrary.SelectButton(CustomerAdditionalDataEditButton);
+                        break;
+                    default:
+                        break;
+                }
+            }
+            catch (System.Exception e)
+            {
+                string ExceptionMessage = e.Message;
+                WebLinkUtility.WebLinkUtilityLibrary.HandlePageException(ExceptionMessage);
+            }
+        }
+        public virtual void EnterCustomerBasicInfo(string[] CustomerBasicInformation)
+        {
+            try
+            {
+                WebLinkUtility.WebLinkUtilityLibrary.SelectButton(BasicTab);
+                WebLinkUtility.WebLinkUtilityLibrary.WaitMediumTimeForObject(CustServicingSectionDropdown);
+                string ExistingValue = null;
+                for (int i = 0; i < CustomerBasicInformation.Length; i++)
+                {
+                    string[] DictionaryArray = CustomerBasicInformation[i].ToString().Split(":");
+                    string keyelement = DictionaryArray[0].ToLower();
+                    Environment.SetEnvironmentVariable("ObjectName", keyelement);
+                    switch (keyelement)
+                    {
+                        case "customer template":
+                            WebLinkUtility.WebLinkUtilityLibrary.WaitMajorTimeForObject(CustSelectTemplateDropdown);
+                            ExistingValue = null;
+                            WebLinkUtility.WebLinkUtilityLibrary.SelectDropdownValue(CustSelectTemplateDropdown, DictionaryArray[1].ToString());
+                            break;
+                        case "customer id":
+                            ExistingValue = null;
+                            WebLinkUtility.WebLinkUtilityLibrary.SetFieldValue(CustomerIdField, DictionaryArray[1].ToString());
+                            break;
+                        case "tax id":
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.GetValueForApprovalProcess(TaxIDField);
+                            WebLinkUtility.WebLinkUtilityLibrary.SetFieldValue(TaxIDField, DictionaryArray[1].ToString());
+                            break;
+                        case "name 1":
+                            if (DictionaryArray[1] == "")
+                                DictionaryArray[1] = "GATS" + appHandle.CreateRamdomData(FieldType.NUMERIC, 1000000, 9999999, 7);
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.GetValueForApprovalProcess(Name1Field);
+                            WebLinkUtility.WebLinkUtilityLibrary.SetFieldValue(Name1Field, DictionaryArray[1].ToString());
+                            RunTimeData.Store("EnterCustName", DictionaryArray[1].ToString());
+                            break;
+                        case "name 2":
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.GetValueForApprovalProcess(Name2Field);
+                            WebLinkUtility.WebLinkUtilityLibrary.SetFieldValue(Name2Field, DictionaryArray[1].ToString());
+                            break;
+                        case "name 3":
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.GetValueForApprovalProcess(Name3Field);
+                            WebLinkUtility.WebLinkUtilityLibrary.SetFieldValue(Name3Field, DictionaryArray[1].ToString());
+                            break;
+                        case "alternate id":
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.GetValueForApprovalProcess(AlternateIDField);
+                            WebLinkUtility.WebLinkUtilityLibrary.SetFieldValue(AlternateIDField, DictionaryArray[1].ToString());
+                            break;
+                        case "short name":
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.GetValueForApprovalProcess(ShortNameField);
+                            WebLinkUtility.WebLinkUtilityLibrary.SetFieldValue(ShortNameField, DictionaryArray[1].ToString());
+                            break;
+                        case "sort name":
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.GetValueForApprovalProcess(SortNameField);
+                            WebLinkUtility.WebLinkUtilityLibrary.SetFieldValue(SortNameField, DictionaryArray[1].ToString());
+                            break;
+                        case "investor":
+                            ExistingValue = appHandle.CheckCheckBoxChecked(InvestorCheckBox).ToString().ToLower();
+                            WebLinkUtility.WebLinkUtilityLibrary.SelectCheckBox(InvestorCheckBox, DictionaryArray[1].ToString());
+                            if (DictionaryArray[1].ToString().ToUpper() == "ON" || DictionaryArray[1].ToString().ToUpper() == "YES")
+                                DictionaryArray[1] = "true";
+                            else
+                                DictionaryArray[1] = "false";
+                            if (ExistingValue == "false")
+                                ExistingValue = "";
+                            break;
+                        case "primary officer":
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.GetValueForApprovalProcess(CustomerPrimaryOfficerField);
+                            WebLinkSPUserPageFactory.OfficerSearchPage.SelectOfficer(PrimaryOfficerSearchButton, "", DictionaryArray[1].ToString());
+                            break;
+                        case "secondary officer":
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.GetValueForApprovalProcess(CustomerSecondaryOfficerField);
+                            WebLinkSPUserPageFactory.OfficerSearchPage.SelectOfficer(SecondaryOfficerSearchButton, "", DictionaryArray[1].ToString());
+                            break;
+                        case "servicing unit":
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.GetValueForApprovalProcess(CustServicingUnitDropdown);
+                            WebLinkUtility.WebLinkUtilityLibrary.SelectDropdownValue(CustServicingUnitDropdown, DictionaryArray[1].ToString());
+                            break;
+                        case "servicing section":
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.GetValueForApprovalProcess(CustServicingSectionDropdown);
+                            WebLinkUtility.WebLinkUtilityLibrary.SelectDropdownValue(CustServicingSectionDropdown, DictionaryArray[1].ToString());
+                            break;
+                        case "default gl unit":
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.GetValueForApprovalProcess(DefaultGLUnitDropdown);
+                            WebLinkUtility.WebLinkUtilityLibrary.SelectDropdownValue(DefaultGLUnitDropdown, DictionaryArray[1].ToString());
+                            break;
+                        default:
+                            break;
+                    }
+                    if (ExistingValue != null && DictionaryArray[0].ToString() != "")
+                        WebLinkSPUserPageFactory.ApproveAndCompleteRequestPage.OptionalApprovalProcessValuesConcating("Basic:" + DictionaryArray[0].ToString() + ":" + ExistingValue + ":" + DictionaryArray[1].ToString());
+                    ExistingValue = null;
+
+                }
+                WebLinkUtility.WebLinkUtilityLibrary.SelectButton(BasicTab);
+            }
+            catch (Exception e)
+            {
+                string ExceptionMessage = e.Message;
+                WebLinkUtility.WebLinkUtilityLibrary.HandlePageException(ExceptionMessage);
+            }
+        }
+
+
+        public virtual void NavigateToCustomerDetailsTab()
+        {
+            try
+            {
+                WebLinkUtility.WebLinkUtilityLibrary.SelectButton(CustomerDetailsTab);
+            }
+            catch (Exception e)
+            {
+                string ExceptionMessage = e.Message;
+                WebLinkUtility.WebLinkUtilityLibrary.HandlePageException(ExceptionMessage);
+            }
+        }
+
+        public virtual void VerifyCustomerBasicInfo(string[] CustomerBasicInformation, bool ScreenCapture = true)
+        {
+            try
+            {
+                WebLinkUtility.WebLinkUtilityLibrary.SelectButton(BasicTab);
+                int DetailReport = 0;
+                for (int i = 0; i < CustomerBasicInformation.Length; i++)
+                {
+                    DetailReport++;
+                    if (DetailReport > 1)
+                        ScreenCapture = false;
+
+                    string[] DictionaryArray = CustomerBasicInformation[i].ToString().Split(":");
+                    string keyelement = DictionaryArray[0].ToLower();
+                    Environment.SetEnvironmentVariable("ObjectName", keyelement);
+                    switch (keyelement)
+                    {
+                        case "customer id":
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(VerifyCustomerCustomerIDField, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        case "tax id":
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(VerifyCustomerTaxIDField, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        case "name 1":
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(VerifyCustomerName1Field, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        case "name 2":
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(VerifyCustomerName2Field, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        case "name 3":
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(VerifyCustomerName3Field, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        case "alternate id":
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(VerifyCustomerAlternateIDField, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        case "short name":
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(VerifyCustomerShortNameField, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        case "sort name":
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(VerifyCustomerSortNameField, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        case "investor":
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(VerifyCustomerInvestorField, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        case "primary officer":
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(VerifyCustomerPrimaryOfficerField, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        case "secondary officer":
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(VerifyCustomerSecondaryOfficerField, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        case "servicing unit":
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(VerifyCustomerServicingUnitField, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        case "servicing section":
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(VerifyCustomerServicingSectionField, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        case "default gl unit":
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(VerifyCustomerDefaultGLUnitField, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                WebLinkUtility.WebLinkUtilityLibrary.SelectButton(BasicTab);
+            }
+            catch (Exception e)
+            {
+                string ExceptionMessage = e.Message;
+                WebLinkUtility.WebLinkUtilityLibrary.HandlePageException(ExceptionMessage);
+            }
+        }
+
+        public virtual void EnterCustomerRiskInfo(string[] CustomerRiskInformation)
+        {
+            try
+            {
+                WebLinkUtility.WebLinkUtilityLibrary.SelectButton(RiskInformationTab);
+                WebLinkUtility.WebLinkUtilityLibrary.WaitMediumTimeForObject(CustOfficerRiskRatingDropdown);
+                string ExistingValue = null;
+                for (int i = 0; i < CustomerRiskInformation.Length; i++)
+                {
+                    string[] DictionaryArray = CustomerRiskInformation[i].ToString().Split(":");
+                    string keyelement = DictionaryArray[0].ToLower();
+                    Environment.SetEnvironmentVariable("ObjectName", keyelement);
+                    switch (keyelement)
+                    {
+                        case "officer risk rating":
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.GetValueForApprovalProcess(CustOfficerRiskRatingDropdown);
+                            WebLinkUtility.WebLinkUtilityLibrary.SelectDropdownValue(CustOfficerRiskRatingDropdown, DictionaryArray[1].ToString());
+                            break;
+                        case "officer risk date":
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.GetValueForApprovalProcess(CustOfficerRiskDateField);
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.ConvertDateInGivenFormat(ExistingValue, "MM/dd/yyyy");
+                            WebLinkUtility.WebLinkUtilityLibrary.SetFieldValue(CustOfficerRiskDateField, DictionaryArray[1].ToString());
+                            DictionaryArray[1] = WebLinkUtility.WebLinkUtilityLibrary.ConvertDateInGivenFormat(DictionaryArray[1].ToString(), "MM/dd/yyyy");
+                            break;
+                        case "next review":
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.GetValueForApprovalProcess(CustNextReviewDateField);
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.ConvertDateInGivenFormat(ExistingValue, "MM/dd/yyyy");
+                            WebLinkUtility.WebLinkUtilityLibrary.SetFieldValueWithKeyStroke(CustNextReviewDateField, DictionaryArray[1].ToString());
+                            // WebLinkUtility.WebLinkUtilityLibrary.SetFieldValue(CustNextReviewDateField, DictionaryArray[1].ToString());
+                            DictionaryArray[1] = WebLinkUtility.WebLinkUtilityLibrary.ConvertDateInGivenFormat(DictionaryArray[1].ToString(), "MM/dd/yyyy");
+                            break;
+                        case "watch date":
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.GetValueForApprovalProcess(WatchDateField);
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.ConvertDateInGivenFormat(ExistingValue, "MM/dd/yyyy");
+                            WebLinkUtility.WebLinkUtilityLibrary.SetFieldValue(WatchDateField, DictionaryArray[1].ToString());
+                            DictionaryArray[1] = WebLinkUtility.WebLinkUtilityLibrary.ConvertDateInGivenFormat(DictionaryArray[1].ToString(), "MM/dd/yyyy");
+                            break;
+                        case "review frequency":
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.GetValueForApprovalProcess(CustReviewFrequencyDropdown);
+                            WebLinkUtility.WebLinkUtilityLibrary.SelectDropdownValue(CustReviewFrequencyDropdown, DictionaryArray[1].ToString());
+                            break;
+                        case "customer watch status":
+                            ExistingValue = appHandle.CheckCheckBoxChecked(CustomerWatchStatusCheckBox).ToString().ToLower();
+                            WebLinkUtility.WebLinkUtilityLibrary.SelectCheckBox(CustomerWatchStatusCheckBox, DictionaryArray[1].ToString());
+                            if (DictionaryArray[1].ToString().ToUpper() == "ON" || DictionaryArray[1].ToString().ToUpper() == "YES")
+                                DictionaryArray[1] = "true";
+                            else
+                                DictionaryArray[1] = "false";
+                            if (ExistingValue == "false")
+                                ExistingValue = "";
+                            break;
+                        case "watch list reason":
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.GetValueForApprovalProcess(WatchListReasonDropdown);
+                            WebLinkUtility.WebLinkUtilityLibrary.SelectDropdownValue(WatchListReasonDropdown, DictionaryArray[1].ToString());
+                            break;
+                        case "probability of default":
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.GetValueForApprovalProcess(CustProbabilityofDefaultField);
+                            WebLinkUtility.WebLinkUtilityLibrary.SetFieldValue(CustProbabilityofDefaultField, DictionaryArray[1].ToString());
+                            break;
+                        case "loss given default":
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.GetValueForApprovalProcess(CustLossGivenDefaultField);
+                            WebLinkUtility.WebLinkUtilityLibrary.SetFieldValue(CustLossGivenDefaultField, DictionaryArray[1].ToString());
+                            break;
+                        case "direct liability limit":
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.GetValueForApprovalProcess(DirectLiabilityLimitField);
+                            WebLinkUtility.WebLinkUtilityLibrary.SetFieldValue(DirectLiabilityLimitField, DictionaryArray[1].ToString());
+                            break;
+                        case "total liability limit":
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.GetValueForApprovalProcess(TotalLiabilityLimitField);
+                            WebLinkUtility.WebLinkUtilityLibrary.SetFieldValue(TotalLiabilityLimitField, DictionaryArray[1].ToString());
+                            break;
+                        case "currency":
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.GetValueForApprovalProcess(CustCurrencyDropdown);
+                            WebLinkUtility.WebLinkUtilityLibrary.SelectDropdownValue(CustCurrencyDropdown, DictionaryArray[1].ToString());
+                            break;
+                        case "date approved":
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.GetValueForApprovalProcess(DateApprovedField);
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.ConvertDateInGivenFormat(ExistingValue, "MM/dd/yyyy");
+                            WebLinkUtility.WebLinkUtilityLibrary.SetFieldValue(DateApprovedField, DictionaryArray[1].ToString());
+                            DictionaryArray[1] = WebLinkUtility.WebLinkUtilityLibrary.ConvertDateInGivenFormat(DictionaryArray[1].ToString(), "MM/dd/yyyy");
+                            break;
+                        default:
+                            break;
+                    }
+                    if (ExistingValue != null && DictionaryArray[0].ToString() != "")
+                        WebLinkSPUserPageFactory.ApproveAndCompleteRequestPage.OptionalApprovalProcessValuesConcating("Risk Information:" + DictionaryArray[0].ToString() + ":" + ExistingValue + ":" + DictionaryArray[1].ToString());
+                    ExistingValue = null;
+
+                }
+                WebLinkUtility.WebLinkUtilityLibrary.SelectButton(RiskInformationTab);
+            }
+            catch (Exception e)
+            {
+                string ExceptionMessage = e.Message;
+                WebLinkUtility.WebLinkUtilityLibrary.HandlePageException(ExceptionMessage);
+            }
+        }
+
+
+
+        public virtual void VerifyCustomerRiskInfo(string[] CustomerRiskInformation, bool ScreenCapture = true)
+        {
+            try
+            {
+                WebLinkUtility.WebLinkUtilityLibrary.SelectButton(RiskInformationTab);
+                int DetailReport = 0;
+                for (int i = 0; i < CustomerRiskInformation.Length; i++)
+                {
+                    DetailReport++;
+                    if (DetailReport > 1)
+                        ScreenCapture = false;
+                    string[] DictionaryArray = CustomerRiskInformation[i].ToString().Split(":");
+                    string keyelement = DictionaryArray[0].ToLower();
+                    Environment.SetEnvironmentVariable("ObjectName", keyelement);
+                    switch (keyelement)
+                    {
+                        case "officer risk rating":
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(VerifyCustomerOfficerRiskRatingField, DictionaryArray[1].ToString(), true, ScreenCapture);
+                            break;
+                        case "officer risk date":
+                            DictionaryArray[1] = WebLinkUtility.WebLinkUtilityLibrary.ConvertDateInGivenFormat(DictionaryArray[1].ToString(), "MM/dd/yyyy");
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(VerifyCustomerOfficerRiskDateField, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        case "next review":
+                            DictionaryArray[1] = WebLinkUtility.WebLinkUtilityLibrary.ConvertDateInGivenFormat(DictionaryArray[1].ToString(), "MM/dd/yyyy");
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(VerifyCustomerNextReviewField, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        case "watch date":
+                            DictionaryArray[1] = WebLinkUtility.WebLinkUtilityLibrary.ConvertDateInGivenFormat(DictionaryArray[1].ToString(), "MM/dd/yyyy");
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(VerifyCustomerWatchDateField, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        case "review frequency":
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(VerifyCustomerReviewFrequencyField, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        case "customer watch status":
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(VerifyCustomerWatchStatusField, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        case "watch list reason":
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(VerifyCustomerWatchListReasonField, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        case "probability of default":
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(VerifyCustomerProbabilityofDefaultField, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        case "loss given default":
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(VerifyCustomerLossGivenDefaultField, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        case "direct liability limit":
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(VerifyCustomerDirectLiabilityLimitField, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        case "total liability limit":
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(VerifyCustomerTotalLiabilityLimitField, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        case "currency":
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(VerifyCustomerCurrencyField, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        case "date approved":
+                            DictionaryArray[1] = WebLinkUtility.WebLinkUtilityLibrary.ConvertDateInGivenFormat(DictionaryArray[1].ToString(), "MM/dd/yyyy");
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(VerifyCustomerDateApprovedField, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                WebLinkUtility.WebLinkUtilityLibrary.SelectButton(RiskInformationTab);
+            }
+            catch (Exception e)
+            {
+                string ExceptionMessage = e.Message;
+                WebLinkUtility.WebLinkUtilityLibrary.HandlePageException(ExceptionMessage);
+            }
+        }
+
+
+        public virtual void EnterCustomerClassificationInfo(string[] CustomerClassificationInformation)
+        {
+            try
+            {
+                WebLinkUtility.WebLinkUtilityLibrary.SelectButton(ClassificationTab);
+                WebLinkUtility.WebLinkUtilityLibrary.WaitMediumTimeForObject(CustomerTypeDropdown);
+                string ExistingValue = null;
+                for (int i = 0; i < CustomerClassificationInformation.Length; i++)
+                {
+                    string[] DictionaryArray = CustomerClassificationInformation[i].ToString().Split(":");
+                    string keyelement = DictionaryArray[0].ToLower();
+                    Environment.SetEnvironmentVariable("ObjectName", keyelement);
+                    switch (keyelement)
+                    {
+                        case "customer type":
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.GetValueForApprovalProcess(CustomerTypeDropdown);
+                            WebLinkUtility.WebLinkUtilityLibrary.SelectDropdownValue(CustomerTypeDropdown, DictionaryArray[1].ToString());
+                            break;
+                        case "minority class":
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.GetValueForApprovalProcess(MinorityClassDropdown);
+                            WebLinkUtility.WebLinkUtilityLibrary.SelectDropdownValue(MinorityClassDropdown, DictionaryArray[1].ToString());
+                            break;
+                        case "fatca status":
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.GetValueForApprovalProcess(FATCAStatusDropdown);
+                            WebLinkUtility.WebLinkUtilityLibrary.SelectDropdownValue(FATCAStatusDropdown, DictionaryArray[1].ToString());
+                            break;
+                        case "confidential handling":
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.GetValueForApprovalProcess(ConfidentialHandlingDropdown);
+                            WebLinkUtility.WebLinkUtilityLibrary.SelectDropdownValue(ConfidentialHandlingDropdown, DictionaryArray[1].ToString());
+                            break;
+                        case "internal customer":
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.GetValueForApprovalProcess(InternalCustomerDropdown);
+                            WebLinkUtility.WebLinkUtilityLibrary.SelectDropdownValue(InternalCustomerDropdown, DictionaryArray[1].ToString());
+                            break;
+                        case "disposition":
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.GetValueForApprovalProcess(DispositionDropdown);
+                            WebLinkUtility.WebLinkUtilityLibrary.SelectDropdownValue(DispositionDropdown, DictionaryArray[1].ToString());
+                            break;
+                        case "citizenship class":
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.GetValueForApprovalProcess(CitizenshipClassDropdown);
+                            WebLinkUtility.WebLinkUtilityLibrary.SelectDropdownValue(CitizenshipClassDropdown, DictionaryArray[1].ToString());
+                            break;
+                        case "tax status":
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.GetValueForApprovalProcess(TaxStatusDropdown);
+                            WebLinkUtility.WebLinkUtilityLibrary.SelectDropdownValue(TaxStatusDropdown, DictionaryArray[1].ToString());
+                            break;
+                        case "fatca compliant":
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.GetValueForApprovalProcess(FATCACompliantDropdown);
+                            WebLinkUtility.WebLinkUtilityLibrary.SelectDropdownValue(FATCACompliantDropdown, DictionaryArray[1].ToString());
+                            break;
+                        case "restrict customer to this portfolio":
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.GetValueForApprovalProcess(RestrictCustomerToThisPortfolioDropdown);
+                            WebLinkUtility.WebLinkUtilityLibrary.SelectDropdownValue(RestrictCustomerToThisPortfolioDropdown, DictionaryArray[1].ToString());
+                            break;
+                        case "status":
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.GetValueForApprovalProcess(StatusDropdown);
+                            WebLinkUtility.WebLinkUtilityLibrary.SelectDropdownValue(StatusDropdown, DictionaryArray[1].ToString());
+                            break;
+                        default:
+                            break;
+                    }
+                    if (ExistingValue != null && DictionaryArray[0].ToString() != "")
+                        WebLinkSPUserPageFactory.ApproveAndCompleteRequestPage.OptionalApprovalProcessValuesConcating("Classification:" + DictionaryArray[0].ToString() + ":" + ExistingValue + ":" + DictionaryArray[1].ToString());
+                    ExistingValue = null;
+                }
+                WebLinkUtility.WebLinkUtilityLibrary.SelectButton(ClassificationTab);
+            }
+            catch (Exception e)
+            {
+                string ExceptionMessage = e.Message;
+                WebLinkUtility.WebLinkUtilityLibrary.HandlePageException(ExceptionMessage);
+            }
+        }
+
+        public virtual void VerifyCustomerClassificationInfo(string[] CustomerClassificationInformation, bool ScreenCapture = true)
+        {
+            try
+            {
+                WebLinkUtility.WebLinkUtilityLibrary.SelectButton(ClassificationTab);
+                int DetailReport = 0;
+                for (int i = 0; i < CustomerClassificationInformation.Length; i++)
+                {
+                    DetailReport++;
+                    if (DetailReport > 1)
+                        ScreenCapture = false;
+                    string[] DictionaryArray = CustomerClassificationInformation[i].ToString().Split(":");
+                    string keyelement = DictionaryArray[0].ToLower();
+                    Environment.SetEnvironmentVariable("ObjectName", keyelement);
+                    switch (keyelement)
+                    {
+                        case "customer type":
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(VerifyCustomerTypeField, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        case "minority class":
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(VerifyCustomerMinorityClassField, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        case "fatca status":
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(VerifyCustomerFATCAStatusField, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        case "confidential handling":
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(VerifyCustomerConfidentialHandlingField, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        case "internal customer":
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(VerifyCustomerInternalCustomerField, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        case "disposition":
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(VerifyCustomerDispositionField, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        case "citizenship class":
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(VerifyCustomerCitizenshipClassField, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        case "tax status":
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(VerifyCustomerTaxStatusField, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        case "fatca compliant":
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(VerifyCustomerFATCACompliantField, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        case "restrict customer to this portfolio":
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(VerifyCustomerRestrictCustomerToThisPortfolioField, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        case "status":
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(VerifyCustomerStatusField, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                WebLinkUtility.WebLinkUtilityLibrary.SelectButton(ClassificationTab);
+            }
+            catch (Exception e)
+            {
+                string ExceptionMessage = e.Message;
+                WebLinkUtility.WebLinkUtilityLibrary.HandlePageException(ExceptionMessage);
+            }
+        }
+
+        public virtual void EnterCustomerAdditionalInfo(string[] CustomerAdditionalInformation)
+        {
+            try
+            {
+                WebLinkUtility.WebLinkUtilityLibrary.SelectButton(AdditionalInformationTab);
+                WebLinkUtility.WebLinkUtilityLibrary.WaitMediumTimeForObject(CustRequiredSecurityDropdown);
+                string ExistingValue = null;
+                for (int i = 0; i < CustomerAdditionalInformation.Length; i++)
+                {
+                    string[] DictionaryArray = CustomerAdditionalInformation[i].ToString().Split(":");
+                    string keyelement = DictionaryArray[0].ToLower();
+                    Environment.SetEnvironmentVariable("ObjectName", keyelement);
+                    switch (keyelement)
+                    {
+                        case "required security":
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.GetValueForApprovalProcess(CustRequiredSecurityDropdown);
+                            WebLinkUtility.WebLinkUtilityLibrary.SelectDropdownValue(CustRequiredSecurityDropdown, DictionaryArray[1].ToString());
+                            break;
+                        case "default language":
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.GetValueForApprovalProcess(DefaultLanguageDropdown);
+                            WebLinkUtility.WebLinkUtilityLibrary.SelectDropdownValue(DefaultLanguageDropdown, DictionaryArray[1].ToString());
+                            break;
+                        case "birthincorporated date":
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.GetValueForApprovalProcess(BirthIncorporatedDateField);
+                            WebLinkUtility.WebLinkUtilityLibrary.SetFieldValue(BirthIncorporatedDateField, DictionaryArray[1].ToString());
+                            break;
+                        case "date relationship initiated":
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.GetValueForApprovalProcess(DateRelationshipInitiatedField);
+                            WebLinkUtility.WebLinkUtilityLibrary.SetFieldValue(DateRelationshipInitiatedField, DictionaryArray[1].ToString());
+                            break;
+                        case "published name":
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.GetValueForApprovalProcess(PublishedNameField);
+                            WebLinkUtility.WebLinkUtilityLibrary.SetFieldValue(PublishedNameField, DictionaryArray[1].ToString());
+                            break;
+                        case "website url":
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.GetValueForApprovalProcess(WebsiteURLField);
+                            WebLinkUtility.WebLinkUtilityLibrary.SetFieldValue(WebsiteURLField, DictionaryArray[1].ToString());
+                            break;
+                        case "standard reference id":
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.GetValueForApprovalProcess(CustStandardReferenceIDField);
+                            WebLinkUtility.WebLinkUtilityLibrary.SetFieldValue(CustStandardReferenceIDField, DictionaryArray[1].ToString());
+                            break;
+                        case "standard reference id type":
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.GetValueForApprovalProcess(CustStandardReferenceIDTypeDropdown);
+                            WebLinkUtility.WebLinkUtilityLibrary.SelectDropdownValue(CustStandardReferenceIDTypeDropdown, DictionaryArray[1].ToString());
+                            break;
+                        case "code 1":
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.GetValueForApprovalProcess(CustCode1Dropdown);
+                            WebLinkUtility.WebLinkUtilityLibrary.SelectDropdownValue(CustCode1Dropdown, DictionaryArray[1].ToString());
+                            break;
+                        case "code 2":
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.GetValueForApprovalProcess(CustCode2Dropdown);
+                            WebLinkUtility.WebLinkUtilityLibrary.SelectDropdownValue(CustCode2Dropdown, DictionaryArray[1].ToString());
+                            break;
+                        case "code 3":
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.GetValueForApprovalProcess(CustCode3Dropdown);
+                            WebLinkUtility.WebLinkUtilityLibrary.SelectDropdownValue(CustCode3Dropdown, DictionaryArray[1].ToString());
+                            break;
+                        case "date 1":
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.GetValueForApprovalProcess(CustDate1Field);
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.ConvertDateInGivenFormat(ExistingValue, "MM/dd/yyyy");
+                            WebLinkUtility.WebLinkUtilityLibrary.SetFieldValue(CustDate1Field, DictionaryArray[1].ToString());
+                            DictionaryArray[1] = WebLinkUtility.WebLinkUtilityLibrary.ConvertDateInGivenFormat(DictionaryArray[1].ToString(), "MM/dd/yyyy");
+                            break;
+                        case "date 2":
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.GetValueForApprovalProcess(CustDate2Field);
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.ConvertDateInGivenFormat(ExistingValue, "MM/dd/yyyy");
+                            WebLinkUtility.WebLinkUtilityLibrary.SetFieldValue(CustDate2Field, DictionaryArray[1].ToString());
+                            DictionaryArray[1] = WebLinkUtility.WebLinkUtilityLibrary.ConvertDateInGivenFormat(DictionaryArray[1].ToString(), "MM/dd/yyyy");
+                            break;
+                        case "amount 1":
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.GetValueForApprovalProcess(CustAmount1Field);
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.ConvertCurrencyFormat(ExistingValue);
+                            WebLinkUtility.WebLinkUtilityLibrary.SetFieldValue(CustAmount1Field, DictionaryArray[1].ToString());
+                            DictionaryArray[1] = WebLinkUtility.WebLinkUtilityLibrary.ConvertCurrencyFormat(DictionaryArray[1].ToString());
+                            break;
+                        case "amount 2":
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.GetValueForApprovalProcess(CustAmount2Field);
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.ConvertCurrencyFormat(ExistingValue);
+                            WebLinkUtility.WebLinkUtilityLibrary.SetFieldValue(CustAmount2Field, DictionaryArray[1].ToString());
+                            DictionaryArray[1] = WebLinkUtility.WebLinkUtilityLibrary.ConvertCurrencyFormat(DictionaryArray[1].ToString());
+                            break;
+                        default:
+                            break;
+                    }
+                    if (ExistingValue != null && DictionaryArray[0].ToString() != "")
+                        WebLinkSPUserPageFactory.ApproveAndCompleteRequestPage.OptionalApprovalProcessValuesConcating("Additional Information:" + DictionaryArray[0].ToString() + ":" + ExistingValue + ":" + DictionaryArray[1].ToString());
+                    ExistingValue = null;
+
+                }
+                WebLinkUtility.WebLinkUtilityLibrary.SelectButton(AdditionalInformationTab);
+            }
+            catch (Exception e)
+            {
+                string ExceptionMessage = e.Message;
+                WebLinkUtility.WebLinkUtilityLibrary.HandlePageException(ExceptionMessage);
+            }
+        }
+
+
+        public virtual void VerifyCustomerAdditionalInfo(string[] CustomerAdditionalInformation, bool ScreenCapture = true)
+        {
+            try
+            {
+                WebLinkUtility.WebLinkUtilityLibrary.SelectButton(AdditionalInformationTab);
+                if (WebLinkUtility.WebLinkUtilityLibrary.IsObjectExistsInPage(AdditionalInformationMaxButton))
+                    WebLinkUtility.WebLinkUtilityLibrary.SelectButton(AdditionalInformationMaxButton);
+                int DetailReport = 0;
+                for (int i = 0; i < CustomerAdditionalInformation.Length; i++)
+                {
+                    DetailReport++;
+                    if (DetailReport > 1)
+                        ScreenCapture = false;
+                    string[] DictionaryArray = CustomerAdditionalInformation[i].ToString().Split(":");
+                    string keyelement = DictionaryArray[0].ToLower();
+                    Environment.SetEnvironmentVariable("ObjectName", keyelement);
+                    switch (keyelement)
+                    {
+                        case "required security":
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(VerifyCustomerRequiredSecurityField, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        case "default language":
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(VerifyCustomerDefaultLanguageField, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        case "birthincorporated date":
+                            DictionaryArray[1] = WebLinkUtility.WebLinkUtilityLibrary.ConvertDateInGivenFormat(DictionaryArray[1].ToString(), "MM/dd/yyyy");
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(VerifyCustomerBirthIncorporatedDateField, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        case "date relationship initiated":
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(VerifyCustomerDateRelationshipInitiatedField, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        case "published name":
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(VerifyCustomerPublishedNameField, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        case "website url":
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(VerifyCustomerWebsiteURLField, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        case "standard reference id":
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(VerifyCustomerStandardReferenceIDField, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        case "standard reference id type":
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(VerifyCustomerStandardReferenceIDTypeField, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        case "code 1":
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(VerifyCustomerUserDefinedCode1Field, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        case "code 2":
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(VerifyCustomerUserDefinedCode2Field, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        case "code 3":
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(VerifyCustomerUserDefinedCode3Field, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        case "date 1":
+                            DictionaryArray[1] = WebLinkUtility.WebLinkUtilityLibrary.ConvertDateInGivenFormat(DictionaryArray[1].ToString(), "MM/dd/yyyy");
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(VerifyCustomerUserDefinedDate1Field, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        case "date 2":
+                            DictionaryArray[1] = WebLinkUtility.WebLinkUtilityLibrary.ConvertDateInGivenFormat(DictionaryArray[1].ToString(), "MM/dd/yyyy");
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(VerifyCustomerUserDefinedDate2Field, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        case "amount 1":
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectAmount(VerifyCustomerUserDefinedAmount1Field, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        case "amount 2":
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectAmount(VerifyCustomerUserDefinedAmount2Field, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                WebLinkUtility.WebLinkUtilityLibrary.SelectButton(AdditionalInformationTab);
+            }
+            catch (Exception e)
+            {
+                string ExceptionMessage = e.Message;
+                WebLinkUtility.WebLinkUtilityLibrary.HandlePageException(ExceptionMessage);
+            }
+        }
+
+        public virtual void EnterCustomerAdditionalData(string[] CustomerAdditionalDataInformation)
+        {
+            try
+            {
+                WebLinkUtility.WebLinkUtilityLibrary.SelectButton(AdditionalDataTab);
+                WebLinkUtility.WebLinkUtilityLibrary.WaitMediumTimeForObject(ElementGroupsDropdown);
+                string ExistingValue = null;
+                for (int i = 0; i < CustomerAdditionalDataInformation.Length; i++)
+                {
+                    string[] DictionaryArray = CustomerAdditionalDataInformation[i].ToString().Split(":");
+                    string keyelement = DictionaryArray[0].ToLower();
+                    Environment.SetEnvironmentVariable("ObjectName", keyelement);
+                    switch (keyelement)
+                    {
+                        case "element groups":
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.GetValueForApprovalProcess(ElementGroupsDropdown);
+                            WebLinkUtility.WebLinkUtilityLibrary.SelectDropdownValue(ElementGroupsDropdown, DictionaryArray[1].ToString());
+                            break;
+                        case "cecl amount 1":
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.GetValueForApprovalProcess(CECLAmount1Field);
+                            WebLinkUtility.WebLinkUtilityLibrary.SetFieldValue(CECLAmount1Field, DictionaryArray[1].ToString());
+                            break;
+                        case "cecl date 1":
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.GetValueForApprovalProcess(CECLDate1Field);
+                            WebLinkUtility.WebLinkUtilityLibrary.SetFieldValue(CECLDate1Field, DictionaryArray[1].ToString());
+                            break;
+                        case "cecl date 2":
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.GetValueForApprovalProcess(CECLDate2Field);
+                            WebLinkUtility.WebLinkUtilityLibrary.SetFieldValue(CECLDate2Field, DictionaryArray[1].ToString());
+                            break;
+                        case "cecl text 1":
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.GetValueForApprovalProcess(CECLTEXT1Field);
+                            WebLinkUtility.WebLinkUtilityLibrary.SetFieldValue(CECLTEXT1Field, DictionaryArray[1].ToString());
+                            break;
+                        case "cecl text 2":
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.GetValueForApprovalProcess(CECLTEXT2Field);
+                            WebLinkUtility.WebLinkUtilityLibrary.SetFieldValue(CECLTEXT2Field, DictionaryArray[1].ToString());
+                            break;
+                        case "jjd test customer ade":
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.GetValueForApprovalProcess(jjdtestcustomeradeField);
+                            WebLinkUtility.WebLinkUtilityLibrary.SetFieldValue(jjdtestcustomeradeField, DictionaryArray[1].ToString());
+                            break;
+                        case "estatement2":
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.GetValueForApprovalProcess(estatement2Dropdown);
+                            WebLinkUtility.WebLinkUtilityLibrary.SelectDropdownValue(estatement2Dropdown, DictionaryArray[1].ToString());
+                            break;
+                        case "fpml preference indicator 2":
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.GetValueForApprovalProcess(FpMLPreferenceIndicator2Field);
+                            WebLinkUtility.WebLinkUtilityLibrary.SetFieldValue(FpMLPreferenceIndicator2Field, DictionaryArray[1].ToString());
+                            break;
+                        case "delivery_statement_3":
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.GetValueForApprovalProcess(Delivery_Statement_3Dropdown);
+                            WebLinkUtility.WebLinkUtilityLibrary.SelectDropdownValue(Delivery_Statement_3Dropdown, DictionaryArray[1].ToString());
+                            break;
+                        case "liq customer number":
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.GetValueForApprovalProcess(LIQCustomerNumberField);
+                            WebLinkUtility.WebLinkUtilityLibrary.SetFieldValue(LIQCustomerNumberField, DictionaryArray[1].ToString());
+                            break;
+                        case "is borrower group":
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.GetValueForApprovalProcess(IsBorrowerGroupField);
+                            WebLinkUtility.WebLinkUtilityLibrary.SetFieldValue(IsBorrowerGroupField, DictionaryArray[1].ToString());
+                            break;
+                        case "estatement delivery type":
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.GetValueForApprovalProcess(eStatementDeliveryTypeDropdown);
+                            WebLinkUtility.WebLinkUtilityLibrary.SelectDropdownValue(eStatementDeliveryTypeDropdown, DictionaryArray[1].ToString());
+                            break;
+                        case "euroclear eb id":
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.GetValueForApprovalProcess(EuroclearEBIDField);
+                            WebLinkUtility.WebLinkUtilityLibrary.SetFieldValue(EuroclearEBIDField, DictionaryArray[1].ToString());
+                            break;
+                        case "additional info":
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.GetValueForApprovalProcess(additionalinfoField);
+                            WebLinkUtility.WebLinkUtilityLibrary.SetFieldValue(additionalinfoField, DictionaryArray[1].ToString());
+                            break;
+                        case "dtcc participant id":
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.GetValueForApprovalProcess(DTCCParticipantIDField);
+                            WebLinkUtility.WebLinkUtilityLibrary.SetFieldValue(DTCCParticipantIDField, DictionaryArray[1].ToString());
+                            break;
+                        case "sp id":
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.GetValueForApprovalProcess(SPIDField);
+                            WebLinkUtility.WebLinkUtilityLibrary.SetFieldValue(SPIDField, DictionaryArray[1].ToString());
+                            break;
+                        case "clearpar id":
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.GetValueForApprovalProcess(ClearparIDField);
+                            WebLinkUtility.WebLinkUtilityLibrary.SetFieldValue(ClearparIDField, DictionaryArray[1].ToString());
+                            break;
+
+                        case "swift bicbei":
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.GetValueForApprovalProcess(SWIFTBICBEIField);
+                            WebLinkUtility.WebLinkUtilityLibrary.SetFieldValue(SWIFTBICBEIField, DictionaryArray[1].ToString());
+                            break;
+
+                        case "fpml preference indicator":
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.GetValueForApprovalProcess(FpMLPreferenceIndicatorDropdown);
+                            WebLinkUtility.WebLinkUtilityLibrary.SetFieldValue(FpMLPreferenceIndicatorDropdown, DictionaryArray[1].ToString());
+                            break;
+
+                        case "markit entity id":
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.GetValueForApprovalProcess(MarkitEntityIDField);
+                            WebLinkUtility.WebLinkUtilityLibrary.SetFieldValue(MarkitEntityIDField, DictionaryArray[1].ToString());
+                            break;
+
+                        case "fpml destination":
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.GetValueForApprovalProcess(FpMLDestinationField);
+                            WebLinkUtility.WebLinkUtilityLibrary.SetFieldValue(FpMLDestinationField, DictionaryArray[1].ToString());
+                            break;
+
+                        case "legal signature name":
+                            ExistingValue = WebLinkUtility.WebLinkUtilityLibrary.GetValueForApprovalProcess(LegalSignatureNameField);
+                            WebLinkUtility.WebLinkUtilityLibrary.SetFieldValue(LegalSignatureNameField, DictionaryArray[1].ToString());
+                            break;
+
+                        default:
+                            break;
+                    }
+                    if (ExistingValue != null && DictionaryArray[0].ToString() != "")
+                        WebLinkSPUserPageFactory.ApproveAndCompleteRequestPage.OptionalApprovalProcessValuesConcating("Additional Data:" + DictionaryArray[0].ToString() + ":" + ExistingValue + ":" + DictionaryArray[1].ToString());
+                    ExistingValue = null;
+                }
+                WebLinkUtility.WebLinkUtilityLibrary.SelectButton(AdditionalDataTab);
+            }
+            catch (Exception e)
+            {
+                string ExceptionMessage = e.Message;
+                WebLinkUtility.WebLinkUtilityLibrary.HandlePageException(ExceptionMessage);
+            }
+        }
+
+
+
+        public virtual void VerifyCustomerAdditionalData(string[] CustomerAdditionalData, bool ScreenCapture = true)
+        {
+            try
+            {
+                WebLinkUtility.WebLinkUtilityLibrary.SelectButton(AdditionalDataTab);
+                if (WebLinkUtility.WebLinkUtilityLibrary.IsObjectExistsInPage(CustomerAdditionalDataEditButton))
+                    WebLinkUtility.WebLinkUtilityLibrary.SelectButton(CustomerAdditionalDataEditButton);
+                int DetailReport = 0;
+                for (int i = 0; i < CustomerAdditionalData.Length; i++)
+                {
+                    DetailReport++;
+                    if (DetailReport > 1)
+                        ScreenCapture = false;
+                    string[] DictionaryArray = CustomerAdditionalData[i].ToString().Split(":");
+                    string keyelement = DictionaryArray[0].ToLower();
+                    Environment.SetEnvironmentVariable("ObjectName", keyelement);
+                    switch (keyelement)
+                    {
+                        case "cecl amount 1":
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectAmount(CECLAmount1Field, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        case "cecl date 1":
+                            DictionaryArray[1] = WebLinkUtility.WebLinkUtilityLibrary.ConvertDateInGivenFormat(DictionaryArray[1].ToString(), "MM/dd/yyyy");
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(CECLDate1Field, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        case "cecl date 2":
+                            DictionaryArray[1] = WebLinkUtility.WebLinkUtilityLibrary.ConvertDateInGivenFormat(DictionaryArray[1].ToString(), "MM/dd/yyyy");
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(CECLDate2Field, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        case "cecl text 1":
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(CECLTEXT1Field, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        case "cecl text 2":
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(CECLTEXT2Field, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        case "jjd test customer ade":
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(jjdtestcustomeradeField, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        case "estatement2":
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(estatement2Dropdown, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        case "fpml preference indicator 2":
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(FpMLPreferenceIndicator2Field, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        case "delivery_statement_3":
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(Delivery_Statement_3Dropdown, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        case "liq customer number":
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(LIQCustomerNumberField, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        case "is borrower group":
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(IsBorrowerGroupField, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        case "estatement delivery type":
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(eStatementDeliveryTypeDropdown, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        case "euroclear eb id":
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(EuroclearEBIDField, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        case "additional info":
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectAmount(additionalinfoField, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        case "dtcc participant id":
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(DTCCParticipantIDField, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        case "sp id":
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(SPIDField, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        case "clearpar id":
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(ClearparIDField, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        case "swift bicbei":
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(SWIFTBICBEIField, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        case "fpml preference indicator":
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(FpMLPreferenceIndicatorDropdown, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        case "markit entity id":
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(MarkitEntityIDField, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        case "fpml destination":
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(FpMLDestinationField, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        case "legal signature name":
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(LegalSignatureNameField, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                if (WebLinkUtility.WebLinkUtilityLibrary.IsObjectExistsInPage(CustomerAdditionalDataCancelButton))
+                    WebLinkUtility.WebLinkUtilityLibrary.SelectButton(CustomerAdditionalDataCancelButton);
+                WebLinkUtility.WebLinkUtilityLibrary.SelectButton(AdditionalDataTab);
+            }
+            catch (Exception e)
+            {
+                string ExceptionMessage = e.Message;
+                WebLinkUtility.WebLinkUtilityLibrary.HandlePageException(ExceptionMessage);
+            }
+        }
+
+        public virtual string GetCustomerID()
+        {
+            string CustID = "";
+            try
+            {
+                WebLinkUtility.WebLinkUtilityLibrary.WaitMajorTimeForObject(CustomerIdField);
+                WebLinkUtility.WebLinkUtilityLibrary.WaitMajorTimeForObject(CustomerIdField);
+                CustID = appHandle.GetObjectText(CustomerIdField);
+            }
+            catch (Exception e)
+            {
+                string ExceptionMessage = e.Message;
+                WebLinkUtility.WebLinkUtilityLibrary.HandlePageException(ExceptionMessage);
+            }
+            return CustID;
+
+        }
+
+        public bool VerifyCustomerCreationSuccessMessage()
+        {
+            try
+            {
+                WebLinkUtility.WebLinkUtilityLibrary.WaitMajorTimeForObject(SucessMessageObject);
+                WebLinkUtility.WebLinkUtilityLibrary.WaitMajorTimeForObject(SucessMessageObject);
+                WebLinkUtility.WebLinkUtilityLibrary.WaitMajorTimeForObject(SucessMessageObject);
+                Environment.SetEnvironmentVariable("ObjectName", "Message");
+                return WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(SucessMessageObject, "Success! New Customer Added", false, false);
+            }
+            catch (Exception e)
+            {
+                string ExceptionMessage = e.Message;
+                WebLinkUtility.WebLinkUtilityLibrary.HandlePageException(ExceptionMessage);
+            }
+            return false;
+
+        }
+
+
+        public virtual string GetCustomerName()
+        {
+            string CustName = "";
+            try
+            {
+                WebLinkUtility.WebLinkUtilityLibrary.WaitMediumTimeForObject(CustomerNameField);
+                CustName = appHandle.GetObjectText(CustomerNameField);
+            }
+            catch (Exception e)
+            {
+                string ExceptionMessage = e.Message;
+                WebLinkUtility.WebLinkUtilityLibrary.HandlePageException(ExceptionMessage);
+            }
+            return CustName;
+
+        }
+
+
+        public virtual void VerifyCustomerTopCardDetails(string[] CustomerInformation, bool ScreenCapture = true)
+        {
+            try
+            {
+                int DetailReport = 0;
+                for (int i = 0; i < CustomerInformation.Length; i++)
+                {
+                    DetailReport++;
+                    if (DetailReport > 1)
+                        ScreenCapture = false;
+
+                    string[] DictionaryArray = CustomerInformation[i].ToString().Split(":");
+                    string keyelement = DictionaryArray[0].ToLower();
+                    Environment.SetEnvironmentVariable("ObjectName", keyelement);
+                    switch (keyelement)
+                    {
+                        case "primary officer":
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(VerifyCustomerTopCardPrimaryOfficerField, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        case "secondary officer":
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(VerifyCustomerTopCardSecondaryOfficerField, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        case "customer identifier":
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(VerifyCustomerTopCardCustomerIdentifierField, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        case "customer type":
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(VerifyCustomerTopCardCustomerTypeField, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        case "industry classification":
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(VerifyCustomerTopCardIndustryClassificationField, DictionaryArray[1].ToString(), true, ScreenCapture);
+                            break;
+                        case "officer risk rating":
+                            WebLinkUtility.WebLinkUtilityLibrary.VerifyObjectText(VerifyCustomerTopCardOfficerRiskRatingField, DictionaryArray[1].ToString(), false, ScreenCapture);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                string ExceptionMessage = e.Message;
+                WebLinkUtility.WebLinkUtilityLibrary.HandlePageException(ExceptionMessage);
+            }
+        }
+
+
+    }
+}
+
+
+
+
