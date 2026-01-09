@@ -1,18 +1,21 @@
-upload another user code to bitbucket:
-1. create a new folder and git clone from master branch
-2. Create a new branch in Jira project
-3. use git fetch --all and git checkout <new_branch_name> in that newly created folder
-4. copy and paste with replace those 6 folders from another user WS to this newly created folder
-5. use command git status to check the staus of files
-6. open VS code in that new folder using code. in git bash and compare all files side by side
-7. after resolving all conflicts, again check git status, all files should be green
-8. git commit -m"ticket_name"
-9. git push
-10. Raise merge request in bitbucket
-
-                        index = Array.FindIndex(aFullMessage, line => line.Contains("<scb:payloadFormat>"));
-
-
-^\s*\w+\s+\w+\s*=\s*(?:"[^"]*"|'[^']*'|-?\d+(?:\.\d+)?|(?:true|false)).*//
-
-
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <IsPackable>false</IsPackable>
+    <OutputType>Exe</OutputType>
+    <GenerateProgramFile>false</GenerateProgramFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="GATS.NETCORE.OFS" Version="6.0.0" />
+    <PackageReference Include="nunit" Version="3.13.3" />
+    <PackageReference Include="NUnit3TestAdapter" Version="4.2.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.2.0" />
+    <PackageReference Include="NUnitLite" Version="3.13.3" />
+    <PackageReference Include="RoslynCodeTaskFactory" Version="2.0.7" />
+    <PackageReference Include="GATS.ChromeDriver" Version="143.0.0.0" />
+  </ItemGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <NoWarn></NoWarn>
+    <WarningLevel>0</WarningLevel>
+  </PropertyGroup>
+</Project>
