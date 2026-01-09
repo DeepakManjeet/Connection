@@ -10837,5 +10837,1094 @@ namespace WebLink.ObjectFactory.SPUser.Pages
 }
 
 
+COMMON APPLICATION________________________________________________________________
+****************************************************************************
+
+using GTS_OSAF.CoreLibs;
+using WebLink.ObjectFactory.SPUser;
+using GTS_OSAF.HelperLibs.DataAdapter;
+using System;
+using System.Collections.Generic;
+using WebLink.ObjectFactory.SPUser.Pages;
+using WebLink.ObjectFactory.Common.Pages;
+using GTS_OSAF.HelperLibs.Reporter;
+using WebLink.Utils;
+using GTS_OSAF;
+using System.Runtime.InteropServices;
+using GTS_CORE.CoreLibs;
+using WebLink.ObjectFactory.RMUser.Pages;
+
+namespace WebLink.BusinessFunctions.Applications
+{
+    public class CommonApplication
+    {
+        WebApplication appHandle = ApplicationHandlerFactory.GetApplication(ApplicationType.WEB);
+
+        //*****************************************************************************************************************************
+        // UDF NAME                 :	LoginSpecifiedApplication
+        // Purpose                  :	This function is used to login into the specified application. (Ex: SP User, RM User and BR User).
+        // Input Parameter          :	LoginCredentials
+        // Out Parameter    		:	Done or Fail
+        // Limitations              :	None
+        // Example1					:	Application.ACBSCommonLibrary.LoginSpecifiedApplication(StartupConfiguration.UserSettings.GLOBAL_USERID, StartupConfiguration.UserSettings.GLOBAL_PASSWORD);
+        // Example2					:	string GLOBAL_SYSTEM_DATE = Application.ACBSCommonLibrary.LoginSpecifiedApplication(StartupConfiguration.UserSettings.GLOBAL_USERID, StartupConfiguration.UserSettings.GLOBAL_PASSWORD,"Pipeline");
+        // ****************************************************************************************************************************
+        // 06/12/2019             	: Chennaiah Muttaluru
+        //***************************************************************************************************************************************************
+        [Counter("LoginApplication")]
+
+        public virtual void LoginApplication(string UserName, string Password = null)
+        {
+
+            try
+            {
+                WebLinkCommonPageFactory.LoginPage.OpenWebApplication();
+                WebLinkCommonPageFactory.LoginPage.EnterLoginDetails(UserName, Password);
+                WebLinkCommonPageFactory.LoginPage.ClickLogin();
+                Report.Pass("Successfully Login to ACBS WebLink", "", "True", appHandle);
+                Environment.SetEnvironmentVariable("CurrentUser", WebLinkUtility.WebLinkUtilityLibrary.ConvertStringIntoCamelCase(UserName));
+            }
+            catch (System.Exception e) { Report.Info("Exception Logged:" + e); }
+        }
+
+        //*****************************************************************************************************************************
+        // UDF NAME                 :	LogoutApplication
+        // Purpose                  :	This function is used to Logout into the specified application. (Ex: SP User, RM User and BR User).
+        // Input Parameter          :	LogoutApplication
+        // Out Parameter    		:	Done or Fail
+        // Limitations              :	None
+        // Example1					:	Application.ACBSCommonLibrary.LogoutApplication(StartupConfiguration.UserSettings.GLOBAL_USERID, StartupConfiguration.UserSettings.GLOBAL_PASSWORD);
+        // Example2					:	 Application.ACBSCommonLibrary.LogoutApplication(StartupConfiguration.UserSettings.GLOBAL_USERID, StartupConfiguration.UserSettings.GLOBAL_PASSWORD,"Pipeline");
+        // ****************************************************************************************************************************
+        // 06/12/2019             	: Chennaiah Muttaluru
+        //***************************************************************************************************************************************************
+        [Counter("LogoutApplication")]
+
+        public virtual void LogoutApplication(String Application = "SP")
+        {
+
+            try
+            {
+                WebLinkCommonPageFactory.LoginPage.Logout();
+            }
+            catch (System.Exception e) { Report.Info("Exception Logged:" + e); }
+        }
+
+        //*****************************************************************************************************************************
+        // UDF NAME                 :	VerifyLoanRolloverDetailsFromCustomerRequestsInprogressTab
+        // Purpose                  :	This function is used to verify loan rollover details from customer requests in progress tab in Weblink Rm User application. 
+        // Input Parameter          :	VerifyLoanRolloverDetails
+        // Out Parameter    		:	None
+        // Limitations              :	None
+        // Example					:	Application.CommonApplication.VerifyLoanRolloverDetailsFromCustomerRequestsInprogressTab(RequestID,FacilityID,InProgressTabFilterInformation,VerifyLoanRolloverDetails);
+        // ****************************************************************************************************************************
+        // 11/08/2024           	:   Sudheer Alimili
+        //***************************************************************************************************************************************************
+        /// <summary>
+        /// This function is used to verify loan rollover details from customer requests in progress tab in Weblink Rm User application.
+        /// </summary>
+        /// <param name="RequestID"></param>
+        /// <param name="FacilityID"></param>
+        /// <param name="InProgressTabFilterInformation"></param>
+        /// <param name="VerifyLoanRolloverDetails"></param>
+        /// <returns>None</returns>
+        /// <example>
+        /// Application.RMUserApplication.VerifyLoanRolloverDetailsFromCustomerRequestsInprogressTab(RequestID,FacilityID,InProgressTabFilterInformation,VerifyLoanRolloverDetails);
+        /// </example>
+        [Counter("VerifyLoanRolloverDetailsFromCustomerRequestsInprogressTab")]
+        public virtual void VerifyLoanRolloverDetailsFromCustomerRequestsInprogressTab(string RequestID, string FacilityID, string[] InProgressTabFilterInformation, string[] VerifyLoanRolloverDetails)
+        {
+            try
+            {
+                WebLinkCommonPageFactory.CommonPage.NavigateToWorkQueueCustomerRequestsPage("inprogress");
+                if (InProgressTabFilterInformation != null)
+                {
+                    WebLinkCommonPageFactory.CommonPage.EnterWorkQueueFilterInformation(InProgressTabFilterInformation);
+                    Reporter.Info("Enter Work Queue Filter Information", InProgressTabFilterInformation);
+                }
+                if (RequestID != null)
+                {
+                    WebLinkCommonPageFactory.CommonPage.NavigateToCustomerRequestDetailsPage(RequestID, FacilityID);
+                    string[] RequestIDInfo = { RequestID };
+                    Reporter.Info("Navigate To Customer Request Details Page.", RequestIDInfo);
+                }
+
+                if (VerifyLoanRolloverDetails != null)
+                {
+                    WebLinkCommonPageFactory.CommonPage.VerifyLoanRolloverInfoFromCustomerRequestsInprogressTab(VerifyLoanRolloverDetails);
+                    Reporter.Info("Verify Loan Rollover Info From Customer Requests In progress Tab.", VerifyLoanRolloverDetails);
+                }
+
+                WebLinkCommonPageFactory.CommonPage.ClickOnOKButton();
+                Report.Info("Click On Ok Button.");
+
+            }
+            catch (Exception e)
+            {
+                string ExceptionMessage = e.Message;
+                WebLinkUtility.WebLinkUtilityLibrary.HandleBusinessException(ExceptionMessage);
+            }
+        }
+
+        //*****************************************************************************************************************************
+        // UDF NAME                 :	VerifyLoanRolloverDetailsFromCustomerRequestsCompletedTab
+        // Purpose                  :	This function is used to verify loan rollover details from customer requests completed tab in Weblink Rm User application. 
+        // Input Parameter          :	VerifyLoanRolloverDetails
+        // Out Parameter    		:	None
+        // Limitations              :	None
+        // Example					:	Application.CommonApplication.VerifyLoanRolloverDetailsFromCustomerRequestsCompletedTab(RequestID,FacilityID,CompletedTabFilterInformation,VerifyLoanRolloverDetails);
+        // ****************************************************************************************************************************
+        // 11/08/2024           	:   Sudheer Alimili
+        //***************************************************************************************************************************************************
+        /// <summary>
+        /// This function is used to verify loan rollover details from customer requests completed tab in Weblink Rm User application.
+        /// </summary>
+        /// <param name="RequestID"></param>
+        /// <param name="FacilityID"></param>
+        /// <param name="CompletedTabFilterInformation"></param>
+        /// <param name="VerifyLoanRolloverDetails"></param>
+        /// <returns>None</returns>
+        /// <example>
+        /// Application.RMUserApplication.VerifyLoanRolloverDetailsFromCustomerRequestsCompletedTab(RequestID,FacilityID,CompletedTabFilterInformation,VerifyLoanRolloverDetails);
+        /// </example>
+        [Counter("VerifyLoanRolloverDetailsFromCustomerRequestsCompletedTab")]
+        public virtual void VerifyLoanRolloverDetailsFromCustomerRequestsCompletedTab(string RequestID, string FacilityID, string[] CompletedTabFilterInformation, string[] VerifyLoanRolloverDetails)
+        {
+            try
+            {
+                WebLinkCommonPageFactory.CommonPage.NavigateToWorkQueueCustomerRequestsPage("completed");
+                if (CompletedTabFilterInformation != null)
+                {
+                    WebLinkCommonPageFactory.CommonPage.EnterWorkQueueFilterInformation(CompletedTabFilterInformation);
+                }
+                if (RequestID != null)
+                {
+                    WebLinkCommonPageFactory.CommonPage.NavigateToCustomerRequestDetailsPage(RequestID, FacilityID);
+                }
+
+                if (VerifyLoanRolloverDetails != null)
+                {
+                    WebLinkCommonPageFactory.CommonPage.VerifyLoanRolloverInfoFromCustomerRequestsCompletedTab(VerifyLoanRolloverDetails);
+                    Reporter.Info("Verify Loan Rollover Info From Customer Requests Completed Tab.", VerifyLoanRolloverDetails);
+                }
+
+                WebLinkCommonPageFactory.CommonPage.ClickOnOKButton();
+                Report.Info("Click On Ok Button.");
+
+            }
+            catch (Exception e)
+            {
+                string ExceptionMessage = e.Message;
+                WebLinkUtility.WebLinkUtilityLibrary.HandleBusinessException(ExceptionMessage);
+            }
+        }
+
+        //*****************************************************************************************************************************
+        // UDF NAME                 :	AddRolloverSubmissionPreferenceConfiguration
+        // Purpose                  :	This function is used to add rollover submission preference configuration in Weblink RM User application. 
+        // Input Parameter          :   RolloverSubmissionPreferencesConfiguration
+        // Out Parameter    		:	None
+        // Limitations              :	None
+        // Example1					:	Application.CommonApplication.AddRolloverSubmissionPreferenceConfiguration(RolloverSubmissionPreferencesConfiguration);
+        // ****************************************************************************************************************************
+        // 11/12/2024             	:   Sudheer Alimili
+        //***************************************************************************************************************************************************
+        /// <summary>
+        /// This function is used to add rollover submission preference configuration in Weblink RM User application.
+        /// </summary>
+        /// <param name="RolloverSubmissionPreferencesConfiguration"></param>
+        /// <example>
+        /// Application.CommonApplication.AddRolloverSubmissionPreferenceConfiguration(RolloverSubmissionPreferencesConfiguration);
+        /// </example>
+        //***** ************************************************************************************************************************
+        [Counter("AddRolloverSubmissionPreferenceConfiguration")]
+        public virtual string AddRolloverSubmissionPreferenceConfiguration(string[] RolloverSubmissionPreferencesConfiguration)
+        {
+            try
+            {
+
+                if (RolloverSubmissionPreferencesConfiguration != null)
+                {
+                    WebLinkCommonPageFactory.PreferencesPage.NavigateToPreferenceRMBorrowerPage();
+                    WebLinkCommonPageFactory.PreferencesPage.EnterRolloverSubmissionConfiguration(RolloverSubmissionPreferencesConfiguration);
+                    Reporter.Info("Entering Rollover Submission Configuration", RolloverSubmissionPreferencesConfiguration);
+                }
+                WebLinkCommonPageFactory.PreferencesPage.ClickOnSaveButton();
+                WebLinkUtility.WebLinkUtilityLibrary.WaitMediumTimeForObject("Xpath;//*[contains(text(),'Preferences Saved')]");
+                bool Message = WebLinkCommonPageFactory.CommonPage.ConfirmTostSucessMessage("Preferences Saved");
+                Report.Info("Verify Success! Your Request Was Received is displayed.");
+                if (Message == true)
+                {
+                    Report.Pass("Rollover submission preferences configuration successfully updated in preferences page.", "AddRolloverSubmissionPreferenceConfiguration", "True", appHandle);
+                    return "Pass";
+                }
+                else
+                {
+                    Report.Fail("Rollover submission preferences configuration is failed to update. Please check the parameters.", "AddRolloverSubmissionPreferenceConfiguration", "True", appHandle, true);
+                    return "Fail";
+                }
+
+            }
+
+            catch (Exception e)
+            {
+                string ExceptionMessage = e.Message;
+                WebLinkUtility.WebLinkUtilityLibrary.HandleBusinessException(ExceptionMessage);
+            }
+            return null;
+        }
+
+        //*****************************************************************************************************************************
+        // UDF NAME                 :	LoanAdvanceExclusionConfigurationSetup
+        // Purpose                  :	This function is used to do the configuration setup for Loan Adance Exclusion in Preferences page.
+        // Input Parameter          :   LoanAdvanceExclusionConfiguration
+        // Out Parameter    		:	None
+        // Limitations              :	None
+        // Example1					:	Application.RMUserApplication.LoanAdvanceExclusionConfigurationSetup(LoanAdvanceExclusionConfiguration);
+        // ****************************************************************************************************************************
+        // 11/08/2024             	:   Kritika Nag
+        //***************************************************************************************************************************************************
+        /// <summary>
+        /// This function is used to do the configuration setup for Loan Adance Exclusion in Preferences page.
+        /// </summary>
+        /// <param name="LoanAdvanceExclusionConfiguration"></param>
+        /// <returns>None</returns>
+        /// <example>
+        /// Application.CommonApplication.LoanAdvanceExclusionConfigurationSetup(LoanAdvanceExclusionConfiguration);
+        /// </example>
+        //***** ************************************************************************************************************************
+        [Counter("LoanAdvanceExclusionConfigurationSetup")]
+        public virtual string LoanAdvanceExclusionConfigurationSetup(string LoanAdvanceExclusionConfiguration)
+        {
+            try
+            {
+                Report.Info("Navigate to Preferences RM/ Borrower page.");
+                WebLinkCommonPageFactory.PreferencesPage.NavigateToPreferenceRMBorrowerPage();
+
+                if (LoanAdvanceExclusionConfiguration != null)
+                {
+                    WebLinkCommonPageFactory.PreferencesPage.EnterLoanAdvanceExclusionConfigurationInfo(LoanAdvanceExclusionConfiguration);
+                }
+
+                Report.Info("Click on Save button to save the configuration.");
+                WebLinkCommonPageFactory.PreferencesPage.LoanAdvanceExclusionSaveConfigurationChange();
+
+                bool Message = WebLinkCommonPageFactory.CommonPage.ConfirmTostSucessMessage("Preferences Saved");
+                Report.Info("Verify Preference Saved toast message is displayed.");
+
+                if (Message == true)
+                {
+                    Report.Pass("Loan Advance Exclusion Preference is saved successfully.", "LoanAdvanceExclusionConfigurationSetup", "True", appHandle);
+                    return "Pass";
+                }
+                else
+                {
+                    Report.Fail("Loan Advance Exclusion Preference is not saved. Please check the parameters.", "LoanAdvanceExclusionConfigurationSetup", "True", appHandle, true);
+                    return "Fail";
+                }
+            }
+            catch (Exception e)
+            {
+                string ExceptionMessage = e.Message;
+                WebLinkUtility.WebLinkUtilityLibrary.HandleBusinessException(ExceptionMessage);
+            }
+            return null;
+        }
+
+
+        //*****************************************************************************************************************************
+        // UDF NAME                 :	AddLoanAdvanceRequestConfiguration
+        // Purpose                  :	This function is used to add Loan Advance Request preference configuration in Weblink RM/ SP User application. 
+        // Input Parameter          :   AdvanceRequestGeneralInfo, AdvanceRequestTransactionInfo, AdvanceRequestMinimumLeadDaysInfo, AdvanceRequestEmailAlertsInfo
+        // Out Parameter    		:	Pass/ Fail
+        // Limitations              :	None
+        // Example1					:	Application.CommonApplication.AddLoanAdvanceRequestConfiguration(AdvanceRequestGeneralInfo, AdvanceRequestTransactionInfo, AdvanceRequestMinimumLeadDaysInfo, AdvanceRequestEmailAlertsInfo);
+        // ****************************************************************************************************************************
+        // 11/13/2024             	:   Kritika Nag
+        //***************************************************************************************************************************************************
+        /// <summary>
+        /// This function is used to add Loan Advance Request preference configuration in Weblink RM/ SP User application.
+        /// </summary>
+        /// <param name="AdvanceRequestGeneralInfo"></param>
+        /// <param name="AdvanceRequestTransactionInfo"></param>
+        /// <param name="AdvanceRequestMinimumLeadDaysInfo"></param>
+        /// <param name="AdvanceRequestEmailAlertsInfo"></param>
+        /// <returns>Pass/Fail</returns>
+        /// <example>
+        /// Application.CommonApplication.AddLoanAdvanceRequestConfiguration(AdvanceRequestGeneralInfo, AdvanceRequestTransactionInfo, AdvanceRequestMinimumLeadDaysInfo, AdvanceRequestEmailAlertsInfo);
+        /// </example>
+        //*****************************************************************************************************************************
+        [Counter("AddLoanAdvanceRequestConfiguration")]
+        public virtual string AddLoanAdvanceRequestConfiguration(string[] AdvanceRequestGeneralInfo, string[] AdvanceRequestTransactionInfo, string[] AdvanceRequestMinimumLeadDaysInfo, string AdvanceRequestEmailAlertsInfo)
+        {
+            try
+            {
+                WebLinkCommonPageFactory.PreferencesPage.NavigateToLoanAdvanceRequestConfigurationPage();
+                if (AdvanceRequestGeneralInfo != null)
+                {
+                    WebLinkCommonPageFactory.PreferencesPage.EnterLoanAdvanceRequestGeneralConfigInfo(AdvanceRequestGeneralInfo);
+                    Reporter.Info("Entering Loan Advance Request General Configuration", AdvanceRequestGeneralInfo);
+                }
+
+                if (AdvanceRequestTransactionInfo != null)
+                {
+                    WebLinkCommonPageFactory.PreferencesPage.EnterLoanAdvanceRequestTransactionTypeInfo(AdvanceRequestTransactionInfo);
+                    Reporter.Info("Entering Loan Advance Request Transaction Type Configuration", AdvanceRequestTransactionInfo);
+                }
+
+                if (AdvanceRequestMinimumLeadDaysInfo != null)
+                {
+                    WebLinkCommonPageFactory.PreferencesPage.EnterLoanAdvanceRequestMinimumLeadDaysInfo(AdvanceRequestMinimumLeadDaysInfo);
+                    Reporter.Info("Entering Loan Advance Request Minimum Lead Days Configuration", AdvanceRequestTransactionInfo);
+                }
+
+                if (AdvanceRequestEmailAlertsInfo != null)
+                {
+                    WebLinkCommonPageFactory.PreferencesPage.EnterAdvanceRequestEmailAlertsInfo(AdvanceRequestEmailAlertsInfo);
+                    Reporter.Info("Entering Loan Advance Request Email Alerts Configuration");
+                }
+
+                WebLinkCommonPageFactory.PreferencesPage.ClickOnRequestAdvanceSaveButton();
+                bool Message = WebLinkCommonPageFactory.CommonPage.ConfirmTostSucessMessage("Preferences Saved");
+                Report.Info("Verify Success! Preferences Saved toast message is displayed.");
+                if (Message == true)
+                {
+                    Report.Pass("Loan Advance Request preferences configuration successfully updated in preferences page.", "AddLoanAdvanceRequestConfiguration", "True", appHandle);
+                    return "Pass";
+                }
+                else
+                {
+                    Report.Fail("Failed to update Loan Advance Request preferences configuration. Please check the parameters.", "AddLoanAdvanceRequestConfiguration", "True", appHandle, true);
+                    return "Fail";
+                }
+            }
+            catch (Exception e)
+            {
+                string ExceptionMessage = e.Message;
+                WebLinkUtility.WebLinkUtilityLibrary.HandleBusinessException(ExceptionMessage);
+            }
+            return null;
+        }
+
+        //*****************************************************************************************************************************
+        // UDF NAME                 :	VerifyTransactionDetailsFromCustomerRequestsInprogressTab
+        // Purpose                  :	This function is used to verify transaction details from customer requests in progress tab in Weblink Rm/ SP User application. 
+        // Input Parameter          :	VerifyTransactionDetails
+        // Out Parameter    		:	None
+        // Limitations              :	None
+        // Example					:	Application.CommonApplication.VerifyTransactionDetailsFromCustomerRequestsInprogressTab(RequestID,FacilityID,InProgressTabFilterInformation,VerifyLoanRolloverDetails);
+        // ****************************************************************************************************************************
+        // 11/14/2024           	:   Kritika Nag
+        //***************************************************************************************************************************************************
+        /// <summary>
+        /// This function is used to verify transaction details from customer requests in progress tab in Weblink Rm/ SP User application.
+        /// </summary>
+        /// <param name="RequestID"></param>
+        /// <param name="FacilityID"></param>
+        /// <param name="InProgressTabFilterInformation"></param>
+        /// <param name="VerifyTransactionDetails"></param>
+        /// <returns>None</returns>
+        /// <example>
+        /// Application.RMUserApplication.VerifyTransactionDetailsFromCustomerRequestsInprogressTab(RequestID, FacilityID, InProgressTabFilterInformation, VerifyTransactionDetails);
+        /// </example>
+        [Counter("VerifyTransactionDetailsFromCustomerRequestsInprogressTab")]
+        public virtual void VerifyTransactionDetailsFromCustomerRequestsInprogressTab(string RequestID, string FacilityID, string[] InProgressTabFilterInformation, string[] VerifyTransactionDetails)
+        {
+            try
+            {
+                WebLinkCommonPageFactory.CommonPage.NavigateToWorkQueueCustomerRequestsPage("inprogress");
+                if (InProgressTabFilterInformation != null)
+                {
+                    WebLinkCommonPageFactory.CommonPage.EnterWorkQueueFilterInformation(InProgressTabFilterInformation);
+                }
+
+                if (VerifyTransactionDetails != null)
+                {
+                    WebLinkCommonPageFactory.CommonPage.VerifyInProgressTransactionInformationDetails(RequestID, VerifyTransactionDetails);
+                }
+
+                WebLinkCommonPageFactory.CommonPage.ClickOnOKButton();
+                Report.Info("Click On Ok Button.");
+            }
+            catch (Exception e)
+            {
+                string ExceptionMessage = e.Message;
+                WebLinkUtility.WebLinkUtilityLibrary.HandleBusinessException(ExceptionMessage);
+            }
+        }
+
+        //*****************************************************************************************************************************
+        // UDF NAME                 :	VerifyTransactionDetailsFromCustomerRequestsInCompletedTab
+        // Purpose                  :	This function is used to verify transaction details from customer requests completed tab in Weblink Rm/ SP User application. 
+        // Input Parameter          :	VerifyCompletedTabTransactionDetails
+        // Out Parameter    		:	None
+        // Limitations              :	None
+        // Example					:	Application.CommonApplication.VerifyTransactionDetailsFromCustomerRequestsInCompletedTab(RequestID, FacilityID, CompletedTabFilterInformation, VerifyCompletedTabTransactionDetails);
+        // ****************************************************************************************************************************
+        // 11/14/2024           	:   Kritika Nag
+        //***************************************************************************************************************************************************
+        /// <summary>
+        /// This function is used to verify transaction details from customer requests completed tab in Weblink Rm/ SP User application. 
+        /// </summary>
+        /// <param name="RequestID"></param>
+        /// <param name="FacilityID"></param>
+        /// <param name="CompletedTabFilterInformation"></param>
+        /// <param name="VerifyCompletedTabTransactionDetails"></param>
+        /// <returns>None</returns>
+        /// <example>
+        /// Application.RMUserApplication.VerifyTransactionDetailsFromCustomerRequestsInCompletedTab(RequestID, FacilityID, CompletedTabFilterInformation, VerifyCompletedTabTransactionDetails);
+        /// </example>
+        [Counter("VerifyTransactionDetailsFromCustomerRequestsInCompletedTab")]
+        public virtual void VerifyTransactionDetailsFromCustomerRequestsInCompletedTab(string RequestID, string FacilityID, string[] CompletedTabFilterInformation, string[] VerifyCompletedTabTransactionDetails)
+        {
+            try
+            {
+                WebLinkCommonPageFactory.CommonPage.NavigateToWorkQueueCustomerRequestsPage("completed");
+                if (CompletedTabFilterInformation != null)
+                {
+                    WebLinkCommonPageFactory.CommonPage.EnterWorkQueueFilterInformation(CompletedTabFilterInformation);
+                }
+
+                if (VerifyCompletedTabTransactionDetails != null)
+                {
+                    WebLinkCommonPageFactory.CommonPage.VerifyTransactionDetailsInCompletedTab(RequestID, VerifyCompletedTabTransactionDetails);
+                }
+
+                WebLinkCommonPageFactory.CommonPage.ClickOnOKButton();
+                Report.Info("Click On Ok Button.");
+            }
+            catch (Exception e)
+            {
+                string ExceptionMessage = e.Message;
+                WebLinkUtility.WebLinkUtilityLibrary.HandleBusinessException(ExceptionMessage);
+            }
+        }
+
+        //*****************************************************************************************************************************
+        // UDF NAME                 :	GetBundleIDFromCustomerRequestsPage
+        // Purpose                  :	This function is used to get bundle ID from customer Requests page in Weblink SP/RM User application. 
+        // Input Parameter          :   RequestId
+        // Out Parameter    		:	None
+        // Limitations              :	None
+        // Example1					:	Application.CommonApplication.GetBundleIDFromCustomerRequestsPage(RequestId);
+        // ****************************************************************************************************************************
+        // 11/14/2024             	:   Sudheer Alimili
+        //***************************************************************************************************************************************************
+        /// <summary>
+        /// This function is used to in get bundle ID from customer Requests page in Weblink SP/RM User application
+        /// </summary>
+        /// <param name="RequestId"></param>
+        /// <example>
+        /// Application.CommonApplication.GetBundleIDFromCustomerRequestsPage(RequestId);
+        /// </example>
+        //***** ************************************************************************************************************************
+        [Counter("GetBundleIDFromCustomerRequestsPage")]
+        public virtual string GetBundleIDFromCustomerRequestsPage(string RequestId)
+        {
+            try
+            {
+                string BundleID;
+                Report.Info("Get BundleID From Customer Requests Page.");
+                BundleID = WebLinkCommonPageFactory.CommonPage.GetBundleIDFromCustomerRequestsPage(RequestId);
+                string[] BundleIdInfo = new string[] { BundleID };
+                Reporter.Info("Get Bundle ID From Customer Requests Page.", BundleIdInfo);
+                RunTimeData.Store("CustomerReqBundleID", BundleID);
+                return BundleID;
+            }
+
+            catch (Exception e)
+            {
+                string ExceptionMessage = e.Message;
+                WebLinkUtility.WebLinkUtilityLibrary.HandleBusinessException(ExceptionMessage);
+            }
+            return null;
+        }
+        //*****************************************************************************************************************************
+        // UDF NAME                 :	PaymentRequestProcessingConfigurationSetup
+        // Purpose                  :	This function is used to do the configuration setup for Payment Request Processing Configuration Setup in Preferences page.
+        // Input Parameter          :   GeneralConfiguration,EmailAlertsConfiguration,FacilityPaymentOrderConfiguration,FacilityPaymentOverageOrderConfiguration,LoanPaymentOrderConfiguration,LoanPaymentOverageOrderConfiguration,PaymentOverageToleranceConfiguration,MaximumLeadDaysConfiguration,MinimumLeadDaysConfiguration
+        // Out Parameter    		:	None
+        // Limitations              :	None
+        // Example1					:	Application.RMUserApplication.PaymentRequestProcessingConfigurationSetup(LoanAdvanceExclusionConfiguration);
+        // ****************************************************************************************************************************
+        // 11/08/2024             	:   Chennaiah Muttaluru
+        //***************************************************************************************************************************************************
+        [Counter("PaymentRequestProcessingConfigurationSetup")]
+        public virtual string PaymentRequestProcessingConfigurationSetup([Optional] string[] GeneralConfiguration, [Optional] string EmailAlertsConfiguration, [Optional] string[] FacilityPaymentOrderConfiguration, [Optional] string[] FacilityPaymentOverageOrderConfiguration, [Optional] string[] LoanPaymentOrderConfiguration, [Optional] string[] LoanPaymentOverageOrderConfiguration, [Optional] string PaymentOverageToleranceConfiguration, [Optional] string MaximumLeadDaysConfiguration, [Optional] string MinimumLeadDaysConfiguration)
+        {
+            try
+            {
+                Report.Info("Navigate to Preferences RM/ Borrower page.");
+                WebLinkCommonPageFactory.PreferencesPage.NavigateToPaymentRequestProcessingPage();
+                if (GeneralConfiguration != null)
+                {
+                    WebLinkCommonPageFactory.PreferencesPage.EnterPaymentRequestProcessingGeneralInfo(GeneralConfiguration);
+                    Reporter.Info("Enter Payment Request Processing General Information.", GeneralConfiguration);
+                }
+                if (EmailAlertsConfiguration != null)
+                {
+                    WebLinkCommonPageFactory.PreferencesPage.EnterPaymentRequestProcessingEmailInfo(EmailAlertsConfiguration);
+                    Reporter.Info("Enter Payment Request Processing Email Information. Email ID: " + EmailAlertsConfiguration);
+                }
+                if (FacilityPaymentOrderConfiguration != null)
+                {
+                    WebLinkCommonPageFactory.PreferencesPage.EnterPaymentRequestFacilityPaymentOrderInfo(FacilityPaymentOrderConfiguration);
+                    Reporter.Info("Enter Payment Request Processing Facility Payment Order Information.", FacilityPaymentOrderConfiguration);
+                }
+
+                if (FacilityPaymentOverageOrderConfiguration != null)
+                {
+                    WebLinkCommonPageFactory.PreferencesPage.EnterPaymentRequestFacilityPaymentOverageOrderInfo(FacilityPaymentOverageOrderConfiguration);
+                    Reporter.Info("Enter Payment Request Processing Facility Payment Overage Order Information.", FacilityPaymentOverageOrderConfiguration);
+                }
+
+                if (LoanPaymentOrderConfiguration != null)
+                {
+                    WebLinkCommonPageFactory.PreferencesPage.EnterPaymentRequestLoanPaymentOrderInfo(LoanPaymentOrderConfiguration);
+                    Reporter.Info("Enter Payment Request Processing Loan Payment Order Information.", LoanPaymentOrderConfiguration);
+                }
+
+                if (LoanPaymentOverageOrderConfiguration != null)
+                {
+                    WebLinkCommonPageFactory.PreferencesPage.EnterPaymentRequestLoanPaymentOverageOrderInfo(LoanPaymentOverageOrderConfiguration);
+                    Reporter.Info("Enter Payment Request Processing Loan Payment Overage Order Information.", LoanPaymentOverageOrderConfiguration);
+                }
+
+                if (PaymentOverageToleranceConfiguration != null)
+                {
+                    WebLinkCommonPageFactory.PreferencesPage.EnterPaymentOverageToleranceInfo(PaymentOverageToleranceConfiguration);
+                    Reporter.Info("Enter Payment Request Processing Payment Overage Tolerance Information. Payment Overage Tolerance: " + PaymentOverageToleranceConfiguration);
+                }
+
+                if (MaximumLeadDaysConfiguration != null)
+                {
+                    WebLinkCommonPageFactory.PreferencesPage.EnterPaymentMaximumLeadDaysInfo(MaximumLeadDaysConfiguration);
+                    Reporter.Info("Enter Payment Request Processing Maximum Lead Days Information. Maximum Lead Days: " + MaximumLeadDaysConfiguration);
+                }
+
+                if (MinimumLeadDaysConfiguration != null)
+                {
+                    WebLinkCommonPageFactory.PreferencesPage.EnterPaymentMinimumLeadDaysInfo(MinimumLeadDaysConfiguration);
+                    Reporter.Info("Enter Payment Request Processing Minimum Lead Days Information. Minimum Lead Days: " + MinimumLeadDaysConfiguration);
+                }
+
+                Report.Info("Click on Save button to save the configuration.");
+                WebLinkCommonPageFactory.PreferencesPage.PaymentRequestProcessingSave();
+
+                bool Message = WebLinkCommonPageFactory.CommonPage.ConfirmTostSucessMessage("Preferences Saved");
+                Report.Info("Verify Preference Saved toast message is displayed.");
+
+                if (Message == true)
+                {
+                    Report.Pass("Payment Request Processing Preference is saved successfully.", "PaymentRequestProcessingConfigurationSetup", "True", appHandle);
+                    return "Pass";
+                }
+                else
+                {
+                    Report.Fail("Payment Request Processing Preference is not saved. Please check the parameters.", "PaymentRequestProcessingConfigurationSetup", "True", appHandle, true);
+                    return "Fail";
+                }
+            }
+            catch (Exception e)
+            {
+                string ExceptionMessage = e.Message;
+                WebLinkUtility.WebLinkUtilityLibrary.HandleBusinessException(ExceptionMessage);
+            }
+            return null;
+        }
+
+
+        //*****************************************************************************************************************************
+        // UDF NAME                 :	PaymentTransactionsConfigurationSetup
+        // Purpose                  :	This function is used to do the configuration setup for Payment Transactions Configuration Setup in Preferences page.
+        // Input Parameter          :   GeneralConfiguration,EmailAlertsConfiguration,FacilityPaymentOrderConfiguration,FacilityPaymentOverageOrderConfiguration,LoanPaymentOrderConfiguration,LoanPaymentOverageOrderConfiguration,PaymentOverageToleranceConfiguration,MaximumLeadDaysConfiguration,MinimumLeadDaysConfiguration
+        // Out Parameter    		:	None
+        // Limitations              :	None
+        // Example1					:	Application.RMUserApplication.PaymentTransactionsConfigurationSetup(LoanAdvanceExclusionConfiguration);
+        // ****************************************************************************************************************************
+        // 11/08/2024             	:   Chennaiah Muttaluru
+        //***************************************************************************************************************************************************
+        [Counter("PaymentTransactionsConfigurationSetup")]
+        public virtual string PaymentTransactionsConfigurationSetup([Optional] string[] FacilityFeeReceivablesInfo, [Optional] string[] PrincipalReceivablesInfo, [Optional] string[] LoanIncomeReceivablesInfo, [Optional] string[] EscrowInfo)
+        {
+            try
+            {
+                Report.Info("Navigate to Payment Transactions page.");
+                WebLinkCommonPageFactory.PreferencesPage.NavigateToPaymentTransactionsPage();
+                if (FacilityFeeReceivablesInfo != null)
+                {
+                    WebLinkCommonPageFactory.PreferencesPage.AddPaymentTransactionsFacilityFeeReceivables(FacilityFeeReceivablesInfo);
+                    Reporter.Info("Enter Payment Transactions Facility Fee Receivables Information.", FacilityFeeReceivablesInfo);
+                }
+                if (PrincipalReceivablesInfo != null)
+                {
+                    WebLinkCommonPageFactory.PreferencesPage.AddPaymentTransactionsPrincipalReceivables(PrincipalReceivablesInfo);
+                    Reporter.Info("Enter Payment Transactions Principal Receivables Information.", PrincipalReceivablesInfo);
+                }
+                if (LoanIncomeReceivablesInfo != null)
+                {
+                    WebLinkCommonPageFactory.PreferencesPage.AddPaymentTransactionsLoanIncomeReceivables(LoanIncomeReceivablesInfo);
+                    Reporter.Info("Enter Payment Transactions Loan Income Information.", LoanIncomeReceivablesInfo);
+                }
+                if (EscrowInfo != null)
+                {
+                    WebLinkCommonPageFactory.PreferencesPage.AddPaymentTransactionsEscrowInfo(EscrowInfo);
+                    Reporter.Info("Enter Payment Transactions Escrow Information.", EscrowInfo);
+                }
+                Report.Info("Click on Save button to save the configuration.");
+                WebLinkCommonPageFactory.PreferencesPage.PaymentTransactionsSave();
+                bool Message = WebLinkCommonPageFactory.CommonPage.ConfirmTostSucessMessage("Preferences Payment Transactions Saved");
+                Report.Info("Verify Preference Saved toast message is displayed.");
+
+                if (Message == true)
+                {
+                    Report.Pass("Payment Transactions Preference is saved successfully.", "PaymentTransactionsConfigurationSetup", "True", appHandle);
+                    return "Pass";
+                }
+                else
+                {
+                    Report.Fail("Payment Transactions Preference is not saved. Please check the parameters.", "PaymentTransactionsConfigurationSetup", "True", appHandle, true);
+                    return "Fail";
+                }
+            }
+            catch (Exception e)
+            {
+                string ExceptionMessage = e.Message;
+                WebLinkUtility.WebLinkUtilityLibrary.HandleBusinessException(ExceptionMessage);
+            }
+            return null;
+        }
+
+        //*****************************************************************************************************************************
+        // UDF NAME                 :	PaymentExclusionssConfigurationSetup
+        // Purpose                  :	This function is used to do the configuration setup for Payment Transactions Configuration Setup in Preferences page.
+        // Input Parameter          :   GeneralConfiguration,EmailAlertsConfiguration,FacilityPaymentOrderConfiguration,FacilityPaymentOverageOrderConfiguration,LoanPaymentOrderConfiguration,LoanPaymentOverageOrderConfiguration,PaymentOverageToleranceConfiguration,MaximumLeadDaysConfiguration,MinimumLeadDaysConfiguration
+        // Out Parameter    		:	None
+        // Limitations              :	None
+        // Example1					:	Application.RMUserApplication.PaymentExclusionssConfigurationSetup(LoanAdvanceExclusionConfiguration);
+        // ****************************************************************************************************************************
+        // 11/08/2024             	:   Chennaiah Muttaluru
+        //***************************************************************************************************************************************************
+        [Counter("PaymentExclusionssConfigurationSetup")]
+        public virtual string PaymentExclusionsConfigurationSetup(string[] PaymentExclusionsInfo)
+        {
+            try
+            {
+                Report.Info("Navigate to Payment Exclusions page.");
+                WebLinkCommonPageFactory.PreferencesPage.NavigateToPaymentExclusionsPage();
+                if (PaymentExclusionsInfo != null)
+                {
+                    WebLinkCommonPageFactory.PreferencesPage.AddPaymentExclusionInfo(PaymentExclusionsInfo);
+                    Reporter.Info("Enter Payment Exclusions Information.", PaymentExclusionsInfo);
+                }
+
+                Report.Info("Click on Save button to save the configuration.");
+                WebLinkCommonPageFactory.PreferencesPage.PaymentExclusionSave();
+                bool Message = WebLinkCommonPageFactory.CommonPage.ConfirmTostSucessMessage("Payment Exclusion Preferences Successfully Updated");
+                Report.Info("Verify Preference Saved toast message is displayed.");
+
+                if (Message == true)
+                {
+                    Report.Pass("Payment Exclusions Preference is saved successfully.", "PaymentExclusionsConfigurationSetup", "True", appHandle);
+                    return "Pass";
+                }
+                else
+                {
+                    Report.Fail("Payment Exclusions Preference is not saved. Please check the parameters.", "PaymentExclusionsConfigurationSetup", "True", appHandle, true);
+                    return "Fail";
+                }
+            }
+            catch (Exception e)
+            {
+                string ExceptionMessage = e.Message;
+                WebLinkUtility.WebLinkUtilityLibrary.HandleBusinessException(ExceptionMessage);
+            }
+            return null;
+        }
+        //*****************************************************************************************************************************
+        // UDF NAME                 :	AddRequestALoanPreferenceConfiguration
+        // Purpose                  :	This function is used to add Request a loan preference configuration in Weblink RM User application. 
+        // Input Parameter          :   RequestALoanPreferencesConfiguration
+        // Out Parameter    		:	None
+        // Limitations              :	None
+        // Example1					:	Application.CommonApplication.AddRequestALoanPreferenceConfiguration(RequestALoanPreferencesConfiguration);
+        // ****************************************************************************************************************************
+        // 11/30/2024             	:   Ambati Amruta
+        //***************************************************************************************************************************************************
+        /// <summary>
+        /// This function is used to add rollover submission preference configuration in Weblink RM User application.
+        /// </summary>
+        /// <param name="RequestALoanPreferencesConfiguration"></param>
+        /// <example>
+        /// Application.CommonApplication.AddRequestALoanPreferenceConfiguration(RequestALoanPreferencesConfiguration);
+        /// </example>
+        //***** ************************************************************************************************************************
+        [Counter("AddRequestALoanPreferenceConfiguration")]
+        public virtual string AddRequestALoanPreferenceConfiguration(string[] RequestALoanPreferencesConfiguration)
+        {
+            try
+            {
+
+                if (RequestALoanPreferencesConfiguration != null)
+                {
+                    WebLinkCommonPageFactory.PreferencesPage.NavigateToPreferenceRMBorrowerPage();
+                    WebLinkCommonPageFactory.PreferencesPage.EnterNewLoanRequestConfiguration(RequestALoanPreferencesConfiguration);
+                    Reporter.Info("Entering Loan Advance Request Configuration", RequestALoanPreferencesConfiguration);
+                }
+                WebLinkCommonPageFactory.PreferencesPage.ClickOnNewLoanRequestSaveButton();
+                bool Message = WebLinkCommonPageFactory.CommonPage.ConfirmTostSucessMessage("New Loan Request Preferences Successfully updated");
+                Report.Info("Verify Success! Your Request Was Received is displayed.");
+                if (Message == true)
+                {
+                    Report.Pass("New Loan Request preferences configuration successfully updated in preferences page.", "AddRequestALoanPreferenceConfiguration", "True", appHandle);
+                    return "Pass";
+                }
+                else
+                {
+                    Report.Fail("New Loan Request preferences configuration is failed to update. Please check the parameters.", "AddRequestALoanPreferenceConfiguration", "True", appHandle, true);
+                    return "Fail";
+                }
+
+            }
+
+            catch (Exception e)
+            {
+                string ExceptionMessage = e.Message;
+                WebLinkUtility.WebLinkUtilityLibrary.HandleBusinessException(ExceptionMessage);
+            }
+            return null;
+        }
+
+        //*****************************************************************************************************************************
+        // UDF NAME                 :	VerifyNewLoanRequestDetailsFromCustomerRequestsInprogressTab
+        // Purpose                  :	This function is used to verify new loan request details from customer requests in progress tab in Weblink Rm User application. 
+        // Input Parameter          :	VerifyNewLoanRequestDetails
+        // Out Parameter    		:	None
+        // Limitations              :	None
+        // Example					:	Application.CommonApplication.VerifyNewLoanRequestDetailsFromCustomerRequestsInprogressTab(RequestID,FacilityID,InProgressTabFilterInformation,VerifyNewLoanRequestDetails);
+        // ****************************************************************************************************************************
+        // 12/02/2024           	:   Ambati Amruta
+        //***************************************************************************************************************************************************
+        /// <summary>
+        /// This function is used to verify new loan request details from customer requests in progress tab in Weblink Rm User application.
+        /// </summary>
+        /// <param name="RequestID"></param>
+        /// <param name="FacilityID"></param>
+        /// <param name="InProgressTabFilterInformation"></param>
+        /// <param name="VerifyNewLoanRequestDetails"></param>
+        /// <returns>None</returns>
+        /// <example>
+        /// Application.RMUserApplication.VerifyNewLoanRequestDetailsFromCustomerRequestsInprogressTab(RequestID,FacilityID,InProgressTabFilterInformation,VerifyNewLoanRequestDetails);
+        /// </example>
+        [Counter("VerifyNewLoanRequestDetailsFromCustomerRequestsInprogressTab")]
+        public virtual void VerifyNewLoanRequestDetailsFromCustomerRequestsInprogressTab(string RequestID, string FacilityID, string[] InProgressTabFilterInformation, string[] VerifyNewLoanRequestDetails)
+        {
+            try
+            {
+                WebLinkCommonPageFactory.CommonPage.NavigateToWorkQueueCustomerRequestsPage("inprogress");
+                if (InProgressTabFilterInformation != null)
+                {
+                    WebLinkCommonPageFactory.CommonPage.EnterWorkQueueFilterInformation(InProgressTabFilterInformation);
+                }
+                if (RequestID != null)
+                {
+                    WebLinkCommonPageFactory.CommonPage.NavigateToCustomerRequestDetailsPage(RequestID, FacilityID);
+                }
+
+                if (VerifyNewLoanRequestDetails != null)
+                {
+                    WebLinkCommonPageFactory.CommonPage.VerifyNewLoanRequestInfoFromCustomerRequestsInprogressTab(VerifyNewLoanRequestDetails);
+                    Reporter.Info("Verify New Loan Request Info From Customer Requests In progress Tab.", VerifyNewLoanRequestDetails);
+                }
+
+                WebLinkCommonPageFactory.CommonPage.ClickOnOKButton();
+                Report.Info("Click On Ok Button.");
+
+            }
+            catch (Exception e)
+            {
+                string ExceptionMessage = e.Message;
+                WebLinkUtility.WebLinkUtilityLibrary.HandleBusinessException(ExceptionMessage);
+            }
+        }
+        //*****************************************************************************************************************************
+        // UDF NAME                 :	VerifyNewLoanRequestDetailsFromCustomerRequestsCompletedTab
+        // Purpose                  :	This function is used to verify new loan request details from customer requests completed tab in Weblink Rm User application. 
+        // Input Parameter          :	VerifyNewLoanRequestDetails
+        // Out Parameter    		:	None
+        // Limitations              :	None
+        // Example					:	Application.CommonApplication.VerifyNewLoanRequestDetailsFromCustomerRequestsCompletedTab(RequestID,FacilityID,CompletedTabFilterInformation,VerifyNewLoanRequestDetails);
+        // ****************************************************************************************************************************
+        // 11/02/2024           	:   Ambati Amruta
+        //***************************************************************************************************************************************************
+        /// <summary>
+        /// This function is used to verify new loan request details from customer requests completed tab in Weblink Rm User application.
+        /// </summary>
+        /// <param name="RequestID"></param>
+        /// <param name="FacilityID"></param>
+        /// <param name="CompletedTabFilterInformation"></param>
+        /// <param name="VerifyNewLoanRequestDetails"></param>
+        /// <returns>None</returns>
+        /// <example>
+        /// Application.RMUserApplication.VerifyNewLoanRequestDetailsFromCustomerRequestsCompletedTab(RequestID,FacilityID,CompletedTabFilterInformation,VerifyNewLoanRequestDetails);
+        /// </example>
+        [Counter("VerifyNewLoanRequestDetailsFromCustomerRequestsCompletedTab")]
+        public virtual void VerifyNewLoanRequestDetailsFromCustomerRequestsCompletedTab(string RequestID, string FacilityID, string[] CompletedTabFilterInformation, string[] VerifyNewLoanRequestDetails)
+        {
+            try
+            {
+                WebLinkCommonPageFactory.CommonPage.NavigateToWorkQueueCustomerRequestsPage("completed");
+                if (CompletedTabFilterInformation != null)
+                {
+                    WebLinkCommonPageFactory.CommonPage.EnterWorkQueueFilterInformation(CompletedTabFilterInformation);
+                }
+                if (RequestID != null)
+                {
+                    WebLinkCommonPageFactory.CommonPage.NavigateToCustomerRequestDetailsPage(RequestID, FacilityID);
+                }
+
+                if (VerifyNewLoanRequestDetails != null)
+                {
+                    WebLinkCommonPageFactory.CommonPage.VerifyNewLoanRequestInfoFromCustomerRequestsCompletedTab(VerifyNewLoanRequestDetails);
+                    Reporter.Info("Verify New Loan Request Info From Customer Requests Completed Tab.", VerifyNewLoanRequestDetails);
+                }
+
+                WebLinkCommonPageFactory.CommonPage.ClickOnOKButton();
+                Report.Info("Click On Ok Button.");
+
+            }
+            catch (Exception e)
+            {
+                string ExceptionMessage = e.Message;
+                WebLinkUtility.WebLinkUtilityLibrary.HandleBusinessException(ExceptionMessage);
+            }
+        }
+
+        //*****************************************************************************************************************************
+        // UDF NAME                 :	RequestProcessingGeneralCutoffTimeConfiguration
+        // Purpose                  :	This function is used to do the configuration for Request Processing General cut off time in Preferences page.
+        // Input Parameter          :   RequestProcessingCutoffTimeConfig
+        // Out Parameter    		:	None
+        // Limitations              :	None
+        // Example1					:	Application.CommonApplication.RequestProcessingGeneralCutoffTimeConfiguration(RequestProcessingCutoffTimeConfig);
+        // ****************************************************************************************************************************
+        // 11/08/2024             	:   Kritika Nag
+        //***************************************************************************************************************************************************
+        /// <summary>
+        /// This function is used to do the configuration for Request Processing General cut off time in Preferences page.
+        /// </summary>
+        /// <param name="RequestProcessingCutoffTimeConfig"></param>
+        /// <returns>None</returns>
+        /// <example>
+        /// Application.CommonApplication.RequestProcessingGeneralCutoffTimeConfiguration(RequestProcessingCutoffTimeConfig);
+        /// </example>
+        //***** ************************************************************************************************************************
+        [Counter("RequestProcessingGeneralCutoffTimeConfiguration")]
+        public virtual string RequestProcessingGeneralCutoffTimeConfiguration(string[] RequestProcessingCutoffTimeConfig)
+        {
+            try
+            {
+                Report.Info("Navigate to Preferences RM/ Borrower page.");
+                WebLinkCommonPageFactory.PreferencesPage.NavigateToRequestProcessingGeneralTab();
+
+                if (RequestProcessingCutoffTimeConfig != null)
+                {
+                    WebLinkCommonPageFactory.PreferencesPage.EnterRequestProcessingGeneralCutoffTimeInfo(RequestProcessingCutoffTimeConfig);
+                }
+
+                Report.Info("Click on Save button to save the configuration.");
+                WebLinkCommonPageFactory.PreferencesPage.RequestProcessingGeneralCutoffTimeSaveConfigurationChange();
+
+                bool Message = WebLinkCommonPageFactory.CommonPage.ConfirmTostSucessMessage("Preferences Saved");
+                Report.Info("Verify Preference Saved toast message is displayed.");
+
+                if (Message == true)
+                {
+                    Report.Pass("Request Processing General cut off time Preference is saved successfully.", "RequestProcessingGeneralCutoffTimeConfiguration", "True", appHandle);
+                    return "Pass";
+                }
+                else
+                {
+                    Report.Fail("Request Processing General cut off time Preference is not saved. Please check the parameters.", "RequestProcessingGeneralCutoffTimeConfiguration", "True", appHandle, true);
+                    return "Fail";
+                }
+            }
+            catch (Exception e)
+            {
+                string ExceptionMessage = e.Message;
+                WebLinkUtility.WebLinkUtilityLibrary.HandleBusinessException(ExceptionMessage);
+            }
+            return null;
+        }
+
+        //*****************************************************************************************************************************
+        // UDF NAME                 :	RequestProcessingGeneralDisallowTransactionRequest
+        // Purpose                  :	This function is used to do the configuration for Request Processing General disallow transactions request in Preferences page.
+        // Input Parameter          :   Custid, Facilityid, Operation
+        // Out Parameter    		:	None
+        // Limitations              :	None
+        // Example1					:	Application.CommonApplication.RequestProcessingGeneralDisallowTransactionRequest(CustId, FacilityId, Add/Delete);
+        // ****************************************************************************************************************************
+        // 04/17/2024             	:   Sarath
+        //***************************************************************************************************************************************************
+        /// <summary>
+        /// This function is used to do the configuration for Request Processing General disallow transactions request in Preferences page.
+        /// </summary>
+        /// <param name="RequestProcessingCutoffTimeConfig"></param>
+        /// <returns>None</returns>
+        /// <example>
+        /// Application.CommonApplication.RequestProcessingGeneralDisallowTransactionRequest(RequestProcessingCutoffTimeConfig);
+        /// </example>
+        //***** ************************************************************************************************************************
+        [Counter("RequestProcessingGeneralDisallowTransactionRequest")]
+        public virtual string RequestProcessingGeneralDisallowTransactionRequest(string CustID, string FacID, string Operation, string TableName ="", string TableData ="")
+        {
+            try
+            {
+                Report.Info("Navigate to Preferences RM/ Borrower page.");
+                WebLinkCommonPageFactory.PreferencesPage.NavigateToRequestProcessingGeneralTab();
+
+                if (Operation.ToUpper() == "ADD")
+                {
+                    if (CustID != null & FacID != null)
+                    {
+                        WebLinkCommonPageFactory.PreferencesPage.EnterRequestProcessingGeneralDisallowTransactionRequest(CustID, FacID);
+
+                        bool Message = WebLinkCommonPageFactory.CommonPage.ConfirmTostSucessMessage("You have successfully disallowed transactions on selected facilities");
+                        Report.Info("Verify Disallow Transaction request success message is displayed.");
+
+                        if (Message == true)
+                        {
+                            Report.Pass("Request Processing General Disallow Transaction Request for Facility Preference <"+ FacID + ">is saved successfully.", "RequestProcessingGeneralDisallowTransactionRequest", "True", appHandle);
+                            return "Pass";
+                        }
+                        else
+                        {
+                            Report.Fail("Request Processing General Disallow Transaction Request for Facility Preference <"+ FacID + "> is not saved. Please check the parameters.", "RequestProcessingGeneralDisallowTransactionRequest", "True", appHandle, true);
+                            return "Fail";
+                        }
+                    }
+                }
+                else if (Operation.ToUpper() == "DELETE")
+                {
+                    if (FacID != null)
+                    {
+                        WebLinkCommonPageFactory.PreferencesPage.DeleteRequestProcessingGeneralDisallowTransactionRequest(FacID);
+
+                        bool Message = WebLinkCommonPageFactory.CommonPage.ConfirmTostSucessMessage("You have successfully removed selected facility from Disallowed Transactions List");
+                        Report.Info("Verify Preference Saved toast message is displayed.");
+
+                        if (Message == true)
+                        {
+                            Report.Pass("Request Processing General Disallow Transaction Request for selected Facility Preference <"+ FacID + ">is removed successfully.", "RequestProcessingGeneralDisallowTransactionRequest", "True", appHandle);
+                            return "Pass";
+                        }
+                        else
+                        {
+                            Report.Fail("Request Processing General Disallow Transaction Request for selected Facility Preference <"+ FacID + "> is not removed. Please check the parameters.", "RequestProcessingGeneralDisallowTransactionRequest", "True", appHandle, true);
+                            return "Fail";
+                        }
+                    }    
+                }
+                else if(Operation.ToUpper() == "DOWNLOAD")
+                {
+                    string Downloadpath = WebLinkCommonPageFactory.PreferencesPage.DownloadDisallowTransactionRequestDetails();
+                    RunTimeData.Store("DisallowTransactionRequestExcelfile", Downloadpath);
+                }
+                else if(Operation.ToUpper() == "VERIFY")
+                {
+                    bool Message = WebLinkCommonPageFactory.PreferencesPage.VerifyDisallowTransactionRequestTable(CustID, FacID, TableName, TableData);
+                    Report.Info("Verify Preference Saved toast message is displayed.");
+
+                    if (Message == true)
+                    {
+                        Report.Pass("Request Processing General Disallow Transaction Request Table<"+TableName+"> data for selected Facility Preference is verified successfully with the data<"+TableData+">", "RequestProcessingGeneralDisallowTransactionRequest", "True", appHandle);
+                        return "Pass";
+                    }
+                    else
+                    {
+                        Report.Fail("Request Processing General Disallow Transaction Request Table<"+TableName+ "> data for selected Facility Preference is not matching the provided data<"+TableData+">. Please check the parameters.", "RequestProcessingGeneralDisallowTransactionRequest", "True", appHandle, true);
+                        return "Fail";
+                    }
+                }
+                else
+                {
+                    Report.Fail("Invalid Operation. Please provide valid operation as Add/Delete/Download/Verify.");
+                }
+        
+                
+            }
+            catch (Exception e)
+            {
+                string ExceptionMessage = e.Message;
+                WebLinkUtility.WebLinkUtilityLibrary.HandleBusinessException(ExceptionMessage);
+            }
+            return null;
+        }
+
+        //*****************************************************************************************************************************
+        // UDF NAME                 :	AddBulkDisallowTransactionRequest
+        // Purpose                  :	This function is used to import bulk facilities for  disallow transactions request in Preferences page.
+        // Input Parameter          :   FileName
+        // Out Parameter    		:	None
+        // Limitations              :	None
+        // Example1					:	Application.CommonApplication.AddBulkDisallowTransactionRequest(FileName);
+        // ****************************************************************************************************************************
+        // 05/14/2024             	:   Sarath
+        //***************************************************************************************************************************************************
+        /// <summary>
+        /// This function is used to import bulk facilities for  disallow transactions request in Preferences page.
+        /// </summary>
+        /// <param name="FileName"></param>
+        /// <returns>None</returns>
+        /// <example>
+        /// Application.CommonApplication.AddBulkDisallowTransactionRequest(FileName);
+        /// </example>
+        //***** ************************************************************************************************************************
+        [Counter("AddBulkDisallowTransactionRequest")]
+        public virtual string AddBulkDisallowTransactionRequest(string FileName)
+        {
+            try
+            {
+                Report.Info("Navigate to Preferences RM/ Borrower page.");
+                WebLinkCommonPageFactory.PreferencesPage.NavigateToRequestProcessingGeneralTab();
+
+                if (FileName !=null & FileName != "")
+                {
+                    WebLinkCommonPageFactory.PreferencesPage.UploadBulkDisallowTransactionRequest(FileName);
+                    bool Message = WebLinkCommonPageFactory.CommonPage.ConfirmTostSucessMessage("Success! 1 file imported");
+                    Report.Info("Verify Disallow Transaction request success message is displayed.");
+
+                    if (Message == true)
+                    {
+                        Report.Pass("Request Processing General Disallow Transaction Request for Facility Preference <"+ FileName + ">is saved successfully.", "RequestProcessingGeneralDisallowTransactionRequest", "True", appHandle);
+                        return "Pass";
+                    }
+                    else
+                    {
+                        Report.Fail("Request Processing General Disallow Transaction Request for Facility Preference <"+ FileName + "> is not saved. Please check the parameters.", "RequestProcessingGeneralDisallowTransactionRequest", "True", appHandle, true);
+                        return "Fail";
+                    }
+                }
+                
+                else
+                {
+                    Report.Fail("File Name is not provided. Please provide valid file name");
+                }
+        
+                
+            }
+            catch (Exception e)
+            {
+                string ExceptionMessage = e.Message;
+                WebLinkUtility.WebLinkUtilityLibrary.HandleBusinessException(ExceptionMessage);
+            }
+            return null;
+        }
+
+    }
+
+
+}
 
 
