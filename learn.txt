@@ -1,3 +1,6 @@
+CSPROJ____________________
+*******************************
+
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net6.0-windows</TargetFramework>
@@ -19,6 +22,219 @@
     <WarningLevel>0</WarningLevel>
   </PropertyGroup>
 </Project>
+
+
+
+CONFIG_______________________________________________
+*******************************************************
+
+{
+  "MobileAppConfig": {
+    "ServerURI": "*******",
+    "MobileDriver": "",
+    "DUT": "",
+    "DevicesList": [
+      {
+        "DeviceName": "",
+        "DesiredCapabilities": {
+          "browserName": "",
+          "platformName": "",
+          "newCommandTimeout": "",
+          "gigafox:username": "",
+          "gigafox:apiKey": "",
+          "gigafox:automationName": "",
+          "gigafox:device": ""
+        }
+      }
+    ]
+  },
+  "WebAppConfig": {
+    "AsynchronousJavaScriptTimeOut": 5,
+    "PageLoadTimeout": 120,
+    "ImplicitWaitTimeout": 1,
+    "ConfigEntry": [
+      {
+        "Key": "",
+        "Value": ""
+      }
+    ],
+    "DriverTimeout": 240
+  },
+  "FrameworkConfig": {
+    "DBToolAPI": "SQL",
+    "MobileToolAPI": "APPIUM",
+    "OutlookToolAPI": "OUTLOOK",
+    "PDFToolAPI": "PDFSHARP",
+    "SSHToolAPI": "SSHNET",
+    "WebToolAPI": "SELENIUM",
+    "WebServiceToolAPI": "RESTSHARP",
+    "WindowToolAPI": "FLAUI",
+    "TestFramework": "NUNIT",
+    "AccessibilityTestTool": "AXE"
+  },
+  "ProjectConfig": {
+    "IsProjectSikuliEnabled": true,
+    "EnableFullPageScreenshotInIE": false,
+    "ClickObjectWithJavaScriptInWebApp": true,
+    "DriverPath": "bin\\Debug\\net6.0-windows\\drivers",
+    "ShouldWindowMove": false,
+    "StartupFilePath": "C:\\ProgramData\\WEBLINK\\GTS_ENV\\Environment\\WebLinkStartup.json",
+    "StartupFileDataSet": "Data Set 1",
+    "DataFilesPath": "TestData\\InputData\\",
+    "DataFilesDataSet": "Data Set 1",
+    "CommonDataFile": "Data_Common",
+    "CoreFiles": "Data_Common;DataFile_Static_Data;Data_SPUser;DataFile_CommonTableData;DataFile_Other_TableData;ConfigurationSetup;Data_RMUser;NewFileData",
+    "SessionFilePath": "TestData\\OutputData\\",
+    "ReportingLevel": "Test",
+    "JAVAPATH": "C:\\Program Files (x86)\\Java\\jdk1.7.0_45",
+    "TimeOutValue": "100",
+    "DataFilesVerticalAligned": true,
+    "OnErrorContinue": false,
+    "UseSameBrowserInstance": true,
+    "DataFileFormat": "csv",
+    "EncryptedDataKeys": "",
+    "ProjectSettings": [
+      {
+        "Property": "",
+        "Value": ""
+      }
+    ],
+    "Client": [
+      {
+        "Key": "",
+        "Value": ""
+      }
+    ],
+    "AddLatestDrivers": false,
+    "CaptureFailureScreenshot": false,
+    "DependentScriptExecution": false
+  },
+  "DataBaseConfig": [
+    {
+      "DBConfigName": "SYNDDB",
+      "DBConfigDetails": {
+        "DBUserId": "FNFIS\\e3005837",
+        "DBPassword": "",
+        "DBHost": "vwmazacbssql1.fisdev.local",
+        "DBPort": "",
+        "DBServiceName": "",
+        "DBDatabaseName": "St4DevB_Main",
+        "DBWindowsAuthentication": "true",
+        "DBProvider": "",
+        "DBDataSourceName": "",
+        "DBDriver": ""
+      }
+    },
+    {
+      "DBConfigName": "WEBLinkDB",
+      "DBConfigDetails": {
+        "DBUserId": "CLSUI_CLIENT3",
+        "DBPassword": "CLSUI_CLIENT3",
+        "DBHost": "VWCAPUIORA3.fisdev.local",
+        "DBPort": "1521",
+        "DBServiceName": "CLSUIAA",
+        "DBDatabaseName": ""
+      }
+    }
+  ],
+  "DriverSettings": [
+    {
+      "Name": "IE",
+      "ConfigEntry": [
+        {
+          "Key": "EnableFullPageScreenshot",
+          "Value": "false"
+        },
+        {
+          "Key": "IntroduceInstabilityByIgnoringProtectedModeSettings",
+          "Value": "true"
+        },
+        {
+          "Key": "RequireWindowFocus",
+          "Value": "true"
+        },
+        {
+          "Key": "EnsureCleanSession",
+          "Value": "true"
+        },
+        {
+          "Key": "autodetect",
+          "Value": "true"
+        }
+      ]
+    },
+    {
+      "Name": "Chrome",
+      "ConfigEntry": [
+        {
+          "Key": "userprofileprefernce",
+          "Value": "download.prompt_for_download;true"
+        }
+      ]
+    },
+    {
+      "Name": "FF",
+      "ConfigEntry": []
+    }
+  ],
+  "SyncSettings": {
+    "WaitForElementToBeClickable": false,
+    "WaitForElementToBeVisible": false,
+    "WaitForElementExists": false,
+    "SyncTimeout": 1
+  },
+  "ImageCompareConfig": {
+    "BaselineImagePath": "",
+    "NewBuildImagePath": "",
+    "ResultPath": "",
+    "EXEpath": "",
+    "APIHostUri": "",
+    "APIRequestUri": "",
+    "FeatureEnable": false,
+    "APIEnable": false,
+    "ExeEnable": false
+  },
+  "ProxyConfig": {
+    "ProxyHost": "",
+    "ProxyPort": "",
+    "Domain": "",
+    "UserName": "",
+    "Password": "",
+    "EnableProxy": false
+  },
+  "EmailConfig": {
+    "DeliveryMethod": 0,
+    "EnableSsl": false,
+    "Host": "SMARTHOST.FISGLOBAL.COM",
+    "MailType": "SMTP",
+    "Port": 25,
+    "UseDefaultCredentials": false
+  },
+  "OCRDataProperty": {
+    "OCRPath": "C:\\Program Files\\GATS Automation\\OCR"
+  },
+  "WebLinkDataBaseConfig": [
+    {
+      "DBUserId": "FNFIS\\e3005837",
+      "DBPassword": "",
+      "DBHost": "vwmazacbssql1.fisdev.local",
+      "DBPort": "",
+      "DBServiceName": "",
+      "DBDatabaseName": "St4DevB_Main",
+      "DBWindowsAuthentication": "true",
+      "DBProvider": "",
+      "DBDataSourceName": "",
+      "DBDriver": ""
+    }
+  ],
+  "WindowAppConfig": {
+    "MaxWaitTime": 10,
+    "WindowLoadTimeOut": 100,
+    "ElementLoadTimeout": 10,
+    "EnableSmartWait": true
+  }
+}
+
 
 
 
